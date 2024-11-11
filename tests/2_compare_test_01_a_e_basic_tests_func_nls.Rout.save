@@ -1,0 +1,455 @@
+
+R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(distfreereg)
+> set.seed(20240829)
+> n <- 5
+> Sig <- rWishart(1, df = n, Sigma = diag(n))[,,1]
+> theta <- c(2,5)
+> true_func <- function(theta, x) theta[1]*x[1] + theta[2]*x[2]
+> test_func <- function(theta, x) theta[1]*x[1] + theta[2]*x[2]^2
+> true_form <- c ~ a + b - 1
+> test_form <- c ~ k*a + j*b
+> true_data <- data.frame(a = rexp(n, rate = 1), b = rnorm(n))
+> true_X <- as.matrix(true_data)
+> X <- true_X + rexp(length(true_X))
+> data <- as.data.frame(X)
+> true_data[["c"]] <- theta[1]*true_data[["a"]] + theta[2]*true_data[["b"]]
+> data[["c"]] <- 5*data[["a"]] - 4*data[["b"]]^2
+> true_m <- lm(true_form, data = true_data)
+> test_m <- nls(test_form, data = data)
+Warning message:
+In nls(test_form, data = data) :
+  No starting values specified for some parameters.
+Initializing 'k', 'j' to '1.'.
+Consider specifying 'start' or using a selfStart model
+> 
+> # Each true/test mean pair has 16 possibilities for which X/data values are
+> # given. These are specified below by a four-digit binary sequence indicating
+> # the presence/absence of each term in the call, in the following order:
+> # true_data, data, true_X, X. For example, "0011" indicates that only
+> # true_X and X are provided.
+> 
+> #######################################
+> #### true_mean func, test_mean nls ####
+> ####  should work exactly for 0010 ####
+> #######################################
+> 
+> # 0000
+> set.seed(20240829)
+> tryCatch(compare(true_mean = true_func,
++                  test_mean = test_m,
++                  # true_data = true_data,
++                  # data = data,
++                  # true_X = true_X,
++                  # X = X,
++                  true_covariance = list(Sigma = Sig),
++                  reps = 10, B = 10, prog = Inf, theta = theta),
++          error = function(e) warning(e))
+Warning message:
+In validate_args_compare(true_mean = true_mean, true_method = true_method,  :
+  true_mean must have neither 'x' nor 'X' as an argument when true_X is NULL
+> 
+> # 1000
+> set.seed(20240829)
+> tryCatch(compare(true_mean = true_func,
++                  test_mean = test_m,
++                  true_data = true_data,
++                  # data = data,
++                  # true_X = true_X,
++                  # X = X,
++                  true_covariance = list(Sigma = Sig),
++                  reps = 10, B = 10, prog = Inf, theta = theta),
++          error = function(e) warning(e))
+Warning message:
+In validate_args_compare(true_mean = true_mean, true_method = true_method,  :
+  true_data must not be supplied when true_mean is a function
+> 
+> # 0100
+> set.seed(20240829)
+> tryCatch(compare(true_mean = true_func,
++                  test_mean = test_m,
++                  # true_data = true_data,
++                  data = data,
++                  # true_X = true_X,
++                  # X = X,
++                  true_covariance = list(Sigma = Sig),
++                  reps = 10, B = 10, prog = Inf, theta = theta),
++          error = function(e) warning(e))
+Warning message:
+In validate_args_compare(true_mean = true_mean, true_method = true_method,  :
+  data must be NULL when test_mean is an nls object
+> 
+> # 1100
+> set.seed(20240829)
+> tryCatch(compare(true_mean = true_func,
++                  test_mean = test_m,
++                  true_data = true_data,
++                  data = data,
++                  # true_X = true_X,
++                  # X = X,
++                  true_covariance = list(Sigma = Sig),
++                  reps = 10, B = 10, prog = Inf, theta = theta),
++          error = function(e) warning(e))
+Warning message:
+In validate_args_compare(true_mean = true_mean, true_method = true_method,  :
+  true_data must not be supplied when true_mean is a function
+> 
+> # 0010
+> set.seed(20240829)
+> compare(true_mean = true_func,
++         test_mean = test_m,
++         # true_data = true_data,
++         # data = data,
++         true_X = true_X,
++         # X = X,
++         true_covariance = list(Sigma = Sig),
++         reps = 10, B = 10, prog = Inf, theta = theta)
+Calculating required true covariance specification matrices...
+Generating errors...
+Running simulation...
+$call
+compare(true_mean = true_func, true_covariance = list(Sigma = Sig), 
+    true_X = true_X, theta = theta, reps = 10, prog = Inf, test_mean = test_m, 
+    B = 10)
+
+$Y_mean
+[1] -0.08083294  0.39607258 10.71587895 -5.96330631  6.59338881
+
+$errors
+          [,1]       [,2]        [,3]       [,4]       [,5]      [,6]
+[1,] -1.654431 -0.5131493  0.20924420 -1.3543573  0.2835084 -2.722144
+[2,]  2.125346 -0.2682032  0.37235473 -0.2029918  1.2145984  2.080659
+[3,]  2.908975  1.0588559 -1.27061353  2.2513827 -0.4025760  2.842410
+[4,] -1.581247  0.4290166  0.46106093 -1.3330655 -0.4239370 -3.554972
+[5,]  2.022052 -0.2262015  0.09852033  1.0017837  2.0409520  2.339832
+           [,7]       [,8]       [,9]      [,10]
+[1,]  2.3833277 -1.3859022 -0.6773052 -0.8147283
+[2,]  0.8692066  2.8503710  2.9739021  2.6594230
+[3,] -3.4863503  1.2208450  1.2380887  2.5391484
+[4,]  3.7541586 -0.6922914 -0.7656734  0.3975018
+[5,] -3.2285039  0.9016172  1.6269886 -0.5401808
+
+$theta
+[1] 2 5
+
+$true_mean
+function (theta, x) 
+theta[1] * x[1] + theta[2] * x[2]
+<bytecode: 0x00000296e2bcb420>
+
+$true_covariance
+$true_covariance$Sigma
+           [,1]       [,2]      [,3]       [,4]       [,5]
+[1,]  1.3423272  0.5240361 -1.169411  1.2386896 -0.7011735
+[2,]  0.5240361  5.6752296 -0.470731  0.4987678  0.9066802
+[3,] -1.1694109 -0.4707310  4.717190 -1.4308501  1.3320697
+[4,]  1.2386896  0.4987678 -1.430850  1.7324472 -1.3467562
+[5,] -0.7011735  0.9066802  1.332070 -1.3467562  2.2590953
+
+$true_covariance$SqrtSigma
+           [,1]       [,2]       [,3]       [,4]       [,5]
+[1,]  0.9707843  0.1379701 -0.3003784  0.5128981 -0.1660654
+[2,]  0.1379701  2.3538326 -0.1051953  0.1572826  0.2825990
+[3,] -0.3003784 -0.1051953  2.0937815 -0.3497248  0.3311618
+[4,]  0.5128981  0.1572826 -0.3497248  1.0347608 -0.5016049
+[5,] -0.1660654  0.2825990  0.3311618 -0.5016049  1.3380507
+
+
+$true_X
+             a            b
+[1,] 0.8940946 -0.373804436
+[2,] 0.2095964 -0.004624046
+[3,] 1.3383909  1.607819416
+[4,] 0.3209320 -1.321034070
+[5,] 0.4236196  1.149229938
+
+$true_data
+NULL
+
+$test_mean
+Nonlinear regression model
+  model: c ~ k * a + j * b
+   data: data
+     k      j 
+ 3.534 -3.192 
+ residual sum-of-squares: 10.32
+
+Number of iterations to convergence: 1 
+Achieved convergence tolerance: 1.215e-07
+
+$covariance
+$covariance$SqrtSigma
+[1] 6.992188
+
+$covariance$Q
+[1] 0.1430168
+
+
+$X
+NULL
+
+$data
+NULL
+
+$observed_stats
+          KS        CvM
+1  0.3935747 0.08755413
+2  0.4308737 0.08364198
+3  0.4088453 0.08656058
+4  0.4284447 0.08393246
+5  0.3930321 0.08818803
+6  0.3890091 0.08752767
+7  0.4980160 0.10568453
+8  0.4368288 0.08903631
+9  0.4467193 0.09007425
+10 0.4472109 0.08945293
+
+$mcsim_stats
+$mcsim_stats$KS
+ [1] 0.3895182 0.1553207 0.6040501 0.4760551 0.3158579 0.2434298 0.5797915
+ [8] 1.5680809 0.5851936 0.2487502
+
+$mcsim_stats$CvM
+ [1] 0.04667394 0.01536966 0.08479876 0.08826095 0.04867175 0.01671599
+ [7] 0.11982397 1.12934674 0.10159897 0.02688297
+
+
+$p
+    KS CvM
+1  0.5 0.4
+2  0.5 0.5
+3  0.5 0.4
+4  0.5 0.5
+5  0.5 0.4
+6  0.6 0.4
+7  0.4 0.2
+8  0.5 0.3
+9  0.5 0.3
+10 0.5 0.3
+
+attr(,"class")
+[1] "compare"
+Warning messages:
+1: In nls(formula = test_form, data = new_data, algorithm = "default",  :
+  No starting values specified for some parameters.
+Initializing 'k', 'j' to '1.'.
+Consider specifying 'start' or using a selfStart model
+2: In nls(formula = test_form, data = new_data, algorithm = "default",  :
+  No starting values specified for some parameters.
+Initializing 'k', 'j' to '1.'.
+Consider specifying 'start' or using a selfStart model
+3: In nls(formula = test_form, data = new_data, algorithm = "default",  :
+  No starting values specified for some parameters.
+Initializing 'k', 'j' to '1.'.
+Consider specifying 'start' or using a selfStart model
+4: In nls(formula = test_form, data = new_data, algorithm = "default",  :
+  No starting values specified for some parameters.
+Initializing 'k', 'j' to '1.'.
+Consider specifying 'start' or using a selfStart model
+5: In nls(formula = test_form, data = new_data, algorithm = "default",  :
+  No starting values specified for some parameters.
+Initializing 'k', 'j' to '1.'.
+Consider specifying 'start' or using a selfStart model
+6: In nls(formula = test_form, data = new_data, algorithm = "default",  :
+  No starting values specified for some parameters.
+Initializing 'k', 'j' to '1.'.
+Consider specifying 'start' or using a selfStart model
+7: In nls(formula = test_form, data = new_data, algorithm = "default",  :
+  No starting values specified for some parameters.
+Initializing 'k', 'j' to '1.'.
+Consider specifying 'start' or using a selfStart model
+8: In nls(formula = test_form, data = new_data, algorithm = "default",  :
+  No starting values specified for some parameters.
+Initializing 'k', 'j' to '1.'.
+Consider specifying 'start' or using a selfStart model
+9: In nls(formula = test_form, data = new_data, algorithm = "default",  :
+  No starting values specified for some parameters.
+Initializing 'k', 'j' to '1.'.
+Consider specifying 'start' or using a selfStart model
+10: In nls(formula = test_form, data = new_data, algorithm = "default",  :
+  No starting values specified for some parameters.
+Initializing 'k', 'j' to '1.'.
+Consider specifying 'start' or using a selfStart model
+> 
+> # 1010
+> set.seed(20240829)
+> tryCatch(compare(true_mean = true_func,
++                  test_mean = test_m,
++                  true_data = true_data,
++                  # data = data,
++                  true_X = true_X,
++                  # X = X,
++                  true_covariance = list(Sigma = Sig),
++                  reps = 10, B = 10, prog = Inf, theta = theta),
++          error = function(e) warning(e))
+Warning message:
+In validate_args_compare(true_mean = true_mean, true_method = true_method,  :
+  true_data must not be supplied when true_mean is a function
+> 
+> # 0110
+> set.seed(20240829)
+> tryCatch(compare(true_mean = true_func,
++                  test_mean = test_m,
++                  # true_data = true_data,
++                  data = data,
++                  true_X = true_X,
++                  # X = X,
++                  true_covariance = list(Sigma = Sig),
++                  reps = 10, B = 10, prog = Inf, theta = theta),
++          error = function(e) warning(e))
+Warning message:
+In validate_args_compare(true_mean = true_mean, true_method = true_method,  :
+  data must be NULL when test_mean is an nls object
+> 
+> # 1110
+> set.seed(20240829)
+> tryCatch(compare(true_mean = true_func,
++                  test_mean = test_m,
++                  true_data = true_data,
++                  data = data,
++                  true_X = true_X,
++                  # X = X,
++                  true_covariance = list(Sigma = Sig),
++                  reps = 10, B = 10, prog = Inf, theta = theta),
++          error = function(e) warning(e))
+Warning message:
+In validate_args_compare(true_mean = true_mean, true_method = true_method,  :
+  true_data must not be supplied when true_mean is a function
+> 
+> # 0001
+> set.seed(20240829)
+> tryCatch(compare(true_mean = true_func,
++                  test_mean = test_m,
++                  # true_data = true_data,
++                  # data = data,
++                  # true_X = true_X,
++                  X = X,
++                  true_covariance = list(Sigma = Sig),
++                  reps = 10, B = 10, prog = Inf, theta = theta),
++          error = function(e) warning(e))
+Warning message:
+In validate_args_compare(true_mean = true_mean, true_method = true_method,  :
+  X must be NULL when test_mean has a formula method
+> # 1001
+> set.seed(20240829)
+> tryCatch(compare(true_mean = true_func,
++                  test_mean = test_m,
++                  true_data = true_data,
++                  # data = data,
++                  # true_X = true_X,
++                  X = X,
++                  true_covariance = list(Sigma = Sig),
++                  reps = 10, B = 10, prog = Inf, theta = theta),
++          error = function(e) warning(e))
+Warning message:
+In validate_args_compare(true_mean = true_mean, true_method = true_method,  :
+  true_data must not be supplied when true_mean is a function
+> 
+> # 0101
+> set.seed(20240829)
+> tryCatch(compare(true_mean = true_func,
++                  test_mean = test_m,
++                  # true_data = true_data,
++                  data = data,
++                  # true_X = true_X,
++                  X = X,
++                  true_covariance = list(Sigma = Sig),
++                  reps = 10, B = 10, prog = Inf, theta = theta),
++          error = function(e) warning(e))
+Warning message:
+In validate_args_compare(true_mean = true_mean, true_method = true_method,  :
+  data must be NULL when test_mean is an nls object
+> 
+> # 1101
+> set.seed(20240829)
+> tryCatch(compare(true_mean = true_func,
++                  test_mean = test_m,
++                  true_data = true_data,
++                  data = data,
++                  # true_X = true_X,
++                  X = X,
++                  true_covariance = list(Sigma = Sig),
++                  reps = 10, B = 10, prog = Inf, theta = theta),
++          error = function(e) warning(e))
+Warning message:
+In validate_args_compare(true_mean = true_mean, true_method = true_method,  :
+  true_data must not be supplied when true_mean is a function
+> 
+> # 0011
+> set.seed(20240829)
+> tryCatch(compare(true_mean = true_func,
++                  test_mean = test_m,
++                  # true_data = true_data,
++                  # data = data,
++                  true_X = true_X,
++                  X = X,
++                  true_covariance = list(Sigma = Sig),
++                  reps = 10, B = 10, prog = Inf, theta = theta),
++          error = function(e) warning(e))
+Warning message:
+In validate_args_compare(true_mean = true_mean, true_method = true_method,  :
+  X must be NULL when test_mean has a formula method
+> 
+> # 1011
+> set.seed(20240829)
+> tryCatch(compare(true_mean = true_func,
++                  test_mean = test_m,
++                  true_data = true_data,
++                  # data = data,
++                  true_X = true_X,
++                  X = X,
++                  true_covariance = list(Sigma = Sig),
++                  reps = 10, B = 10, prog = Inf, theta = theta),
++          error = function(e) warning(e))
+Warning message:
+In validate_args_compare(true_mean = true_mean, true_method = true_method,  :
+  true_data must not be supplied when true_mean is a function
+> 
+> # 0111
+> set.seed(20240829)
+> tryCatch(compare(true_mean = true_func,
++                  test_mean = test_m,
++                  # true_data = true_data,
++                  data = data,
++                  true_X = true_X,
++                  X = X,
++                  true_covariance = list(Sigma = Sig),
++                  reps = 10, B = 10, prog = Inf, theta = theta),
++          error = function(e) warning(e))
+Warning message:
+In validate_args_compare(true_mean = true_mean, true_method = true_method,  :
+  data must be NULL when test_mean is an nls object
+> 
+> # 1111
+> set.seed(20240829)
+> tryCatch(compare(true_mean = true_func,
++                  test_mean = test_m,
++                  true_data = true_data,
++                  data = data,
++                  true_X = true_X,
++                  X = X,
++                  true_covariance = list(Sigma = Sig),
++                  reps = 10, B = 10, prog = Inf, theta = theta),
++          error = function(e) warning(e))
+Warning message:
+In validate_args_compare(true_mean = true_mean, true_method = true_method,  :
+  true_data must not be supplied when true_mean is a function
+> 
+> proc.time()
+   user  system elapsed 
+   0.34    0.12    0.45 

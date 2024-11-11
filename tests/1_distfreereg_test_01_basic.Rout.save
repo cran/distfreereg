@@ -1,0 +1,240 @@
+
+R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(distfreereg)
+> set.seed(20240303)
+> n <- 1e2
+> func <- function(x, theta) theta[1] + theta[2]*x
+> Sig <- diag(rexp(n))
+> theta <- c(2,5)
+> X <- matrix(rexp(n, rate = 1))
+> Y <- distfreereg:::f2ftheta(f = func, X)(theta) +
++   as.vector(distfreereg:::rmvnorm(n = n, reps = 1, mean = rep(0,n), SqrtSigma = distfreereg:::matsqrt(Sig)))
+> set.seed(20240303)
+> dfr_1 <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = Sig), theta_init = c(1,1), verbose = FALSE)
+> dfr_2 <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(P = solve(Sig)), theta_init = c(1,1), verbose = FALSE)
+> dfr_1
+
+Number of observations: 100 
+Monte Carlo simulations: 10000 
+
+Estimated parameter values:
+   theta1     theta2 
+2.079e+00  4.939e+00 
+
+Observed statistics:
+Stat      Value  Pr(>Value)       MCSE 
+  KS  7.292e-01   5.690e-01  4.952e-03 
+ CvM  1.551e-01   3.753e-01  4.842e-03 
+---
+`MCSE' is the Monte Carlo standard error of the estimated p-value.
+
+> dfr_2
+
+Number of observations: 100 
+Monte Carlo simulations: 10000 
+
+Estimated parameter values:
+   theta1     theta2 
+2.079e+00  4.939e+00 
+
+Observed statistics:
+Stat      Value  Pr(>Value)       MCSE 
+  KS  7.292e-01   5.619e-01  4.962e-03 
+ CvM  1.551e-01   3.730e-01  4.836e-03 
+---
+`MCSE' is the Monte Carlo standard error of the estimated p-value.
+
+> 
+> all.equal(dfr_1[["epsp"]], dfr_2[["epsp"]])# TRUE
+[1] TRUE
+> 
+> # Verify that r and mu are orthogonal.
+> all.equal(crossprod(dfr_1[["r"]]), diag(length(dfr_1[["theta_hat"]])))# TRUE
+[1] TRUE
+> all.equal(crossprod(dfr_1[["mu"]]), diag(length(dfr_1[["theta_hat"]])))# TRUE
+[1] TRUE
+> 
+> fitted(dfr_1)
+  [1]  2.940006 10.236812  2.204325  2.765329  2.505584 15.196913  4.487024
+  [8]  3.561264  6.852116  4.089087  5.400730  3.159663  5.969952  8.182207
+ [15]  7.302457 12.534146  4.356026  3.787727 16.657133  4.745480  8.316484
+ [22]  2.779830  5.696786 13.718424 13.801356  4.548006  2.568642  3.974844
+ [29]  8.627423  4.251438  2.884096  4.776208 29.202819  4.565855  4.228554
+ [36]  4.890854 17.896558  4.154637  6.548527 14.473032  2.150998  2.605117
+ [43]  7.273213  7.985918  4.316926 14.154161  3.702234 10.497208 15.807420
+ [50] 15.830086  6.327776  3.442466  4.427729  7.081405  8.383537  4.793056
+ [57]  2.602467  6.120089  3.691786  4.395029  2.876768  3.732549  5.191191
+ [64] 13.326315  3.209301  6.132695  3.782748  2.267743  5.123849 18.431919
+ [71]  9.668511  3.651374  7.058939  2.748601 12.997931  2.941580  2.715612
+ [78]  4.454521 21.304403  5.258018  3.041901 14.379766 11.637051  6.933545
+ [85]  5.698326 10.753236  3.014304  2.918842  3.237880  2.685804  2.227882
+ [92]  2.107651  2.877334  2.900850 10.619322  6.095744  9.452130  6.346520
+ [99]  7.386018  4.943909
+> 
+> all.equal(residuals(dfr_1), residuals(dfr_1, type = "raw"))# TRUE
+[1] TRUE
+> residuals(dfr_1, type = "sphered")
+  [1] -0.41724602  1.08131187 -0.38516181 -0.97216261  1.79159522 -0.54546138
+  [7]  1.42100779  1.43578226 -0.84354682 -0.09609521  1.19407354 -1.12348296
+ [13] -0.05935579 -0.55274096 -0.45988398  0.61596684 -0.30508816 -0.91490867
+ [19] -0.24498890 -1.82603624 -1.35397233 -0.23170381  0.42370955 -0.49441089
+ [25] -1.15537017  0.65262571 -0.14654511  0.06872363 -0.47179368  0.97127468
+ [31]  0.41056744  0.88370328  0.37249275  0.70344775  0.36111492  1.50518252
+ [37]  0.64758869  0.27692522  0.60954365 -1.42656534 -0.89424869 -0.94484465
+ [43] -0.63089661  0.10551542  0.14834477  0.12559297  0.87490980  0.07856170
+ [49]  0.42835548  0.78991363 -1.55604067  1.26006240  0.46119921  0.13778042
+ [55]  1.57446122 -0.14406199 -1.53820330  0.44506818 -1.98708197  0.70431611
+ [61] -0.52430527 -0.22461788 -0.13875223 -0.93412566  0.32681649  1.00097610
+ [67] -0.16832886  1.21694296 -0.40747118  2.37205996 -0.26480995  0.05044538
+ [73]  0.16128627 -1.45607388 -1.19163921  0.97814834  0.33505565 -0.06752832
+ [79]  0.27912688  0.84982904 -0.19388010  0.92902858 -0.18432671 -0.34386330
+ [85] -0.59475110 -0.59677321 -0.84064562  0.12995398  1.29414746 -1.15086859
+ [91]  2.00384125 -0.26468759 -0.45241119 -0.26850024  0.83751572 -0.79514851
+ [97]  0.64491499  0.04377437 -0.14078002  0.46026569
+> residuals(dfr_1, type = "transformed")
+  [1] -0.65137058  1.10343377 -0.26532309 -1.20387360  1.57084076 -0.22699471
+  [7]  1.42731418  1.32242757 -0.85230184 -0.36194676  1.00393468 -1.27486306
+ [13]  0.08429774 -0.46076713 -0.54139409  0.47534464 -0.30251518 -1.15870218
+ [19] -0.15848348 -1.68709528 -1.45982257 -0.49915204  0.23404427 -0.25889442
+ [25] -1.10330234  0.39789941 -0.31271583  0.18366025 -0.58261281  0.87993865
+ [31]  0.36078756  0.73341604  1.25935589  0.76358939  0.39422732  1.60359697
+ [37]  0.77959674  0.26602901  0.64781551 -1.33671536 -0.84022503 -1.08110379
+ [43] -0.68095348 -0.03671701  0.26405380  0.26956709  0.86825050  0.22985062
+ [49]  0.71523590  0.78670714 -1.55048325  1.00355496  0.31101073  0.04714155
+ [55]  1.43618249 -0.03962495 -1.57310745  0.24901988 -1.97331186  0.42674929
+ [61] -0.65808112 -0.37346579 -0.21800658 -1.09021104  0.30819202  1.10953578
+ [67] -0.47423390  1.04147923 -0.51774560  2.42409127 -0.13005078 -0.23183140
+ [73]  0.14740656 -1.38469881 -1.02813250  0.83155433  0.27094575 -0.36618516
+ [79]  0.44475866  0.98829045 -0.32831347  0.76241835 -0.34558856 -0.52129356
+ [85] -0.50628087 -0.65673033 -0.98419620  0.14004323  1.29408468 -1.21600936
+ [91]  1.76212789 -0.30352910 -0.35387842 -0.33937859  0.83715287 -0.71712964
+ [97]  0.67588660 -0.09067322 -0.29566701  0.46884323
+> 
+> 
+> 
+> # Compare results of different methods; should all be equivalent.
+> 
+> set.seed(20240303)
+> dfr_3 <- distfreereg(Y = Y, X = X, test_mean = NULL, covariance = list(Sigma = Sig),
++                      verbose = FALSE, J = dfr_1[["J"]],
++                      fitted_values = dfr_1[["fitted_values"]])
+> 
+> 
+> data <- data.frame(a = X, b = Y)
+> 
+> set.seed(20240303)
+> dfr_4 <- distfreereg(test_mean = b ~ a, data = data, covariance = list(Sigma = Sig),
++                      verbose = FALSE, override = list(res_order = dfr_1[["res_order"]]))
+> 
+> m <- lm(b ~ a, data = data, weights = 1/diag(Sig))
+> 
+> set.seed(20240303)
+> dfr_5 <- distfreereg(test_mean = m, verbose = FALSE,
++                      override = list(res_order = dfr_1[["res_order"]]))
+> 
+> set.seed(20240303)
+> form <- b ~ d + e*a
+> dfr_6 <- distfreereg(test_mean = form, data = data, covariance = list(Sigma = Sig),
++                      method = "nls", verbose = FALSE,
++                      override = list(res_order = dfr_1[["res_order"]]))
+Warning message:
+In (function (formula, data = parent.frame(), start, control = nls.control(),  :
+  No starting values specified for some parameters.
+Initializing 'd', 'e' to '1.'.
+Consider specifying 'start' or using a selfStart model
+> 
+> identical(dfr_1[["epsp"]], dfr_3[["epsp"]])# TRUE
+[1] TRUE
+> all.equal(dfr_1[["theta_hat"]], dfr_4[["theta_hat"]], check.attributes = FALSE)# TRUE, or small relative difference
+[1] TRUE
+> all.equal(dfr_1[["epsp"]], dfr_4[["epsp"]], check.attributes = FALSE)# TRUE, or small relative difference
+[1] "Mean relative difference: 1.447316e-07"
+> all.equal(dfr_1[["epsp"]], dfr_5[["epsp"]], check.attributes = FALSE)# TRUE, or small relative difference
+[1] "Mean relative difference: 1.447316e-07"
+> all.equal(dfr_1[["epsp"]], dfr_6[["epsp"]])# TRUE, or small relative difference
+[1] "Mean relative difference: 9.247401e-08"
+> identical(dfr_1[["observed_stats"]], dfr_3[["observed_stats"]])# TRUE
+[1] TRUE
+> all.equal(dfr_1[["observed_stats"]], dfr_4[["observed_stats"]], check.attributes = FALSE)# TRUE, or small relative difference
+[1] "Component \"KS\": Mean relative difference: 3.223872e-08" 
+[2] "Component \"CvM\": Mean relative difference: 2.129122e-07"
+> all.equal(dfr_1[["observed_stats"]], dfr_5[["observed_stats"]], check.attributes = FALSE)# TRUE, or small relative difference
+[1] "Component \"KS\": Mean relative difference: 3.223872e-08" 
+[2] "Component \"CvM\": Mean relative difference: 2.129122e-07"
+> all.equal(dfr_1[["observed_stats"]], dfr_6[["observed_stats"]])# TRUE, or small relative difference
+[1] "Component \"KS\": Mean relative difference: 2.000477e-08" 
+[2] "Component \"CvM\": Mean relative difference: 1.313275e-07"
+> identical(dfr_1[["mcsim_stats"]], dfr_3[["mcsim_stats"]])# TRUE
+[1] TRUE
+> identical(dfr_1[["mcsim_stats"]], dfr_4[["mcsim_stats"]])# TRUE
+[1] TRUE
+> identical(dfr_1[["mcsim_stats"]], dfr_5[["mcsim_stats"]])# TRUE
+[1] TRUE
+> identical(dfr_1[["mcsim_stats"]], dfr_6[["mcsim_stats"]])# TRUE
+[1] TRUE
+> identical(dfr_1[["p"]], dfr_3[["p"]])# TRUE
+[1] TRUE
+> identical(dfr_1[["p"]], dfr_4[["p"]])# TRUE
+[1] TRUE
+> identical(dfr_1[["p"]], dfr_5[["p"]])# TRUE
+[1] TRUE
+> identical(dfr_1[["p"]], dfr_6[["p"]])# TRUE
+[1] TRUE
+> 
+> 
+> m_nls <- nls(form, data = data, weights = 1/diag(Sig))
+Warning message:
+In nls(form, data = data, weights = 1/diag(Sig)) :
+  No starting values specified for some parameters.
+Initializing 'd', 'e' to '1.'.
+Consider specifying 'start' or using a selfStart model
+> set.seed(20240303)
+> dfr_7 <- distfreereg(test_mean = m_nls,
++                      override = list(res_order = dfr_1[["res_order"]]))
+Using weights from nls object as covariance specification...
+Retrieving Jacobian from 'nls' object...
+Retrieving fitted values from 'nls' object...
+Using supplied inverse square root of the covariance matrix...
+Calculating mu...
+Using supplied observation ordering...
+Calculating transformation anchors...
+Calculating residuals...
+Calculating observed statistic(s)...
+Running Monte Carlo simulation...
+...1000 of 10000
+...2000 of 10000
+...3000 of 10000
+...4000 of 10000
+...5000 of 10000
+...6000 of 10000
+...7000 of 10000
+...8000 of 10000
+...9000 of 10000
+...10000 of 10000
+> identical(dfr_6[["epsp"]], dfr_7[["epsp"]])# TRUE
+[1] TRUE
+> identical(dfr_6[["observed_stats"]], dfr_7[["observed_stats"]])# TRUE
+[1] TRUE
+> identical(dfr_6[["mcsim_stats"]], dfr_7[["mcsim_stats"]])# TRUE
+[1] TRUE
+> identical(dfr_6[["p"]], dfr_7[["p"]])# TRUE
+[1] TRUE
+> 
+> proc.time()
+   user  system elapsed 
+   3.84    0.12    3.93 

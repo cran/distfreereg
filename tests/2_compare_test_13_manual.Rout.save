@@ -1,0 +1,80 @@
+
+R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(distfreereg)
+> set.seed(20240227)
+> 
+> n <- 20
+> func <- function(x, theta) theta[1] + theta[2]*x
+> Sig <- rWishart(1, df = n, Sigma = diag(n))[,,1]
+> theta <- c(2,5)
+> X <- matrix(rexp(n, rate = 1))
+> 
+> cdfr_1 <- compare(reps = 5, prog = Inf, theta = theta, true_mean = func, true_X = X,
++                   X = X, test_mean = func,
++                   true_covariance = list(Sigma = Sig),
++                   covariance = list(Sigma = Sig),
++                   theta_init = rep(1, length(theta)), manual = function(dfr) residuals(dfr))
+Calculating required true covariance specification matrices...
+Generating errors...
+Running simulation...
+> 
+> cdfr_1$manual
+[[1]]
+ [1] -9.6970221  0.7387954  9.4591269  6.8715917  1.6535219 -7.1041530
+ [7] -0.3612368  0.6597519  6.1476642 -4.8654763 -6.3751919  5.9837527
+[13] -4.0497798 -1.0929452 -0.6126697 -1.8916042 -6.1234296 -1.4537325
+[19]  2.2614314 -1.6562713
+
+[[2]]
+ [1] -0.8661444 -3.5340310  2.5102087 -2.6093879  4.2922374 -5.6656352
+ [7]  3.4131238 -2.9201261  2.3068083 -4.6930321 -3.4459175 -7.4894491
+[13] -1.7370461 -6.6126462 -1.6573215  7.4867153  7.6040237  6.5676051
+[19]  3.7609558 -2.2451093
+
+[[3]]
+ [1] -7.03479732 -3.39527718  5.52750333 11.12694312  2.85430213  1.23256638
+ [7]  0.09921034 -2.60615347 -0.04006525 -0.66388473 -2.42027251  3.47681571
+[13]  0.96980005  0.79264379 -6.71348819  2.10659900 -5.82462092  5.14686613
+[19] -0.87514878 -3.71926849
+
+[[4]]
+ [1]   4.3552230  -4.4578645   7.1273845   4.3412548  -0.9884959   3.6987308
+ [7]   0.4969637 -10.4623917   4.5612701   1.9742827  -4.4345676   2.4943119
+[13]   3.1948796  -8.8902369  -1.1377195   7.8695378   1.6273389  -4.5082273
+[19]   5.9103380  -1.8018320
+
+[[5]]
+ [1] -2.3684901  2.8392121  3.0810977  6.1555921  1.4839842  3.8880492
+ [7] -2.9657463  1.0607464 -0.9066064  1.1921048  2.1389023 -1.4466222
+[13]  0.9260386 -9.5987246 -2.4610183 -2.4354039 -2.3709263  6.6587535
+[19]  5.3237571 -1.9154818
+
+> 
+> tryCatch(compare(reps = 5, prog = Inf, theta = theta, true_mean = func, true_X = X,
++                  X = X, test_mean = func,
++                  true_covariance = list(Sigma = Sig),
++                  covariance = list(Sigma = Sig),
++                  theta_init = rep(1, length(theta)), manual = "hi"),
++          error = function(e) warning(e))
+Warning message:
+In validate_args_compare(true_mean = true_mean, true_method = true_method,  :
+  "manual" must be NULL or a function
+> 
+> proc.time()
+   user  system elapsed 
+   0.70    0.17    0.82 

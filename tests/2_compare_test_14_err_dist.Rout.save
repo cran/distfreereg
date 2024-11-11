@@ -1,0 +1,84 @@
+
+R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(distfreereg)
+> set.seed(20240228)
+> 
+> n <- 20
+> func <- function(x, theta) theta[1] + theta[2]*x
+> Sig <- rWishart(1, df = n, Sigma = diag(n))[,,1]
+> theta <- c(2,5)
+> X <- matrix(rexp(n, rate = 1))
+> 
+> cdfr_1 <- compare(reps = 5, prog = Inf, theta = theta, true_mean = func, true_X = X,
++                   X = X, test_mean = func,
++                   true_covariance = list(Sigma = Sig),
++                   covariance = list(Sigma = Sig),
++                   theta_init = rep(1, length(theta)))
+Calculating required true covariance specification matrices...
+Generating errors...
+Running simulation...
+> 
+> cdfr_1[["observed_stats"]]
+         KS        CvM
+1 0.3300109 0.01677466
+2 0.5271925 0.05753554
+3 0.5037589 0.05040049
+4 1.4389510 0.51717738
+5 0.6013990 0.10405503
+> 
+> edf <- function(reps, n, sd = 1) matrix(rnorm(n * reps, sd = sd), nrow = n) 
+> 
+> cdfr_2 <- compare(reps = 5, prog = Inf, theta = theta, true_mean = func, true_X = X,
++                   X = X, test_mean = func,
++                   true_covariance = list(Sigma = Sig),
++                   covariance = list(Sigma = Sig),
++                   theta_init = rep(1, length(theta)),
++                   err_dist_fun = edf)
+Calculating required true covariance specification matrices...
+Generating errors...
+Running simulation...
+> 
+> cdfr_2[["observed_stats"]]
+         KS       CvM
+1 0.6246893 0.1216074
+2 0.4113312 0.0517080
+3 1.4121701 0.4070914
+4 0.8752930 0.3715370
+5 0.7135945 0.1514012
+> 
+> cdfr_3 <- compare(reps = 5, prog = Inf, theta = theta, true_mean = func, true_X = X,
++                   X = X, test_mean = func,
++                   true_covariance = list(Sigma = Sig),
++                   covariance = list(Sigma = Sig),
++                   theta_init = rep(1, length(theta)),
++                   err_dist_fun = edf, err_dist_args = list(sd = 10))
+Calculating required true covariance specification matrices...
+Generating errors...
+Running simulation...
+> 
+> cdfr_3[["observed_stats"]]
+         KS       CvM
+1  6.411393 14.462397
+2 10.391708 38.720294
+3  2.557337  1.822490
+4  2.263593  1.005263
+5 13.496633 34.736472
+> 
+> proc.time()
+   user  system elapsed 
+   1.65    0.15    1.82 

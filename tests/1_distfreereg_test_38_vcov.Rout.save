@@ -1,0 +1,121 @@
+
+R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(distfreereg)
+> 
+> # First, test a linear model.
+> set.seed(20240816)
+> n <- 1e2
+> func <- function(x, theta) theta[1] + theta[2]*x[1] + theta[3]*x[2]
+> Sig <- rexp(n) + 1
+> theta <- c(2,5,-1)
+> X <- matrix(rexp(2*n, rate = 1), nrow = n)
+> Y <- distfreereg:::f2ftheta(f = func, X)(theta) + rnorm(n, sd = sqrt(Sig))
+> 
+> set.seed(20240816)
+> dfr_1 <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = Sig),
++                      theta_init = rep(1, length(theta)), verbose = FALSE)
+> 
+> vcov_1 <- vcov(dfr_1)
+> vcov_1
+            theta1       theta2       theta3
+theta1  0.07530308 -0.029060421 -0.029720753
+theta2 -0.02906042  0.024368662  0.004904737
+theta3 -0.02972075  0.004904737  0.023222539
+> 
+> # Now compare to results from lm().
+> df <- data.frame(a = X[,1], b = X[,2], c = Y)
+> m <- lm(c ~ a + b, data = df, weights = dfr_1[["covariance"]][["P"]])
+> dfr_2 <- distfreereg(test_mean = m, verbose = FALSE)
+> all.equal(dfr_1[["theta_hat"]], dfr_2[["theta_hat"]], check.attributes = FALSE)
+[1] TRUE
+> 
+> vcov_2 <- vcov(dfr_2)
+> vcov_2
+            (Intercept)            a            b
+(Intercept)  0.07028895 -0.031145933 -0.028618862
+a           -0.03114593  0.033081394  0.004378108
+b           -0.02861886  0.004378108  0.027686760
+> 
+> all.equal(vcov_1, vcov_2, check.attributes = FALSE)
+[1] "Mean relative difference: 0.1023676"
+> 
+> 
+> # Compare to results from using a matrix form for Sigma
+> set.seed(20240816)
+> dfr_3 <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = diag(Sig)),
++                      theta_init = rep(1, length(theta)), verbose = FALSE)
+> vcov_3 <- vcov(dfr_3)
+> all.equal(vcov_1, vcov_3)
+[1] TRUE
+> 
+> 
+> 
+> # Next, try a non-linear model
+> set.seed(20240816)
+> n <- 1e2
+> func <- function(x, theta) theta[1] + x[1]^theta[2] + theta[3]*x[2]
+> Sig <- rexp(n) + 1
+> theta <- c(5,1,-1)
+> X <- matrix(rexp(2*n, rate = 1), nrow = n)
+> Y <- distfreereg:::f2ftheta(f = func, X)(theta) + rnorm(n, sd = sqrt(Sig))
+> 
+> set.seed(20240816)
+> dfr_4 <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = Sig),
++                      theta_init = rep(1, length(theta)), verbose = FALSE)
+> 
+> vcov_4 <- vcov(dfr_4)
+> vcov_4
+             theta1       theta2       theta3
+theta1  0.045539701 -0.007876431 -0.025524625
+theta2 -0.007876431  0.010799747  0.002960208
+theta3 -0.025524625  0.002960208  0.022780309
+> 
+> # Next, compare to results from nls().
+> df <- data.frame(x1 = X[,1], x2 = X[,2], y = Y)
+> m <- nls(y ~ k + x1^a + b*x2, data = df, weights = dfr_1[["covariance"]][["P"]])
+Warning message:
+In nls(y ~ k + x1^a + b * x2, data = df, weights = dfr_1[["covariance"]][["P"]]) :
+  No starting values specified for some parameters.
+Initializing 'k', 'a', 'b' to '1.'.
+Consider specifying 'start' or using a selfStart model
+> 
+> dfr_5 <- distfreereg(test_mean = m, verbose = FALSE)
+> all.equal(dfr_4[["theta_hat"]], dfr_5[["theta_hat"]], check.attributes = FALSE)
+[1] "Mean relative difference: 3.128416e-05"
+> 
+> vcov_5 <- vcov(dfr_5)
+> vcov_5
+             k            a            b
+k  0.042391193 -0.005499987 -0.025004406
+a -0.005499987  0.020161653  0.002023511
+b -0.025004406  0.002023511  0.027261196
+> 
+> all.equal(vcov_4, vcov_5, check.attributes = FALSE)
+[1] "Mean relative difference: 0.1623923"
+> 
+> # Compare to results from using a matrix form for Sigma
+> set.seed(20240816)
+> dfr_6 <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = diag(Sig)),
++                      theta_init = rep(1, length(theta)), verbose = FALSE)
+> vcov_6 <- vcov(dfr_6)
+> all.equal(vcov_4, vcov_6)
+[1] TRUE
+> 
+> proc.time()
+   user  system elapsed 
+  20.68    0.26   23.26 
