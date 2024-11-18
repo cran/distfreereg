@@ -5,7 +5,7 @@ output:
     toc: true
 vignette: >
   %\VignetteIndexEntry{An Introduction to the `distfreereg` Package}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{knitr::rmarkdown_notangle}
   %\VignetteEncoding{UTF-8}
 linkcolor: blue
 link-citations: true
@@ -22,11 +22,14 @@ bibliography: bibliography.bib
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, out.width = "75%",
                       fig.dim = c(6,5), fig.align = "center")
+is_check <- ("CheckExEnv" %in% search()) ||
+  any(c("_R_CHECK_TIMINGS_", "_R_CHECK_LICENSE_") %in% names(Sys.getenv()))
+knitr::opts_chunk$set(eval = !is_check)
+
 library(distfreereg)
 ```
 
 <!-- https://kbroman.org/pkg_primer/pages/vignettes.html -->
-
 
 
 # Introduction

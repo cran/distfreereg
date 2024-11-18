@@ -20,24 +20,24 @@ tryCatch(update(dfr_01a, override = list(theta_hat = dfr_01a[["theta_hat"]])),
 dfr_04a <- distfreereg(data = data, test_mean = form, covariance = list(Sigma = Sig),
                        verbose = FALSE, ordering = "optimal")
 dfr_04b <- update(dfr_01a, ordering = "optimal")
-identical(dfr_01a[["res_order"]], dfr_04a[["res_order"]])# FALSE
-identical(dfr_04a[["res_order"]], dfr_04b[["res_order"]])# TRUE
-identical(dfr_04a[["r"]], dfr_04b[["r"]])# TRUE
+message('identical(dfr_01a[["res_order"]], dfr_04a[["res_order"]]) (should be FALSE): ', identical(dfr_01a[["res_order"]], dfr_04a[["res_order"]]))
+message('identical(dfr_04a[["res_order"]], dfr_04b[["res_order"]]) (should be TRUE): ', identical(dfr_04a[["res_order"]], dfr_04b[["res_order"]]))
+message('identical(dfr_04a[["r"]], dfr_04b[["r"]]) (should be TRUE): ', identical(dfr_04a[["r"]], dfr_04b[["r"]]))
 
 dfr_04c <- distfreereg(data = data, test_mean = form, covariance = list(Sigma = Sig),
                        verbose = FALSE, override = list(res_order = dfr_04a[["res_order"]]))
-identical(dfr_04a[["r"]], dfr_04c[["r"]])# TRUE
+message('identical(dfr_04a[["r"]], dfr_04c[["r"]]) (should be TRUE): ', identical(dfr_04a[["r"]], dfr_04c[["r"]]))
 
 dfr_05a <- distfreereg(data = data, test_mean = form, covariance = list(Sigma = Sig),
                        verbose = FALSE, ordering = "asis")
 dfr_05b <- update(dfr_04c, ordering = "asis")# presence of "asis" should clear override from dfr_04c
-identical(dfr_05a[["r"]], dfr_05b[["r"]])# TRUE
+message('identical(dfr_05a[["r"]], dfr_05b[["r"]]) (should be TRUE): ', identical(dfr_05a[["r"]], dfr_05b[["r"]]))
 
 # Tests for clearing only one entry from override
 dfr_06a <- distfreereg(data = data, test_mean = form, covariance = list(Sigma = Sig),
                        verbose = FALSE, override = list(mcsim_stats = dfr_04a[["mcsim_stats"]],
                                                         res_order = dfr_04a[["res_order"]]))
 dfr_06b <- update(dfr_06a, ordering = "asis")
-identical(dfr_06a[["mcsim_stats"]], dfr_06b[["mcsim_stats"]])# FALSE
-identical(dfr_06a[["res_order"]], dfr_04a[["res_order"]])# TRUE
-identical(dfr_06a[["res_order"]], dfr_06b[["res_order"]])# FALSE
+message('identical(dfr_06a[["mcsim_stats"]], dfr_06b[["mcsim_stats"]]) (should be FALSE): ', identical(dfr_06a[["mcsim_stats"]], dfr_06b[["mcsim_stats"]]))
+message('identical(dfr_06a[["res_order"]], dfr_04a[["res_order"]]) (should be TRUE): ', identical(dfr_06a[["res_order"]], dfr_04a[["res_order"]]))
+message('identical(dfr_06a[["res_order"]], dfr_06b[["res_order"]]) (should be FALSE): ', identical(dfr_06a[["res_order"]], dfr_06b[["res_order"]]))

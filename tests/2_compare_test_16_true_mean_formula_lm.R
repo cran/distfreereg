@@ -39,9 +39,9 @@ cdfr_4 <- compare(reps = 10, prog = Inf, theta = theta, true_mean = m,
                   test_mean = m,
                   true_covariance = list(Sigma = Sig))
 
-identical(cdfr_1[["observed_stats"]], cdfr_2[["observed_stats"]])# TRUE
-identical(cdfr_1[["observed_stats"]], cdfr_3[["observed_stats"]])# TRUE
-identical(cdfr_1[["observed_stats"]], cdfr_4[["observed_stats"]])# TRUE
-identical(cdfr_1[["mcsim_stats"]], cdfr_2[["mcsim_stats"]])# TRUE
-identical(cdfr_1[["mcsim_stats"]], cdfr_3[["mcsim_stats"]])# TRUE
-identical(cdfr_1[["mcsim_stats"]], cdfr_4[["mcsim_stats"]])# TRUE
+message('identical(cdfr_1[["observed_stats"]], cdfr_2[["observed_stats"]]) (should be TRUE): ', identical(cdfr_1[["observed_stats"]], cdfr_2[["observed_stats"]]))
+message('identical(cdfr_1[["observed_stats"]], cdfr_3[["observed_stats"]]) (should be TRUE): ', identical(cdfr_1[["observed_stats"]], cdfr_3[["observed_stats"]]))
+message('identical(cdfr_1[["observed_stats"]], cdfr_4[["observed_stats"]]) (should be TRUE): ', identical(cdfr_1[["observed_stats"]], cdfr_4[["observed_stats"]]))
+message('identical(cdfr_1[["mcsim_stats"]], cdfr_2[["mcsim_stats"]]) (should be TRUE): ', identical(cdfr_1[["mcsim_stats"]], cdfr_2[["mcsim_stats"]]))
+message('identical(cdfr_1[["mcsim_stats"]], cdfr_3[["mcsim_stats"]]) (should be TRUE): ', identical(cdfr_1[["mcsim_stats"]], cdfr_3[["mcsim_stats"]]))
+message('identical(cdfr_1[["mcsim_stats"]], cdfr_4[["mcsim_stats"]]) (should be TRUE): ', identical(cdfr_1[["mcsim_stats"]], cdfr_4[["mcsim_stats"]]))

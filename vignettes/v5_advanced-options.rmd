@@ -5,7 +5,7 @@ output:
     toc: true
 vignette: >
   %\VignetteIndexEntry{Advanced Options for `distfreereg` Package}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{knitr::rmarkdown_notangle}
   %\VignetteEncoding{UTF-8}
   linkcolor: blue
 link-citations: true
@@ -20,6 +20,10 @@ bibliography: bibliography.bib
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE, out.width = "75%", fig.dim = c(6,5),
                       fig.align = "center")
+is_check <- ("CheckExEnv" %in% search()) ||
+  any(c("_R_CHECK_TIMINGS_", "_R_CHECK_LICENSE_") %in% names(Sys.getenv()))
+knitr::opts_chunk$set(eval = !is_check)
+
 library(distfreereg)
 ```
 
@@ -282,16 +286,14 @@ columns in the listed order.
 
 ## Grouping
 
-The previous example's covariates contain many repeated observations. For
-example, there are `r table(X[,1], X[,2])[1,7]` repetitions of
-$(X_1,X_2)=(1,7)$. When using the natural ordering (or any other), these
-observations are indistinguishable, and their order among themselves is
-dependent on the order in which they happen to appear in `X`. To avoid this
-arbitrariness in the calculation of test statistics, a grouping option is
-available. When the `group` argument is `TRUE`, the
-transformed residuals for repeated covariate values are added before forming the
-EPSP. This avoids dependence on the order in which the observations enter the
-data. To implement this, we can update `dfr` as follows.
+The previous example's covariates contain many repeated observations. When using
+the natural ordering (or any other), these observations are indistinguishable,
+and their order among themselves is dependent on the order in which they happen
+to appear in `X`. To avoid this arbitrariness in the calculation of test
+statistics, a grouping option is available. When the `group` argument is `TRUE`,
+the transformed residuals for repeated covariate values are added before forming
+the EPSP. This avoids dependence on the order in which the observations enter
+the data. To implement this, we can update `dfr` as follows.
 
 ```{r group, message = FALSE}
 dfr_grouped <- update(dfr, group = TRUE)

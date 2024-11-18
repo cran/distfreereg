@@ -17,9 +17,6 @@ dfr_2 <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = S
 dfr_1
 dfr_2
 
-lapply(dfr_1$optimization_output[-5], round, digits = 4)
-lapply(dfr_2$optimization_output[-5], round, digits = 4)
-
 
 tryCatch(distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = Sig), theta_init = c(1,1,1), verbose = FALSE,
             control = list(optimization_fun = nlm,

@@ -13,7 +13,7 @@ cdfr_1 <- compare(reps = 5, prog = Inf, theta = theta, true_mean = func, true_X 
                   covariance = list(Sigma = Sig),
                   theta_init = rep(1, length(theta)))
 
-cdfr_1[["observed_stats"]]
+signif(cdfr_1[["observed_stats"]], digits = 4)
 
 edf <- function(reps, n, sd = 1) matrix(rnorm(n * reps, sd = sd), nrow = n) 
 
@@ -24,7 +24,7 @@ cdfr_2 <- compare(reps = 5, prog = Inf, theta = theta, true_mean = func, true_X 
                   theta_init = rep(1, length(theta)),
                   err_dist_fun = edf)
 
-cdfr_2[["observed_stats"]]
+signif(cdfr_2[["observed_stats"]], digits = 4)
 
 cdfr_3 <- compare(reps = 5, prog = Inf, theta = theta, true_mean = func, true_X = X,
                   X = X, test_mean = func,
@@ -33,4 +33,4 @@ cdfr_3 <- compare(reps = 5, prog = Inf, theta = theta, true_mean = func, true_X 
                   theta_init = rep(1, length(theta)),
                   err_dist_fun = edf, err_dist_args = list(sd = 10))
 
-cdfr_3[["observed_stats"]]
+signif(cdfr_3[["observed_stats"]], digits = 4)

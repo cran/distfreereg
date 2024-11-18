@@ -5,7 +5,7 @@ output:
     toc: true
 vignette: >
   %\VignetteIndexEntry{Parameter Estimation}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{knitr::rmarkdown_notangle}
   %\VignetteEncoding{UTF-8}
   linkcolor: blue
 link-citations: true
@@ -14,6 +14,8 @@ bibliography: bibliography.bib
 ---
 
 <!-- https://stackoverflow.com/questions/23957278/how-to-add-table-of-contents-in-rmarkdown -->
+<!-- https://stackoverflow.com/questions/50428622/how-to-specify-different-cache-path-w-filename-in-r-markdown -->
+<!-- https://stackoverflow.com/questions/28961431/computationally-heavy-r-vignettes -->
 
 \def\eqdef{\mathrel{\raise0.4pt\hbox{$:$}\hskip-2pt=}}
 \def\ev{{\rm E}}
@@ -22,6 +24,10 @@ bibliography: bibliography.bib
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, out.width = "75%",
                       fig.dim = c(6,5), fig.align = "center")
+is_check <- ("CheckExEnv" %in% search()) ||
+  any(c("_R_CHECK_TIMINGS_", "_R_CHECK_LICENSE_") %in% names(Sys.getenv()))
+knitr::opts_chunk$set(eval = !is_check)
+
 library(distfreereg)
 ```
 
@@ -195,7 +201,7 @@ Further, we use the default method for `optim()`, namely Nelder--Mead.
 First, define the function and true parameter vector.
 
 
-```{r block_diagonal_setup_function_parameters}
+```{r block_diagonal_setup_func_pars}
 true_func <- function(X, theta) theta[1] + theta[2]*X[,1] + X[,1]^2
 theta <- c(2,5)
 ```

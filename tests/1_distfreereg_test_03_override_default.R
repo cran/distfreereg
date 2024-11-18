@@ -30,10 +30,10 @@ dfrdef_4 <- distfreereg(Y = Y, X = X, test_mean = NULL, covariance = list(Sigma 
                         J = dfrdef_0[["J"]], fitted_values = dfrdef_0[["fitted_values"]],
                         verbose = FALSE, override = list(mcsim_stats = dfrdef_1[["mcsim_stats"]]))
 
-identical(dfrdef_1[["epsp"]], dfrdef_2[["epsp"]])# TRUE
-identical(dfrdef_1[["epsp"]], dfrdef_3[["epsp"]])# TRUE
-identical(dfrdef_1[["epsp"]], dfrdef_4[["epsp"]])# TRUE
-identical(dfrdef_1[["p"]], dfrdef_4[["p"]])# TRUE
+message('identical(dfrdef_1[["epsp"]], dfrdef_2[["epsp"]]) (should be TRUE): ', identical(dfrdef_1[["epsp"]], dfrdef_2[["epsp"]]))
+message('identical(dfrdef_1[["epsp"]], dfrdef_3[["epsp"]]) (should be TRUE): ', identical(dfrdef_1[["epsp"]], dfrdef_3[["epsp"]]))
+message('identical(dfrdef_1[["epsp"]], dfrdef_4[["epsp"]]) (should be TRUE): ', identical(dfrdef_1[["epsp"]], dfrdef_4[["epsp"]]))
+message('identical(dfrdef_1[["p"]], dfrdef_4[["p"]]) (should be TRUE): ', identical(dfrdef_1[["p"]], dfrdef_4[["p"]]))
 
 
 
@@ -55,49 +55,49 @@ dfrdef_7 <- distfreereg(Y = Y, X = X, test_mean = NULL, covariance = list(Sigma 
                         verbose = FALSE, override = list(mcsim_stats = my_mcsim_stats))
 
 # Verify that specified overrides are correct.
-identical(dfrdef_1[["res_order"]], dfrdef_5[["res_order"]])# FALSE
-identical(dfrdef_1[["r"]], dfrdef_6[["r"]])# FALSE
-identical(dfrdef_1[["mcsim_stats"]], dfrdef_7[["mcsim_stats"]])# FALSE
-identical(my_res_order, dfrdef_5[["res_order"]])# TRUE
-identical(my_r, dfrdef_6[["r"]])# TRUE
-identical(my_mcsim_stats, dfrdef_7[["mcsim_stats"]])# TRUE
+message('identical(dfrdef_1[["res_order"]], dfrdef_5[["res_order"]]) (should be FALSE): ', identical(dfrdef_1[["res_order"]], dfrdef_5[["res_order"]]))
+message('identical(dfrdef_1[["r"]], dfrdef_6[["r"]]) (should be FALSE): ', identical(dfrdef_1[["r"]], dfrdef_6[["r"]]))
+message('identical(dfrdef_1[["mcsim_stats"]], dfrdef_7[["mcsim_stats"]]) (should be FALSE): ', identical(dfrdef_1[["mcsim_stats"]], dfrdef_7[["mcsim_stats"]]))
+message('identical(my_res_order, dfrdef_5[["res_order"]]) (should be TRUE): ', identical(my_res_order, dfrdef_5[["res_order"]]))
+message('identical(my_r, dfrdef_6[["r"]]) (should be TRUE): ', identical(my_r, dfrdef_6[["r"]]))
+message('identical(my_mcsim_stats, dfrdef_7[["mcsim_stats"]]) (should be TRUE): ', identical(my_mcsim_stats, dfrdef_7[["mcsim_stats"]]))
 
 # Verify that other things changed or not, as appropriate.
-identical(dfrdef_1[["fitted_values"]], dfrdef_5[["fitted_values"]])# TRUE
-identical(dfrdef_1[["J"]], dfrdef_5[["J"]])# TRUE
-identical(dfrdef_1[["r"]], dfrdef_5[["r"]])# FALSE
-identical(dfrdef_1[["r_tilde"]], dfrdef_5[["r_tilde"]])# FALSE
-identical(dfrdef_1[["mu"]], dfrdef_5[["mu"]])# TRUE
-identical(dfrdef_1[["residuals"]][["raw"]], dfrdef_5[["residuals"]][["raw"]])# TRUE
-identical(dfrdef_1[["residuals"]][["sphered"]], dfrdef_5[["residuals"]][["sphered"]])# TRUE
-identical(dfrdef_1[["residuals"]][["transformed"]], dfrdef_5[["residuals"]][["transformed"]])# FALSE
-identical(dfrdef_1[["epsp"]], dfrdef_5[["epsp"]])# FALSE
-identical(dfrdef_1[["observed_stats"]], dfrdef_5[["observed_stats"]])# FALSE
-identical(dfrdef_1[["mcsim_stats"]], dfrdef_5[["mcsim_stats"]])# FALSE
-identical(dfrdef_1[["p"]], dfrdef_5[["p"]])# FALSE
+message('identical(dfrdef_1[["fitted_values"]], dfrdef_5[["fitted_values"]]) (should be TRUE): ', identical(dfrdef_1[["fitted_values"]], dfrdef_5[["fitted_values"]]))
+message('identical(dfrdef_1[["J"]], dfrdef_5[["J"]]) (should be TRUE): ', identical(dfrdef_1[["J"]], dfrdef_5[["J"]]))
+message('identical(dfrdef_1[["r"]], dfrdef_5[["r"]]) (should be FALSE): ', identical(dfrdef_1[["r"]], dfrdef_5[["r"]]))
+message('identical(dfrdef_1[["r_tilde"]], dfrdef_5[["r_tilde"]]) (should be FALSE): ', identical(dfrdef_1[["r_tilde"]], dfrdef_5[["r_tilde"]]))
+message('identical(dfrdef_1[["mu"]], dfrdef_5[["mu"]]) (should be TRUE): ', identical(dfrdef_1[["mu"]], dfrdef_5[["mu"]]))
+message('identical(dfrdef_1[["residuals"]][["raw"]], dfrdef_5[["residuals"]][["raw"]]) (should be TRUE): ', identical(dfrdef_1[["residuals"]][["raw"]], dfrdef_5[["residuals"]][["raw"]]))
+message('identical(dfrdef_1[["residuals"]][["sphered"]], dfrdef_5[["residuals"]][["sphered"]]) (should be TRUE): ', identical(dfrdef_1[["residuals"]][["sphered"]], dfrdef_5[["residuals"]][["sphered"]]))
+message('identical(dfrdef_1[["residuals"]][["transformed"]], dfrdef_5[["residuals"]][["transformed"]]) (should be FALSE): ', identical(dfrdef_1[["residuals"]][["transformed"]], dfrdef_5[["residuals"]][["transformed"]]))
+message('identical(dfrdef_1[["epsp"]], dfrdef_5[["epsp"]]) (should be FALSE): ', identical(dfrdef_1[["epsp"]], dfrdef_5[["epsp"]]))
+message('identical(dfrdef_1[["observed_stats"]], dfrdef_5[["observed_stats"]]) (should be FALSE): ', identical(dfrdef_1[["observed_stats"]], dfrdef_5[["observed_stats"]]))
+message('identical(dfrdef_1[["mcsim_stats"]], dfrdef_5[["mcsim_stats"]]) (should be FALSE): ', identical(dfrdef_1[["mcsim_stats"]], dfrdef_5[["mcsim_stats"]]))
+message('identical(dfrdef_1[["p"]], dfrdef_5[["p"]]) (should be FALSE): ', identical(dfrdef_1[["p"]], dfrdef_5[["p"]]))
 
-identical(dfrdef_1[["fitted_values"]], dfrdef_6[["fitted_values"]])# TRUE
-identical(dfrdef_1[["J"]], dfrdef_6[["J"]])# TRUE
-identical(dfrdef_1[["r"]], dfrdef_6[["r"]])# FALSE
-identical(dfrdef_1[["r_tilde"]], dfrdef_6[["r_tilde"]])# FALSE
-identical(dfrdef_1[["mu"]], dfrdef_6[["mu"]])# TRUE
-identical(dfrdef_1[["residuals"]][["raw"]], dfrdef_6[["residuals"]][["raw"]])# TRUE
-identical(dfrdef_1[["residuals"]][["sphered"]], dfrdef_6[["residuals"]][["sphered"]])# TRUE
-identical(dfrdef_1[["residuals"]][["transformed"]], dfrdef_6[["residuals"]][["transformed"]])# FALSE
-identical(dfrdef_1[["epsp"]], dfrdef_6[["epsp"]])# FALSE
-identical(dfrdef_1[["observed_stats"]], dfrdef_6[["observed_stats"]])# FALSE
-identical(dfrdef_1[["mcsim_stats"]], dfrdef_6[["mcsim_stats"]])# FALSE
-identical(dfrdef_1[["p"]], dfrdef_6[["p"]])# FALSE
+message('identical(dfrdef_1[["fitted_values"]], dfrdef_6[["fitted_values"]]) (should be TRUE): ', identical(dfrdef_1[["fitted_values"]], dfrdef_6[["fitted_values"]]))
+message('identical(dfrdef_1[["J"]], dfrdef_6[["J"]]) (should be TRUE): ', identical(dfrdef_1[["J"]], dfrdef_6[["J"]]))
+message('identical(dfrdef_1[["r"]], dfrdef_6[["r"]]) (should be FALSE): ', identical(dfrdef_1[["r"]], dfrdef_6[["r"]]))
+message('identical(dfrdef_1[["r_tilde"]], dfrdef_6[["r_tilde"]]) (should be FALSE): ', identical(dfrdef_1[["r_tilde"]], dfrdef_6[["r_tilde"]]))
+message('identical(dfrdef_1[["mu"]], dfrdef_6[["mu"]]) (should be TRUE): ', identical(dfrdef_1[["mu"]], dfrdef_6[["mu"]]))
+message('identical(dfrdef_1[["residuals"]][["raw"]], dfrdef_6[["residuals"]][["raw"]]) (should be TRUE): ', identical(dfrdef_1[["residuals"]][["raw"]], dfrdef_6[["residuals"]][["raw"]]))
+message('identical(dfrdef_1[["residuals"]][["sphered"]], dfrdef_6[["residuals"]][["sphered"]]) (should be TRUE): ', identical(dfrdef_1[["residuals"]][["sphered"]], dfrdef_6[["residuals"]][["sphered"]]))
+message('identical(dfrdef_1[["residuals"]][["transformed"]], dfrdef_6[["residuals"]][["transformed"]]) (should be FALSE): ', identical(dfrdef_1[["residuals"]][["transformed"]], dfrdef_6[["residuals"]][["transformed"]]))
+message('identical(dfrdef_1[["epsp"]], dfrdef_6[["epsp"]]) (should be FALSE): ', identical(dfrdef_1[["epsp"]], dfrdef_6[["epsp"]]))
+message('identical(dfrdef_1[["observed_stats"]], dfrdef_6[["observed_stats"]]) (should be FALSE): ', identical(dfrdef_1[["observed_stats"]], dfrdef_6[["observed_stats"]]))
+message('identical(dfrdef_1[["mcsim_stats"]], dfrdef_6[["mcsim_stats"]]) (should be FALSE): ', identical(dfrdef_1[["mcsim_stats"]], dfrdef_6[["mcsim_stats"]]))
+message('identical(dfrdef_1[["p"]], dfrdef_6[["p"]]) (should be FALSE): ', identical(dfrdef_1[["p"]], dfrdef_6[["p"]]))
 
-identical(dfrdef_1[["fitted_values"]], dfrdef_7[["fitted_values"]])# TRUE
-identical(dfrdef_1[["J"]], dfrdef_7[["J"]])# TRUE
-identical(dfrdef_1[["r"]], dfrdef_7[["r"]])# TRUE
-identical(dfrdef_1[["r_tilde"]], dfrdef_7[["r_tilde"]])# TRUE
-identical(dfrdef_1[["mu"]], dfrdef_7[["mu"]])# TRUE
-identical(dfrdef_1[["residuals"]][["raw"]], dfrdef_7[["residuals"]][["raw"]])# TRUE
-identical(dfrdef_1[["residuals"]][["sphered"]], dfrdef_7[["residuals"]][["sphered"]])# TRUE
-identical(dfrdef_1[["residuals"]][["transformed"]], dfrdef_7[["residuals"]][["transformed"]])# TRUE
-identical(dfrdef_1[["epsp"]], dfrdef_7[["epsp"]])# TRUE
-identical(dfrdef_1[["observed_stats"]], dfrdef_7[["observed_stats"]])# TRUE
-identical(dfrdef_1[["mcsim_stats"]], dfrdef_7[["mcsim_stats"]])# FALSE
-identical(dfrdef_1[["p"]], dfrdef_7[["p"]])# FALSE
+message('identical(dfrdef_1[["fitted_values"]], dfrdef_7[["fitted_values"]]) (should be TRUE): ', identical(dfrdef_1[["fitted_values"]], dfrdef_7[["fitted_values"]]))
+message('identical(dfrdef_1[["J"]], dfrdef_7[["J"]]) (should be TRUE): ', identical(dfrdef_1[["J"]], dfrdef_7[["J"]]))
+message('identical(dfrdef_1[["r"]], dfrdef_7[["r"]]) (should be TRUE): ', identical(dfrdef_1[["r"]], dfrdef_7[["r"]]))
+message('identical(dfrdef_1[["r_tilde"]], dfrdef_7[["r_tilde"]]) (should be TRUE): ', identical(dfrdef_1[["r_tilde"]], dfrdef_7[["r_tilde"]]))
+message('identical(dfrdef_1[["mu"]], dfrdef_7[["mu"]]) (should be TRUE): ', identical(dfrdef_1[["mu"]], dfrdef_7[["mu"]]))
+message('identical(dfrdef_1[["residuals"]][["raw"]], dfrdef_7[["residuals"]][["raw"]]) (should be TRUE): ', identical(dfrdef_1[["residuals"]][["raw"]], dfrdef_7[["residuals"]][["raw"]]))
+message('identical(dfrdef_1[["residuals"]][["sphered"]], dfrdef_7[["residuals"]][["sphered"]]) (should be TRUE): ', identical(dfrdef_1[["residuals"]][["sphered"]], dfrdef_7[["residuals"]][["sphered"]]))
+message('identical(dfrdef_1[["residuals"]][["transformed"]], dfrdef_7[["residuals"]][["transformed"]]) (should be TRUE): ', identical(dfrdef_1[["residuals"]][["transformed"]], dfrdef_7[["residuals"]][["transformed"]]))
+message('identical(dfrdef_1[["epsp"]], dfrdef_7[["epsp"]]) (should be TRUE): ', identical(dfrdef_1[["epsp"]], dfrdef_7[["epsp"]]))
+message('identical(dfrdef_1[["observed_stats"]], dfrdef_7[["observed_stats"]]) (should be TRUE): ', identical(dfrdef_1[["observed_stats"]], dfrdef_7[["observed_stats"]]))
+message('identical(dfrdef_1[["mcsim_stats"]], dfrdef_7[["mcsim_stats"]]) (should be FALSE): ', identical(dfrdef_1[["mcsim_stats"]], dfrdef_7[["mcsim_stats"]]))
+message('identical(dfrdef_1[["p"]], dfrdef_7[["p"]]) (should be FALSE): ', identical(dfrdef_1[["p"]], dfrdef_7[["p"]]))

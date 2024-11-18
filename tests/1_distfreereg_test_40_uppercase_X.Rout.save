@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -80,11 +80,11 @@ Running Monte Carlo simulation...
 ...9000 of 10000
 ...10000 of 10000
 > 
-> identical(dfr_1$theta_hat, dfr_2$theta_hat)# TRUE
-[1] TRUE
-> identical(dfr_1$observed_stats, dfr_2$observed_stats)# TRUE
-[1] TRUE
+> message('identical(dfr_1$theta_hat, dfr_2$theta_hat) (should be TRUE): ', identical(dfr_1$theta_hat, dfr_2$theta_hat))
+identical(dfr_1$theta_hat, dfr_2$theta_hat) (should be TRUE): TRUE
+> message('identical(dfr_1$observed_stats, dfr_2$observed_stats) (should be TRUE): ', identical(dfr_1$observed_stats, dfr_2$observed_stats))
+identical(dfr_1$observed_stats, dfr_2$observed_stats) (should be TRUE): TRUE
 > 
 > proc.time()
    user  system elapsed 
-   1.45    0.10    1.59 
+   1.04    0.12    1.17 

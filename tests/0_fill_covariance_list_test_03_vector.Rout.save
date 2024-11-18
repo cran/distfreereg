@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -17,10 +17,10 @@ Type 'q()' to quit R.
 
 > set.seed(20240223)
 > 
-> tol <- .Machine[["double.eps"]]
 > fill_covariance_list <- function(need, covariance_list)
 +   distfreereg:::fill_covariance_list(need = need, covariance_list = covariance_list,
-+                                      solve_tol = tol)
++                                      matsqrt_tol = distfreereg:::default_distfreereg_tol()[["matsqrt_tol"]],
++                                      solve_tol = distfreereg:::default_distfreereg_tol()[["solve_tol"]])
 > matsqrt <- distfreereg:::matsqrt
 > 
 > n <- 20
@@ -70,8 +70,8 @@ In distfreereg:::fill_covariance_list(need = need, covariance_list = covariance_
 > fcl_1.1.SqrtSigma <- fill_covariance_list(need = "SqrtSigma", covariance_list = CL_1.1)
 > fcl_1.1.Q <- fill_covariance_list(need = "Q", covariance_list = CL_1.1)
 > 
-> identical(fcl_1.1.Sigma$Sigma, Sigma)# TRUE
-[1] TRUE
+> message('identical(fcl_1.1.Sigma$Sigma, Sigma) (should be TRUE): ', identical(fcl_1.1.Sigma$Sigma, Sigma))
+identical(fcl_1.1.Sigma$Sigma, Sigma) (should be TRUE): TRUE
 > is.null(fcl_1.1.Sigma$P)# TRUE
 [1] TRUE
 > is.null(fcl_1.1.Sigma$SqrtSigma)# TRUE
@@ -79,32 +79,32 @@ In distfreereg:::fill_covariance_list(need = need, covariance_list = covariance_
 > is.null(fcl_1.1.Sigma$Q)# TRUE
 [1] TRUE
 > 
-> identical(fcl_1.1.P$Sigma, Sigma)# TRUE
-[1] TRUE
-> identical(fcl_1.1.P$P, P)# TRUE
-[1] TRUE
+> message('identical(fcl_1.1.P$Sigma, Sigma) (should be TRUE): ', identical(fcl_1.1.P$Sigma, Sigma))
+identical(fcl_1.1.P$Sigma, Sigma) (should be TRUE): TRUE
+> message('identical(fcl_1.1.P$P, P) (should be TRUE): ', identical(fcl_1.1.P$P, P))
+identical(fcl_1.1.P$P, P) (should be TRUE): TRUE
 > is.null(fcl_1.1.P$SqrtSigma)# TRUE
 [1] TRUE
 > is.null(fcl_1.1.P$Q)# TRUE
 [1] TRUE
 > 
-> identical(fcl_1.1.SqrtSigma$Sigma, Sigma)# TRUE
-[1] TRUE
+> message('identical(fcl_1.1.SqrtSigma$Sigma, Sigma) (should be TRUE): ', identical(fcl_1.1.SqrtSigma$Sigma, Sigma))
+identical(fcl_1.1.SqrtSigma$Sigma, Sigma) (should be TRUE): TRUE
 > is.null(fcl_1.1.SqrtSigma$P)# TRUE
 [1] TRUE
-> identical(fcl_1.1.SqrtSigma$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
+> message('identical(fcl_1.1.SqrtSigma$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_1.1.SqrtSigma$SqrtSigma, SqrtSigma))
+identical(fcl_1.1.SqrtSigma$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
 > is.null(fcl_1.1.SqrtSigma$Q)# TRUE
 [1] TRUE
 > 
-> identical(fcl_1.1.Q$Sigma, Sigma)# TRUE
-[1] TRUE
-> identical(fcl_1.1.Q$P, P)# TRUE
-[1] TRUE
+> message('identical(fcl_1.1.Q$Sigma, Sigma) (should be TRUE): ', identical(fcl_1.1.Q$Sigma, Sigma))
+identical(fcl_1.1.Q$Sigma, Sigma) (should be TRUE): TRUE
+> message('identical(fcl_1.1.Q$P, P) (should be TRUE): ', identical(fcl_1.1.Q$P, P))
+identical(fcl_1.1.Q$P, P) (should be TRUE): TRUE
 > is.null(fcl_1.1.Q$SqrtSigma)
 [1] TRUE
-> identical(fcl_1.1.Q$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_1.1.Q$Q, Q) (should be TRUE): ', identical(fcl_1.1.Q$Q, Q))
+identical(fcl_1.1.Q$Q, Q) (should be TRUE): TRUE
 > 
 > 
 > # CL_1.2: Only P supplied.
@@ -114,10 +114,10 @@ In distfreereg:::fill_covariance_list(need = need, covariance_list = covariance_
 > fcl_1.2.SqrtSigma <- fill_covariance_list(need = "SqrtSigma", covariance_list = CL_1.2)
 > fcl_1.2.Q <- fill_covariance_list(need = "Q", covariance_list = CL_1.2)
 > 
-> identical(fcl_1.2.Sigma$Sigma, 1/P)# TRUE
-[1] TRUE
-> identical(fcl_1.2.Sigma$P, P)# TRUE
-[1] TRUE
+> message('identical(fcl_1.2.Sigma$Sigma, 1/P) (should be TRUE): ', identical(fcl_1.2.Sigma$Sigma, 1/P))
+identical(fcl_1.2.Sigma$Sigma, 1/P) (should be TRUE): TRUE
+> message('identical(fcl_1.2.Sigma$P, P) (should be TRUE): ', identical(fcl_1.2.Sigma$P, P))
+identical(fcl_1.2.Sigma$P, P) (should be TRUE): TRUE
 > is.null(fcl_1.2.Sigma$SqrtSigma)# TRUE
 [1] TRUE
 > is.null(fcl_1.2.Sigma$Q)# TRUE
@@ -125,8 +125,8 @@ In distfreereg:::fill_covariance_list(need = need, covariance_list = covariance_
 > 
 > is.null(fcl_1.2.P$Sigma)# TRUE
 [1] TRUE
-> identical(fcl_1.2.P$P, P)# TRUE
-[1] TRUE
+> message('identical(fcl_1.2.P$P, P) (should be TRUE): ', identical(fcl_1.2.P$P, P))
+identical(fcl_1.2.P$P, P) (should be TRUE): TRUE
 > is.null(fcl_1.2.P$SqrtSigma)# TRUE
 [1] TRUE
 > is.null(fcl_1.2.P$Q)# TRUE
@@ -134,21 +134,21 @@ In distfreereg:::fill_covariance_list(need = need, covariance_list = covariance_
 > 
 > is.null(fcl_1.2.SqrtSigma$Sigma)# TRUE
 [1] TRUE
-> identical(fcl_1.2.SqrtSigma$P, P)# TRUE
-[1] TRUE
-> identical(fcl_1.2.SqrtSigma$SqrtSigma, 1/matsqrt(P))# TRUE
-[1] TRUE
-> identical(fcl_1.2.SqrtSigma$Q, matsqrt(P))# TRUE
-[1] TRUE
+> message('identical(fcl_1.2.SqrtSigma$P, P) (should be TRUE): ', identical(fcl_1.2.SqrtSigma$P, P))
+identical(fcl_1.2.SqrtSigma$P, P) (should be TRUE): TRUE
+> message('identical(fcl_1.2.SqrtSigma$SqrtSigma, 1/matsqrt(P)) (should be TRUE): ', identical(fcl_1.2.SqrtSigma$SqrtSigma, 1/matsqrt(P)))
+identical(fcl_1.2.SqrtSigma$SqrtSigma, 1/matsqrt(P)) (should be TRUE): TRUE
+> message('identical(fcl_1.2.SqrtSigma$Q, matsqrt(P)) (should be TRUE): ', identical(fcl_1.2.SqrtSigma$Q, matsqrt(P)))
+identical(fcl_1.2.SqrtSigma$Q, matsqrt(P)) (should be TRUE): TRUE
 > 
 > is.null(fcl_1.2.Q$Sigma)# TRUE
 [1] TRUE
-> identical(fcl_1.2.Q$P, P)# TRUE
-[1] TRUE
+> message('identical(fcl_1.2.Q$P, P) (should be TRUE): ', identical(fcl_1.2.Q$P, P))
+identical(fcl_1.2.Q$P, P) (should be TRUE): TRUE
 > is.null(fcl_1.2.Q$SqrtSigma)
 [1] TRUE
-> identical(fcl_1.2.Q$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_1.2.Q$Q, Q) (should be TRUE): ', identical(fcl_1.2.Q$Q, Q))
+identical(fcl_1.2.Q$Q, Q) (should be TRUE): TRUE
 > 
 > 
 > 
@@ -159,30 +159,30 @@ In distfreereg:::fill_covariance_list(need = need, covariance_list = covariance_
 > fcl_1.3.SqrtSigma <- fill_covariance_list(need = "SqrtSigma", covariance_list = CL_1.3)
 > fcl_1.3.Q <- fill_covariance_list(need = "Q", covariance_list = CL_1.3)
 > 
-> identical(fcl_1.3.Sigma$Sigma, SqrtSigma * SqrtSigma)# TRUE
-[1] TRUE
+> message('identical(fcl_1.3.Sigma$Sigma, SqrtSigma * SqrtSigma) (should be TRUE): ', identical(fcl_1.3.Sigma$Sigma, SqrtSigma * SqrtSigma))
+identical(fcl_1.3.Sigma$Sigma, SqrtSigma * SqrtSigma) (should be TRUE): TRUE
 > is.null(fcl_1.3.Sigma$P)# TRUE
 [1] TRUE
-> identical(fcl_1.3.Sigma$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
+> message('identical(fcl_1.3.Sigma$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_1.3.Sigma$SqrtSigma, SqrtSigma))
+identical(fcl_1.3.Sigma$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
 > is.null(fcl_1.3.Sigma$Q)# TRUE
 [1] TRUE
 > 
 > is.null(fcl_1.3.P$Sigma)# TRUE
 [1] TRUE
-> identical(fcl_1.3.P$P, (1/SqrtSigma) * (1/SqrtSigma))# TRUE
-[1] TRUE
-> identical(fcl_1.3.P$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
-> identical(fcl_1.3.P$Q, 1/SqrtSigma)# TRUE
-[1] TRUE
+> message('identical(fcl_1.3.P$P, (1/SqrtSigma) * (1/SqrtSigma)) (should be TRUE): ', identical(fcl_1.3.P$P, (1/SqrtSigma) * (1/SqrtSigma)))
+identical(fcl_1.3.P$P, (1/SqrtSigma) * (1/SqrtSigma)) (should be TRUE): TRUE
+> message('identical(fcl_1.3.P$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_1.3.P$SqrtSigma, SqrtSigma))
+identical(fcl_1.3.P$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
+> message('identical(fcl_1.3.P$Q, 1/SqrtSigma) (should be TRUE): ', identical(fcl_1.3.P$Q, 1/SqrtSigma))
+identical(fcl_1.3.P$Q, 1/SqrtSigma) (should be TRUE): TRUE
 > 
 > is.null(fcl_1.3.SqrtSigma$Sigma)# TRUE
 [1] TRUE
 > is.null(fcl_1.3.SqrtSigma$P)# TRUE
 [1] TRUE
-> identical(fcl_1.3.SqrtSigma$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
+> message('identical(fcl_1.3.SqrtSigma$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_1.3.SqrtSigma$SqrtSigma, SqrtSigma))
+identical(fcl_1.3.SqrtSigma$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
 > is.null(fcl_1.3.SqrtSigma$Q)# TRUE
 [1] TRUE
 > 
@@ -190,10 +190,10 @@ In distfreereg:::fill_covariance_list(need = need, covariance_list = covariance_
 [1] TRUE
 > is.null(fcl_1.3.Q$P)# TRUE
 [1] TRUE
-> identical(fcl_1.3.Q$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
-> identical(fcl_1.3.Q$Q, 1/SqrtSigma)# TRUE
-[1] TRUE
+> message('identical(fcl_1.3.Q$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_1.3.Q$SqrtSigma, SqrtSigma))
+identical(fcl_1.3.Q$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
+> message('identical(fcl_1.3.Q$Q, 1/SqrtSigma) (should be TRUE): ', identical(fcl_1.3.Q$Q, 1/SqrtSigma))
+identical(fcl_1.3.Q$Q, 1/SqrtSigma) (should be TRUE): TRUE
 > 
 > 
 > 
@@ -205,32 +205,32 @@ In distfreereg:::fill_covariance_list(need = need, covariance_list = covariance_
 > fcl_1.4.SqrtSigma <- fill_covariance_list(need = "SqrtSigma", covariance_list = CL_1.4)
 > fcl_1.4.Q <- fill_covariance_list(need = "Q", covariance_list = CL_1.4)
 > 
-> identical(fcl_1.4.Sigma$Sigma, 1/(Q * Q))# TRUE
-[1] TRUE
-> identical(fcl_1.4.Sigma$P, Q * Q)# TRUE
-[1] TRUE
+> message('identical(fcl_1.4.Sigma$Sigma, 1/(Q * Q)) (should be TRUE): ', identical(fcl_1.4.Sigma$Sigma, 1/(Q * Q)))
+identical(fcl_1.4.Sigma$Sigma, 1/(Q * Q)) (should be TRUE): TRUE
+> message('identical(fcl_1.4.Sigma$P, Q * Q) (should be TRUE): ', identical(fcl_1.4.Sigma$P, Q * Q))
+identical(fcl_1.4.Sigma$P, Q * Q) (should be TRUE): TRUE
 > is.null(fcl_1.4.Sigma$SqrtSigma)# TRUE
 [1] TRUE
-> identical(fcl_1.4.Sigma$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_1.4.Sigma$Q, Q) (should be TRUE): ', identical(fcl_1.4.Sigma$Q, Q))
+identical(fcl_1.4.Sigma$Q, Q) (should be TRUE): TRUE
 > 
 > is.null(fcl_1.4.P$Sigma)# TRUE
 [1] TRUE
-> identical(fcl_1.4.P$P, Q * Q)# TRUE
-[1] TRUE
+> message('identical(fcl_1.4.P$P, Q * Q) (should be TRUE): ', identical(fcl_1.4.P$P, Q * Q))
+identical(fcl_1.4.P$P, Q * Q) (should be TRUE): TRUE
 > is.null(fcl_1.4.P$SqrtSigma)# TRUE
 [1] TRUE
-> identical(fcl_1.4.P$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_1.4.P$Q, Q) (should be TRUE): ', identical(fcl_1.4.P$Q, Q))
+identical(fcl_1.4.P$Q, Q) (should be TRUE): TRUE
 > 
 > is.null(fcl_1.4.SqrtSigma$Sigma)# TRUE
 [1] TRUE
 > is.null(fcl_1.4.SqrtSigma$P)# TRUE
 [1] TRUE
-> identical(fcl_1.4.SqrtSigma$SqrtSigma, 1/Q)# TRUE
-[1] TRUE
-> identical(fcl_1.4.SqrtSigma$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_1.4.SqrtSigma$SqrtSigma, 1/Q) (should be TRUE): ', identical(fcl_1.4.SqrtSigma$SqrtSigma, 1/Q))
+identical(fcl_1.4.SqrtSigma$SqrtSigma, 1/Q) (should be TRUE): TRUE
+> message('identical(fcl_1.4.SqrtSigma$Q, Q) (should be TRUE): ', identical(fcl_1.4.SqrtSigma$Q, Q))
+identical(fcl_1.4.SqrtSigma$Q, Q) (should be TRUE): TRUE
 > 
 > is.null(fcl_1.4.Q$Sigma)# TRUE
 [1] TRUE
@@ -238,8 +238,8 @@ In distfreereg:::fill_covariance_list(need = need, covariance_list = covariance_
 [1] TRUE
 > is.null(fcl_1.4.Q$SqrtSigma)# TRUE
 [1] TRUE
-> identical(fcl_1.4.Q$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_1.4.Q$Q, Q) (should be TRUE): ', identical(fcl_1.4.Q$Q, Q))
+identical(fcl_1.4.Q$Q, Q) (should be TRUE): TRUE
 > 
 > 
 > 
@@ -251,41 +251,41 @@ In distfreereg:::fill_covariance_list(need = need, covariance_list = covariance_
 > fcl_2.1.SqrtSigma <- fill_covariance_list(need = "SqrtSigma", covariance_list = CL_2.1)
 > fcl_2.1.Q <- fill_covariance_list(need = "Q", covariance_list = CL_2.1)
 > 
-> identical(fcl_2.1.Sigma$Sigma, Sigma)# TRUE
-[1] TRUE
-> identical(fcl_2.1.Sigma$P, P)# TRUE
-[1] TRUE
+> message('identical(fcl_2.1.Sigma$Sigma, Sigma) (should be TRUE): ', identical(fcl_2.1.Sigma$Sigma, Sigma))
+identical(fcl_2.1.Sigma$Sigma, Sigma) (should be TRUE): TRUE
+> message('identical(fcl_2.1.Sigma$P, P) (should be TRUE): ', identical(fcl_2.1.Sigma$P, P))
+identical(fcl_2.1.Sigma$P, P) (should be TRUE): TRUE
 > is.null(fcl_2.1.Sigma$SqrtSigma)# TRUE
 [1] TRUE
 > is.null(fcl_2.1.Sigma$Q)# TRUE
 [1] TRUE
 > 
-> identical(fcl_2.1.P$Sigma, Sigma)# TRUE
-[1] TRUE
-> identical(fcl_2.1.P$P, P)# TRUE
-[1] TRUE
+> message('identical(fcl_2.1.P$Sigma, Sigma) (should be TRUE): ', identical(fcl_2.1.P$Sigma, Sigma))
+identical(fcl_2.1.P$Sigma, Sigma) (should be TRUE): TRUE
+> message('identical(fcl_2.1.P$P, P) (should be TRUE): ', identical(fcl_2.1.P$P, P))
+identical(fcl_2.1.P$P, P) (should be TRUE): TRUE
 > is.null(fcl_2.1.P$SqrtSigma)# TRUE
 [1] TRUE
 > is.null(fcl_2.1.P$Q)# TRUE
 [1] TRUE
 > 
-> identical(fcl_2.1.SqrtSigma$Sigma, Sigma)# TRUE
-[1] TRUE
-> identical(fcl_2.1.SqrtSigma$P, P)# TRUE
-[1] TRUE
-> identical(fcl_2.1.SqrtSigma$SqrtSigma, matsqrt(Sigma))# TRUE
-[1] TRUE
+> message('identical(fcl_2.1.SqrtSigma$Sigma, Sigma) (should be TRUE): ', identical(fcl_2.1.SqrtSigma$Sigma, Sigma))
+identical(fcl_2.1.SqrtSigma$Sigma, Sigma) (should be TRUE): TRUE
+> message('identical(fcl_2.1.SqrtSigma$P, P) (should be TRUE): ', identical(fcl_2.1.SqrtSigma$P, P))
+identical(fcl_2.1.SqrtSigma$P, P) (should be TRUE): TRUE
+> message('identical(fcl_2.1.SqrtSigma$SqrtSigma, matsqrt(Sigma)) (should be TRUE): ', identical(fcl_2.1.SqrtSigma$SqrtSigma, matsqrt(Sigma)))
+identical(fcl_2.1.SqrtSigma$SqrtSigma, matsqrt(Sigma)) (should be TRUE): TRUE
 > is.null(fcl_2.1.SqrtSigma$Q)# TRUE
 [1] TRUE
 > 
-> identical(fcl_2.1.Q$Sigma, Sigma)# TRUE
-[1] TRUE
-> identical(fcl_2.1.Q$P, P)# TRUE
-[1] TRUE
+> message('identical(fcl_2.1.Q$Sigma, Sigma) (should be TRUE): ', identical(fcl_2.1.Q$Sigma, Sigma))
+identical(fcl_2.1.Q$Sigma, Sigma) (should be TRUE): TRUE
+> message('identical(fcl_2.1.Q$P, P) (should be TRUE): ', identical(fcl_2.1.Q$P, P))
+identical(fcl_2.1.Q$P, P) (should be TRUE): TRUE
 > is.null(fcl_2.1.Q$SqrtSigma)# TRUE
 [1] TRUE
-> identical(fcl_2.1.Q$Q, matsqrt(P))# TRUE
-[1] TRUE
+> message('identical(fcl_2.1.Q$Q, matsqrt(P)) (should be TRUE): ', identical(fcl_2.1.Q$Q, matsqrt(P)))
+identical(fcl_2.1.Q$Q, matsqrt(P)) (should be TRUE): TRUE
 > 
 > 
 > 
@@ -297,41 +297,41 @@ In distfreereg:::fill_covariance_list(need = need, covariance_list = covariance_
 > fcl_2.2.SqrtSigma <- fill_covariance_list(need = "SqrtSigma", covariance_list = CL_2.2)
 > fcl_2.2.Q <- fill_covariance_list(need = "Q", covariance_list = CL_2.2)
 > 
-> identical(fcl_2.2.Sigma$Sigma, Sigma)# TRUE
-[1] TRUE
+> message('identical(fcl_2.2.Sigma$Sigma, Sigma) (should be TRUE): ', identical(fcl_2.2.Sigma$Sigma, Sigma))
+identical(fcl_2.2.Sigma$Sigma, Sigma) (should be TRUE): TRUE
 > is.null(fcl_2.2.Sigma$P)# TRUE
 [1] TRUE
-> identical(fcl_2.2.Sigma$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
+> message('identical(fcl_2.2.Sigma$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_2.2.Sigma$SqrtSigma, SqrtSigma))
+identical(fcl_2.2.Sigma$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
 > is.null(fcl_2.2.Sigma$Q)# TRUE
 [1] TRUE
 > 
-> identical(fcl_2.2.P$Sigma, Sigma)# TRUE
-[1] TRUE
-> identical(fcl_2.2.P$P, 1/Sigma)# TRUE
-[1] TRUE
-> identical(fcl_2.2.P$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
+> message('identical(fcl_2.2.P$Sigma, Sigma) (should be TRUE): ', identical(fcl_2.2.P$Sigma, Sigma))
+identical(fcl_2.2.P$Sigma, Sigma) (should be TRUE): TRUE
+> message('identical(fcl_2.2.P$P, 1/Sigma) (should be TRUE): ', identical(fcl_2.2.P$P, 1/Sigma))
+identical(fcl_2.2.P$P, 1/Sigma) (should be TRUE): TRUE
+> message('identical(fcl_2.2.P$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_2.2.P$SqrtSigma, SqrtSigma))
+identical(fcl_2.2.P$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
 > is.null(fcl_2.2.P$Q)# TRUE
 [1] TRUE
 > 
-> identical(fcl_2.2.SqrtSigma$Sigma, Sigma)# TRUE
-[1] TRUE
+> message('identical(fcl_2.2.SqrtSigma$Sigma, Sigma) (should be TRUE): ', identical(fcl_2.2.SqrtSigma$Sigma, Sigma))
+identical(fcl_2.2.SqrtSigma$Sigma, Sigma) (should be TRUE): TRUE
 > is.null(fcl_2.2.SqrtSigma$P)# TRUE
 [1] TRUE
-> identical(fcl_2.2.SqrtSigma$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
+> message('identical(fcl_2.2.SqrtSigma$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_2.2.SqrtSigma$SqrtSigma, SqrtSigma))
+identical(fcl_2.2.SqrtSigma$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
 > is.null(fcl_2.2.SqrtSigma$Q)# TRUE
 [1] TRUE
 > 
-> identical(fcl_2.2.Q$Sigma, Sigma)# TRUE
-[1] TRUE
+> message('identical(fcl_2.2.Q$Sigma, Sigma) (should be TRUE): ', identical(fcl_2.2.Q$Sigma, Sigma))
+identical(fcl_2.2.Q$Sigma, Sigma) (should be TRUE): TRUE
 > is.null(fcl_2.2.Q$P)# TRUE
 [1] TRUE
-> identical(fcl_2.2.Q$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
-> identical(fcl_2.2.Q$Q, 1/SqrtSigma)# TRUE
-[1] TRUE
+> message('identical(fcl_2.2.Q$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_2.2.Q$SqrtSigma, SqrtSigma))
+identical(fcl_2.2.Q$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
+> message('identical(fcl_2.2.Q$Q, 1/SqrtSigma) (should be TRUE): ', identical(fcl_2.2.Q$Q, 1/SqrtSigma))
+identical(fcl_2.2.Q$Q, 1/SqrtSigma) (should be TRUE): TRUE
 > 
 > 
 > 
@@ -343,41 +343,41 @@ In distfreereg:::fill_covariance_list(need = need, covariance_list = covariance_
 > fcl_2.3.SqrtSigma <- fill_covariance_list(need = "SqrtSigma", covariance_list = CL_2.3)
 > fcl_2.3.Q <- fill_covariance_list(need = "Q", covariance_list = CL_2.3)
 > 
-> identical(fcl_2.3.Sigma$Sigma, Sigma)# TRUE
-[1] TRUE
+> message('identical(fcl_2.3.Sigma$Sigma, Sigma) (should be TRUE): ', identical(fcl_2.3.Sigma$Sigma, Sigma))
+identical(fcl_2.3.Sigma$Sigma, Sigma) (should be TRUE): TRUE
 > is.null(fcl_2.3.Sigma$P)# TRUE
 [1] TRUE
 > is.null(fcl_2.3.Sigma$SqrtSigma)# TRUE
 [1] TRUE
-> identical(fcl_2.3.Sigma$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_2.3.Sigma$Q, Q) (should be TRUE): ', identical(fcl_2.3.Sigma$Q, Q))
+identical(fcl_2.3.Sigma$Q, Q) (should be TRUE): TRUE
 > 
-> identical(fcl_2.3.P$Sigma, Sigma)# TRUE
-[1] TRUE
-> identical(fcl_2.3.P$P, Q * Q)# TRUE
-[1] TRUE
+> message('identical(fcl_2.3.P$Sigma, Sigma) (should be TRUE): ', identical(fcl_2.3.P$Sigma, Sigma))
+identical(fcl_2.3.P$Sigma, Sigma) (should be TRUE): TRUE
+> message('identical(fcl_2.3.P$P, Q * Q) (should be TRUE): ', identical(fcl_2.3.P$P, Q * Q))
+identical(fcl_2.3.P$P, Q * Q) (should be TRUE): TRUE
 > is.null(fcl_2.3.P$SqrtSigma)# TRUE
 [1] TRUE
-> identical(fcl_2.3.P$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_2.3.P$Q, Q) (should be TRUE): ', identical(fcl_2.3.P$Q, Q))
+identical(fcl_2.3.P$Q, Q) (should be TRUE): TRUE
 > 
-> identical(fcl_2.3.SqrtSigma$Sigma, Sigma)# TRUE
-[1] TRUE
+> message('identical(fcl_2.3.SqrtSigma$Sigma, Sigma) (should be TRUE): ', identical(fcl_2.3.SqrtSigma$Sigma, Sigma))
+identical(fcl_2.3.SqrtSigma$Sigma, Sigma) (should be TRUE): TRUE
 > is.null(fcl_2.3.SqrtSigma$P)# TRUE
 [1] TRUE
-> identical(fcl_2.3.SqrtSigma$SqrtSigma, 1/Q)# TRUE
-[1] TRUE
-> identical(fcl_2.3.SqrtSigma$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_2.3.SqrtSigma$SqrtSigma, 1/Q) (should be TRUE): ', identical(fcl_2.3.SqrtSigma$SqrtSigma, 1/Q))
+identical(fcl_2.3.SqrtSigma$SqrtSigma, 1/Q) (should be TRUE): TRUE
+> message('identical(fcl_2.3.SqrtSigma$Q, Q) (should be TRUE): ', identical(fcl_2.3.SqrtSigma$Q, Q))
+identical(fcl_2.3.SqrtSigma$Q, Q) (should be TRUE): TRUE
 > 
-> identical(fcl_2.3.Q$Sigma, Sigma)# TRUE
-[1] TRUE
+> message('identical(fcl_2.3.Q$Sigma, Sigma) (should be TRUE): ', identical(fcl_2.3.Q$Sigma, Sigma))
+identical(fcl_2.3.Q$Sigma, Sigma) (should be TRUE): TRUE
 > is.null(fcl_2.3.Q$P)# TRUE
 [1] TRUE
 > is.null(fcl_2.3.Q$SqrtSigma)# TRUE
 [1] TRUE
-> identical(fcl_2.3.Q$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_2.3.Q$Q, Q) (should be TRUE): ', identical(fcl_2.3.Q$Q, Q))
+identical(fcl_2.3.Q$Q, Q) (should be TRUE): TRUE
 > 
 > 
 > 
@@ -389,41 +389,41 @@ In distfreereg:::fill_covariance_list(need = need, covariance_list = covariance_
 > fcl_2.4.SqrtSigma <- fill_covariance_list(need = "SqrtSigma", covariance_list = CL_2.4)
 > fcl_2.4.Q <- fill_covariance_list(need = "Q", covariance_list = CL_2.4)
 > 
-> identical(fcl_2.4.Sigma$Sigma, SqrtSigma * SqrtSigma)# TRUE
-[1] TRUE
-> identical(fcl_2.4.Sigma$P, P)# TRUE
-[1] TRUE
-> identical(fcl_2.4.Sigma$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
+> message('identical(fcl_2.4.Sigma$Sigma, SqrtSigma * SqrtSigma) (should be TRUE): ', identical(fcl_2.4.Sigma$Sigma, SqrtSigma * SqrtSigma))
+identical(fcl_2.4.Sigma$Sigma, SqrtSigma * SqrtSigma) (should be TRUE): TRUE
+> message('identical(fcl_2.4.Sigma$P, P) (should be TRUE): ', identical(fcl_2.4.Sigma$P, P))
+identical(fcl_2.4.Sigma$P, P) (should be TRUE): TRUE
+> message('identical(fcl_2.4.Sigma$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_2.4.Sigma$SqrtSigma, SqrtSigma))
+identical(fcl_2.4.Sigma$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
 > is.null(fcl_2.4.Sigma$Q)# TRUE
 [1] TRUE
 > 
 > is.null(fcl_2.4.P$Sigma)# TRUE
 [1] TRUE
-> identical(fcl_2.4.P$P, P)# TRUE
-[1] TRUE
-> identical(fcl_2.4.P$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
+> message('identical(fcl_2.4.P$P, P) (should be TRUE): ', identical(fcl_2.4.P$P, P))
+identical(fcl_2.4.P$P, P) (should be TRUE): TRUE
+> message('identical(fcl_2.4.P$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_2.4.P$SqrtSigma, SqrtSigma))
+identical(fcl_2.4.P$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
 > is.null(fcl_2.4.P$Q)# TRUE
 [1] TRUE
 > 
 > is.null(fcl_2.4.SqrtSigma$Sigma)# TRUE
 [1] TRUE
-> identical(fcl_2.4.SqrtSigma$P, P)# TRUE
-[1] TRUE
-> identical(fcl_2.4.SqrtSigma$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
+> message('identical(fcl_2.4.SqrtSigma$P, P) (should be TRUE): ', identical(fcl_2.4.SqrtSigma$P, P))
+identical(fcl_2.4.SqrtSigma$P, P) (should be TRUE): TRUE
+> message('identical(fcl_2.4.SqrtSigma$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_2.4.SqrtSigma$SqrtSigma, SqrtSigma))
+identical(fcl_2.4.SqrtSigma$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
 > is.null(fcl_2.4.SqrtSigma$Q)# TRUE
 [1] TRUE
 > 
 > is.null(fcl_2.4.Q$Sigma)# TRUE
 [1] TRUE
-> identical(fcl_2.4.Q$P, P)# TRUE
-[1] TRUE
-> identical(fcl_2.4.Q$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
-> identical(fcl_2.4.Q$Q, 1/SqrtSigma)# TRUE
-[1] TRUE
+> message('identical(fcl_2.4.Q$P, P) (should be TRUE): ', identical(fcl_2.4.Q$P, P))
+identical(fcl_2.4.Q$P, P) (should be TRUE): TRUE
+> message('identical(fcl_2.4.Q$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_2.4.Q$SqrtSigma, SqrtSigma))
+identical(fcl_2.4.Q$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
+> message('identical(fcl_2.4.Q$Q, 1/SqrtSigma) (should be TRUE): ', identical(fcl_2.4.Q$Q, 1/SqrtSigma))
+identical(fcl_2.4.Q$Q, 1/SqrtSigma) (should be TRUE): TRUE
 > 
 > 
 > 
@@ -435,41 +435,41 @@ In distfreereg:::fill_covariance_list(need = need, covariance_list = covariance_
 > fcl_2.5.SqrtSigma <- fill_covariance_list(need = "SqrtSigma", covariance_list = CL_2.5)
 > fcl_2.5.Q <- fill_covariance_list(need = "Q", covariance_list = CL_2.5)
 > 
-> identical(fcl_2.5.Sigma$Sigma, 1/P)# TRUE
-[1] TRUE
-> identical(fcl_2.5.Sigma$P, P)# TRUE
-[1] TRUE
+> message('identical(fcl_2.5.Sigma$Sigma, 1/P) (should be TRUE): ', identical(fcl_2.5.Sigma$Sigma, 1/P))
+identical(fcl_2.5.Sigma$Sigma, 1/P) (should be TRUE): TRUE
+> message('identical(fcl_2.5.Sigma$P, P) (should be TRUE): ', identical(fcl_2.5.Sigma$P, P))
+identical(fcl_2.5.Sigma$P, P) (should be TRUE): TRUE
 > is.null(fcl_2.5.Sigma$SqrtSigma)# TRUE
 [1] TRUE
-> identical(fcl_2.5.Sigma$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_2.5.Sigma$Q, Q) (should be TRUE): ', identical(fcl_2.5.Sigma$Q, Q))
+identical(fcl_2.5.Sigma$Q, Q) (should be TRUE): TRUE
 > 
 > is.null(fcl_2.5.P$Sigma)# TRUE
 [1] TRUE
-> identical(fcl_2.5.P$P, P)# TRUE
-[1] TRUE
+> message('identical(fcl_2.5.P$P, P) (should be TRUE): ', identical(fcl_2.5.P$P, P))
+identical(fcl_2.5.P$P, P) (should be TRUE): TRUE
 > is.null(fcl_2.5.P$SqrtSigma)# TRUE
 [1] TRUE
-> identical(fcl_2.5.P$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_2.5.P$Q, Q) (should be TRUE): ', identical(fcl_2.5.P$Q, Q))
+identical(fcl_2.5.P$Q, Q) (should be TRUE): TRUE
 > 
 > is.null(fcl_2.5.SqrtSigma$Sigma)# TRUE
 [1] TRUE
-> identical(fcl_2.5.SqrtSigma$P, P)# TRUE
-[1] TRUE
-> identical(fcl_2.5.SqrtSigma$SqrtSigma, 1/Q)# TRUE
-[1] TRUE
-> identical(fcl_2.5.SqrtSigma$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_2.5.SqrtSigma$P, P) (should be TRUE): ', identical(fcl_2.5.SqrtSigma$P, P))
+identical(fcl_2.5.SqrtSigma$P, P) (should be TRUE): TRUE
+> message('identical(fcl_2.5.SqrtSigma$SqrtSigma, 1/Q) (should be TRUE): ', identical(fcl_2.5.SqrtSigma$SqrtSigma, 1/Q))
+identical(fcl_2.5.SqrtSigma$SqrtSigma, 1/Q) (should be TRUE): TRUE
+> message('identical(fcl_2.5.SqrtSigma$Q, Q) (should be TRUE): ', identical(fcl_2.5.SqrtSigma$Q, Q))
+identical(fcl_2.5.SqrtSigma$Q, Q) (should be TRUE): TRUE
 > 
 > is.null(fcl_2.5.Q$Sigma)# TRUE
 [1] TRUE
-> identical(fcl_2.5.Q$P, P)# TRUE
-[1] TRUE
+> message('identical(fcl_2.5.Q$P, P) (should be TRUE): ', identical(fcl_2.5.Q$P, P))
+identical(fcl_2.5.Q$P, P) (should be TRUE): TRUE
 > is.null(fcl_2.5.Q$SqrtSigma)# TRUE
 [1] TRUE
-> identical(fcl_2.5.Q$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_2.5.Q$Q, Q) (should be TRUE): ', identical(fcl_2.5.Q$Q, Q))
+identical(fcl_2.5.Q$Q, Q) (should be TRUE): TRUE
 > 
 > 
 > 
@@ -481,41 +481,41 @@ In distfreereg:::fill_covariance_list(need = need, covariance_list = covariance_
 > fcl_2.6.SqrtSigma <- fill_covariance_list(need = "SqrtSigma", covariance_list = CL_2.6)
 > fcl_2.6.Q <- fill_covariance_list(need = "Q", covariance_list = CL_2.6)
 > 
-> identical(fcl_2.6.Sigma$Sigma, SqrtSigma * SqrtSigma)# TRUE
-[1] TRUE
+> message('identical(fcl_2.6.Sigma$Sigma, SqrtSigma * SqrtSigma) (should be TRUE): ', identical(fcl_2.6.Sigma$Sigma, SqrtSigma * SqrtSigma))
+identical(fcl_2.6.Sigma$Sigma, SqrtSigma * SqrtSigma) (should be TRUE): TRUE
 > is.null(fcl_2.6.Sigma$P)# TRUE
 [1] TRUE
-> identical(fcl_2.6.Sigma$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
-> identical(fcl_2.6.Sigma$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_2.6.Sigma$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_2.6.Sigma$SqrtSigma, SqrtSigma))
+identical(fcl_2.6.Sigma$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
+> message('identical(fcl_2.6.Sigma$Q, Q) (should be TRUE): ', identical(fcl_2.6.Sigma$Q, Q))
+identical(fcl_2.6.Sigma$Q, Q) (should be TRUE): TRUE
 > 
 > is.null(fcl_2.6.P$Sigma)# TRUE
 [1] TRUE
-> identical(fcl_2.6.P$P, Q * Q)# TRUE
-[1] TRUE
-> identical(fcl_2.6.P$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
-> identical(fcl_2.6.P$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_2.6.P$P, Q * Q) (should be TRUE): ', identical(fcl_2.6.P$P, Q * Q))
+identical(fcl_2.6.P$P, Q * Q) (should be TRUE): TRUE
+> message('identical(fcl_2.6.P$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_2.6.P$SqrtSigma, SqrtSigma))
+identical(fcl_2.6.P$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
+> message('identical(fcl_2.6.P$Q, Q) (should be TRUE): ', identical(fcl_2.6.P$Q, Q))
+identical(fcl_2.6.P$Q, Q) (should be TRUE): TRUE
 > 
 > is.null(fcl_2.6.SqrtSigma$Sigma)# TRUE
 [1] TRUE
 > is.null(fcl_2.6.SqrtSigma$P)# TRUE
 [1] TRUE
-> identical(fcl_2.6.SqrtSigma$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
-> identical(fcl_2.6.SqrtSigma$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_2.6.SqrtSigma$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_2.6.SqrtSigma$SqrtSigma, SqrtSigma))
+identical(fcl_2.6.SqrtSigma$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
+> message('identical(fcl_2.6.SqrtSigma$Q, Q) (should be TRUE): ', identical(fcl_2.6.SqrtSigma$Q, Q))
+identical(fcl_2.6.SqrtSigma$Q, Q) (should be TRUE): TRUE
 > 
 > is.null(fcl_2.6.Q$Sigma)# TRUE
 [1] TRUE
 > is.null(fcl_2.6.Q$P)# TRUE
 [1] TRUE
-> identical(fcl_2.6.Q$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
-> identical(fcl_2.6.Q$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_2.6.Q$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_2.6.Q$SqrtSigma, SqrtSigma))
+identical(fcl_2.6.Q$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
+> message('identical(fcl_2.6.Q$Q, Q) (should be TRUE): ', identical(fcl_2.6.Q$Q, Q))
+identical(fcl_2.6.Q$Q, Q) (should be TRUE): TRUE
 > 
 > 
 > 
@@ -527,41 +527,41 @@ In distfreereg:::fill_covariance_list(need = need, covariance_list = covariance_
 > fcl_3.1.SqrtSigma <- fill_covariance_list(need = "SqrtSigma", covariance_list = CL_3.1)
 > fcl_3.1.Q <- fill_covariance_list(need = "Q", covariance_list = CL_3.1)
 > 
-> identical(fcl_3.1.Sigma$Sigma, Sigma)# TRUE
-[1] TRUE
-> identical(fcl_3.1.Sigma$P, P)# TRUE
-[1] TRUE
-> identical(fcl_3.1.Sigma$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
+> message('identical(fcl_3.1.Sigma$Sigma, Sigma) (should be TRUE): ', identical(fcl_3.1.Sigma$Sigma, Sigma))
+identical(fcl_3.1.Sigma$Sigma, Sigma) (should be TRUE): TRUE
+> message('identical(fcl_3.1.Sigma$P, P) (should be TRUE): ', identical(fcl_3.1.Sigma$P, P))
+identical(fcl_3.1.Sigma$P, P) (should be TRUE): TRUE
+> message('identical(fcl_3.1.Sigma$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_3.1.Sigma$SqrtSigma, SqrtSigma))
+identical(fcl_3.1.Sigma$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
 > is.null(fcl_3.1.Sigma$Q)# TRUE
 [1] TRUE
 > 
-> identical(fcl_3.1.P$Sigma, Sigma)# TRUE
-[1] TRUE
-> identical(fcl_3.1.P$P, P)# TRUE
-[1] TRUE
-> identical(fcl_3.1.P$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
+> message('identical(fcl_3.1.P$Sigma, Sigma) (should be TRUE): ', identical(fcl_3.1.P$Sigma, Sigma))
+identical(fcl_3.1.P$Sigma, Sigma) (should be TRUE): TRUE
+> message('identical(fcl_3.1.P$P, P) (should be TRUE): ', identical(fcl_3.1.P$P, P))
+identical(fcl_3.1.P$P, P) (should be TRUE): TRUE
+> message('identical(fcl_3.1.P$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_3.1.P$SqrtSigma, SqrtSigma))
+identical(fcl_3.1.P$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
 > is.null(fcl_3.1.P$Q)# TRUE
 [1] TRUE
 > 
-> identical(fcl_3.1.SqrtSigma$Sigma, Sigma)# TRUE
-[1] TRUE
-> identical(fcl_3.1.SqrtSigma$P, P)# TRUE
-[1] TRUE
-> identical(fcl_3.1.SqrtSigma$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
+> message('identical(fcl_3.1.SqrtSigma$Sigma, Sigma) (should be TRUE): ', identical(fcl_3.1.SqrtSigma$Sigma, Sigma))
+identical(fcl_3.1.SqrtSigma$Sigma, Sigma) (should be TRUE): TRUE
+> message('identical(fcl_3.1.SqrtSigma$P, P) (should be TRUE): ', identical(fcl_3.1.SqrtSigma$P, P))
+identical(fcl_3.1.SqrtSigma$P, P) (should be TRUE): TRUE
+> message('identical(fcl_3.1.SqrtSigma$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_3.1.SqrtSigma$SqrtSigma, SqrtSigma))
+identical(fcl_3.1.SqrtSigma$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
 > is.null(fcl_3.1.SqrtSigma$Q)# TRUE
 [1] TRUE
 > 
-> identical(fcl_3.1.Q$Sigma, Sigma)# TRUE
-[1] TRUE
-> identical(fcl_3.1.Q$P, P)# TRUE
-[1] TRUE
-> identical(fcl_3.1.Q$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
-> identical(fcl_3.1.Q$Q, 1/SqrtSigma)# TRUE
-[1] TRUE
+> message('identical(fcl_3.1.Q$Sigma, Sigma) (should be TRUE): ', identical(fcl_3.1.Q$Sigma, Sigma))
+identical(fcl_3.1.Q$Sigma, Sigma) (should be TRUE): TRUE
+> message('identical(fcl_3.1.Q$P, P) (should be TRUE): ', identical(fcl_3.1.Q$P, P))
+identical(fcl_3.1.Q$P, P) (should be TRUE): TRUE
+> message('identical(fcl_3.1.Q$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_3.1.Q$SqrtSigma, SqrtSigma))
+identical(fcl_3.1.Q$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
+> message('identical(fcl_3.1.Q$Q, 1/SqrtSigma) (should be TRUE): ', identical(fcl_3.1.Q$Q, 1/SqrtSigma))
+identical(fcl_3.1.Q$Q, 1/SqrtSigma) (should be TRUE): TRUE
 > 
 > 
 > 
@@ -573,41 +573,41 @@ In distfreereg:::fill_covariance_list(need = need, covariance_list = covariance_
 > fcl_3.2.SqrtSigma <- fill_covariance_list(need = "SqrtSigma", covariance_list = CL_3.2)
 > fcl_3.2.Q <- fill_covariance_list(need = "Q", covariance_list = CL_3.2)
 > 
-> identical(fcl_3.2.Sigma$Sigma, Sigma)# TRUE
-[1] TRUE
-> identical(fcl_3.2.Sigma$P, P)# TRUE
-[1] TRUE
+> message('identical(fcl_3.2.Sigma$Sigma, Sigma) (should be TRUE): ', identical(fcl_3.2.Sigma$Sigma, Sigma))
+identical(fcl_3.2.Sigma$Sigma, Sigma) (should be TRUE): TRUE
+> message('identical(fcl_3.2.Sigma$P, P) (should be TRUE): ', identical(fcl_3.2.Sigma$P, P))
+identical(fcl_3.2.Sigma$P, P) (should be TRUE): TRUE
 > is.null(fcl_3.2.Sigma$SqrtSigma)# TRUE
 [1] TRUE
-> identical(fcl_3.2.Sigma$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_3.2.Sigma$Q, Q) (should be TRUE): ', identical(fcl_3.2.Sigma$Q, Q))
+identical(fcl_3.2.Sigma$Q, Q) (should be TRUE): TRUE
 > 
-> identical(fcl_3.2.P$Sigma, Sigma)# TRUE
-[1] TRUE
-> identical(fcl_3.2.P$P, P)# TRUE
-[1] TRUE
+> message('identical(fcl_3.2.P$Sigma, Sigma) (should be TRUE): ', identical(fcl_3.2.P$Sigma, Sigma))
+identical(fcl_3.2.P$Sigma, Sigma) (should be TRUE): TRUE
+> message('identical(fcl_3.2.P$P, P) (should be TRUE): ', identical(fcl_3.2.P$P, P))
+identical(fcl_3.2.P$P, P) (should be TRUE): TRUE
 > is.null(fcl_3.2.P$SqrtSigma)# TRUE
 [1] TRUE
-> identical(fcl_3.2.P$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_3.2.P$Q, Q) (should be TRUE): ', identical(fcl_3.2.P$Q, Q))
+identical(fcl_3.2.P$Q, Q) (should be TRUE): TRUE
 > 
-> identical(fcl_3.2.SqrtSigma$Sigma, Sigma)# TRUE
-[1] TRUE
-> identical(fcl_3.2.SqrtSigma$P, P)# TRUE
-[1] TRUE
-> identical(fcl_3.2.SqrtSigma$SqrtSigma, 1/Q)# TRUE
-[1] TRUE
-> identical(fcl_3.2.SqrtSigma$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_3.2.SqrtSigma$Sigma, Sigma) (should be TRUE): ', identical(fcl_3.2.SqrtSigma$Sigma, Sigma))
+identical(fcl_3.2.SqrtSigma$Sigma, Sigma) (should be TRUE): TRUE
+> message('identical(fcl_3.2.SqrtSigma$P, P) (should be TRUE): ', identical(fcl_3.2.SqrtSigma$P, P))
+identical(fcl_3.2.SqrtSigma$P, P) (should be TRUE): TRUE
+> message('identical(fcl_3.2.SqrtSigma$SqrtSigma, 1/Q) (should be TRUE): ', identical(fcl_3.2.SqrtSigma$SqrtSigma, 1/Q))
+identical(fcl_3.2.SqrtSigma$SqrtSigma, 1/Q) (should be TRUE): TRUE
+> message('identical(fcl_3.2.SqrtSigma$Q, Q) (should be TRUE): ', identical(fcl_3.2.SqrtSigma$Q, Q))
+identical(fcl_3.2.SqrtSigma$Q, Q) (should be TRUE): TRUE
 > 
-> identical(fcl_3.2.Q$Sigma, Sigma)# TRUE
-[1] TRUE
-> identical(fcl_3.2.Q$P, P)# TRUE
-[1] TRUE
+> message('identical(fcl_3.2.Q$Sigma, Sigma) (should be TRUE): ', identical(fcl_3.2.Q$Sigma, Sigma))
+identical(fcl_3.2.Q$Sigma, Sigma) (should be TRUE): TRUE
+> message('identical(fcl_3.2.Q$P, P) (should be TRUE): ', identical(fcl_3.2.Q$P, P))
+identical(fcl_3.2.Q$P, P) (should be TRUE): TRUE
 > is.null(fcl_3.2.Q$SqrtSigma)# TRUE
 [1] TRUE
-> identical(fcl_3.2.Q$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_3.2.Q$Q, Q) (should be TRUE): ', identical(fcl_3.2.Q$Q, Q))
+identical(fcl_3.2.Q$Q, Q) (should be TRUE): TRUE
 > 
 > 
 > 
@@ -619,41 +619,41 @@ In distfreereg:::fill_covariance_list(need = need, covariance_list = covariance_
 > fcl_3.3.SqrtSigma <- fill_covariance_list(need = "SqrtSigma", covariance_list = CL_3.3)
 > fcl_3.3.Q <- fill_covariance_list(need = "Q", covariance_list = CL_3.3)
 > 
-> identical(fcl_3.3.Sigma$Sigma, Sigma)# TRUE
-[1] TRUE
+> message('identical(fcl_3.3.Sigma$Sigma, Sigma) (should be TRUE): ', identical(fcl_3.3.Sigma$Sigma, Sigma))
+identical(fcl_3.3.Sigma$Sigma, Sigma) (should be TRUE): TRUE
 > is.null(fcl_3.3.Sigma$P)# TRUE
 [1] TRUE
-> identical(fcl_3.3.Sigma$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
-> identical(fcl_3.3.Sigma$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_3.3.Sigma$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_3.3.Sigma$SqrtSigma, SqrtSigma))
+identical(fcl_3.3.Sigma$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
+> message('identical(fcl_3.3.Sigma$Q, Q) (should be TRUE): ', identical(fcl_3.3.Sigma$Q, Q))
+identical(fcl_3.3.Sigma$Q, Q) (should be TRUE): TRUE
 > 
-> identical(fcl_3.3.P$Sigma, Sigma)# TRUE
-[1] TRUE
-> identical(fcl_3.3.P$P, Q * Q)# TRUE
-[1] TRUE
-> identical(fcl_3.3.P$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
-> identical(fcl_3.3.P$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_3.3.P$Sigma, Sigma) (should be TRUE): ', identical(fcl_3.3.P$Sigma, Sigma))
+identical(fcl_3.3.P$Sigma, Sigma) (should be TRUE): TRUE
+> message('identical(fcl_3.3.P$P, Q * Q) (should be TRUE): ', identical(fcl_3.3.P$P, Q * Q))
+identical(fcl_3.3.P$P, Q * Q) (should be TRUE): TRUE
+> message('identical(fcl_3.3.P$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_3.3.P$SqrtSigma, SqrtSigma))
+identical(fcl_3.3.P$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
+> message('identical(fcl_3.3.P$Q, Q) (should be TRUE): ', identical(fcl_3.3.P$Q, Q))
+identical(fcl_3.3.P$Q, Q) (should be TRUE): TRUE
 > 
-> identical(fcl_3.3.SqrtSigma$Sigma, Sigma)# TRUE
-[1] TRUE
+> message('identical(fcl_3.3.SqrtSigma$Sigma, Sigma) (should be TRUE): ', identical(fcl_3.3.SqrtSigma$Sigma, Sigma))
+identical(fcl_3.3.SqrtSigma$Sigma, Sigma) (should be TRUE): TRUE
 > is.null(fcl_3.3.SqrtSigma$P)# TRUE
 [1] TRUE
-> identical(fcl_3.3.SqrtSigma$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
-> identical(fcl_3.3.SqrtSigma$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_3.3.SqrtSigma$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_3.3.SqrtSigma$SqrtSigma, SqrtSigma))
+identical(fcl_3.3.SqrtSigma$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
+> message('identical(fcl_3.3.SqrtSigma$Q, Q) (should be TRUE): ', identical(fcl_3.3.SqrtSigma$Q, Q))
+identical(fcl_3.3.SqrtSigma$Q, Q) (should be TRUE): TRUE
 > 
-> identical(fcl_3.3.Q$Sigma, Sigma)# TRUE
-[1] TRUE
+> message('identical(fcl_3.3.Q$Sigma, Sigma) (should be TRUE): ', identical(fcl_3.3.Q$Sigma, Sigma))
+identical(fcl_3.3.Q$Sigma, Sigma) (should be TRUE): TRUE
 > is.null(fcl_3.3.Q$P)# TRUE
 [1] TRUE
-> identical(fcl_3.3.Q$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
-> identical(fcl_3.3.Q$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_3.3.Q$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_3.3.Q$SqrtSigma, SqrtSigma))
+identical(fcl_3.3.Q$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
+> message('identical(fcl_3.3.Q$Q, Q) (should be TRUE): ', identical(fcl_3.3.Q$Q, Q))
+identical(fcl_3.3.Q$Q, Q) (should be TRUE): TRUE
 > 
 > 
 > 
@@ -665,41 +665,41 @@ In distfreereg:::fill_covariance_list(need = need, covariance_list = covariance_
 > fcl_3.4.SqrtSigma <- fill_covariance_list(need = "SqrtSigma", covariance_list = CL_3.4)
 > fcl_3.4.Q <- fill_covariance_list(need = "Q", covariance_list = CL_3.4)
 > 
-> identical(fcl_3.4.Sigma$Sigma, SqrtSigma * SqrtSigma)# TRUE
-[1] TRUE
-> identical(fcl_3.4.Sigma$P, P)# TRUE
-[1] TRUE
-> identical(fcl_3.4.Sigma$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
-> identical(fcl_3.4.Sigma$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_3.4.Sigma$Sigma, SqrtSigma * SqrtSigma) (should be TRUE): ', identical(fcl_3.4.Sigma$Sigma, SqrtSigma * SqrtSigma))
+identical(fcl_3.4.Sigma$Sigma, SqrtSigma * SqrtSigma) (should be TRUE): TRUE
+> message('identical(fcl_3.4.Sigma$P, P) (should be TRUE): ', identical(fcl_3.4.Sigma$P, P))
+identical(fcl_3.4.Sigma$P, P) (should be TRUE): TRUE
+> message('identical(fcl_3.4.Sigma$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_3.4.Sigma$SqrtSigma, SqrtSigma))
+identical(fcl_3.4.Sigma$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
+> message('identical(fcl_3.4.Sigma$Q, Q) (should be TRUE): ', identical(fcl_3.4.Sigma$Q, Q))
+identical(fcl_3.4.Sigma$Q, Q) (should be TRUE): TRUE
 > 
 > is.null(fcl_3.4.P$Sigma)# TRUE
 [1] TRUE
-> identical(fcl_3.4.P$P, P)# TRUE
-[1] TRUE
-> identical(fcl_3.4.P$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
-> identical(fcl_3.4.P$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_3.4.P$P, P) (should be TRUE): ', identical(fcl_3.4.P$P, P))
+identical(fcl_3.4.P$P, P) (should be TRUE): TRUE
+> message('identical(fcl_3.4.P$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_3.4.P$SqrtSigma, SqrtSigma))
+identical(fcl_3.4.P$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
+> message('identical(fcl_3.4.P$Q, Q) (should be TRUE): ', identical(fcl_3.4.P$Q, Q))
+identical(fcl_3.4.P$Q, Q) (should be TRUE): TRUE
 > 
 > is.null(fcl_3.4.SqrtSigma$Sigma)# TRUE
 [1] TRUE
-> identical(fcl_3.4.SqrtSigma$P, P)# TRUE
-[1] TRUE
-> identical(fcl_3.4.SqrtSigma$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
-> identical(fcl_3.4.SqrtSigma$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_3.4.SqrtSigma$P, P) (should be TRUE): ', identical(fcl_3.4.SqrtSigma$P, P))
+identical(fcl_3.4.SqrtSigma$P, P) (should be TRUE): TRUE
+> message('identical(fcl_3.4.SqrtSigma$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_3.4.SqrtSigma$SqrtSigma, SqrtSigma))
+identical(fcl_3.4.SqrtSigma$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
+> message('identical(fcl_3.4.SqrtSigma$Q, Q) (should be TRUE): ', identical(fcl_3.4.SqrtSigma$Q, Q))
+identical(fcl_3.4.SqrtSigma$Q, Q) (should be TRUE): TRUE
 > 
 > is.null(fcl_3.4.Q$Sigma)# TRUE
 [1] TRUE
-> identical(fcl_3.4.Q$P, P)# TRUE
-[1] TRUE
-> identical(fcl_3.4.Q$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
-> identical(fcl_3.4.Q$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_3.4.Q$P, P) (should be TRUE): ', identical(fcl_3.4.Q$P, P))
+identical(fcl_3.4.Q$P, P) (should be TRUE): TRUE
+> message('identical(fcl_3.4.Q$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_3.4.Q$SqrtSigma, SqrtSigma))
+identical(fcl_3.4.Q$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
+> message('identical(fcl_3.4.Q$Q, Q) (should be TRUE): ', identical(fcl_3.4.Q$Q, Q))
+identical(fcl_3.4.Q$Q, Q) (should be TRUE): TRUE
 > 
 > 
 > 
@@ -711,42 +711,42 @@ In distfreereg:::fill_covariance_list(need = need, covariance_list = covariance_
 > fcl_4.SqrtSigma <- fill_covariance_list(need = "SqrtSigma", covariance_list = CL_4)
 > fcl_4.Q <- fill_covariance_list(need = "Q", covariance_list = CL_4)
 > 
-> identical(fcl_4.Sigma$Sigma, Sigma)# TRUE
-[1] TRUE
-> identical(fcl_4.Sigma$P, P)# TRUE
-[1] TRUE
-> identical(fcl_4.Sigma$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
-> identical(fcl_4.Sigma$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_4.Sigma$Sigma, Sigma) (should be TRUE): ', identical(fcl_4.Sigma$Sigma, Sigma))
+identical(fcl_4.Sigma$Sigma, Sigma) (should be TRUE): TRUE
+> message('identical(fcl_4.Sigma$P, P) (should be TRUE): ', identical(fcl_4.Sigma$P, P))
+identical(fcl_4.Sigma$P, P) (should be TRUE): TRUE
+> message('identical(fcl_4.Sigma$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_4.Sigma$SqrtSigma, SqrtSigma))
+identical(fcl_4.Sigma$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
+> message('identical(fcl_4.Sigma$Q, Q) (should be TRUE): ', identical(fcl_4.Sigma$Q, Q))
+identical(fcl_4.Sigma$Q, Q) (should be TRUE): TRUE
 > 
-> identical(fcl_4.P$Sigma, Sigma)# TRUE
-[1] TRUE
-> identical(fcl_4.P$P, P)# TRUE
-[1] TRUE
-> identical(fcl_4.P$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
-> identical(fcl_4.P$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_4.P$Sigma, Sigma) (should be TRUE): ', identical(fcl_4.P$Sigma, Sigma))
+identical(fcl_4.P$Sigma, Sigma) (should be TRUE): TRUE
+> message('identical(fcl_4.P$P, P) (should be TRUE): ', identical(fcl_4.P$P, P))
+identical(fcl_4.P$P, P) (should be TRUE): TRUE
+> message('identical(fcl_4.P$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_4.P$SqrtSigma, SqrtSigma))
+identical(fcl_4.P$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
+> message('identical(fcl_4.P$Q, Q) (should be TRUE): ', identical(fcl_4.P$Q, Q))
+identical(fcl_4.P$Q, Q) (should be TRUE): TRUE
 > 
-> identical(fcl_4.SqrtSigma$Sigma, Sigma)# TRUE
-[1] TRUE
-> identical(fcl_4.SqrtSigma$P, P)# TRUE
-[1] TRUE
-> identical(fcl_4.SqrtSigma$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
-> identical(fcl_4.SqrtSigma$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_4.SqrtSigma$Sigma, Sigma) (should be TRUE): ', identical(fcl_4.SqrtSigma$Sigma, Sigma))
+identical(fcl_4.SqrtSigma$Sigma, Sigma) (should be TRUE): TRUE
+> message('identical(fcl_4.SqrtSigma$P, P) (should be TRUE): ', identical(fcl_4.SqrtSigma$P, P))
+identical(fcl_4.SqrtSigma$P, P) (should be TRUE): TRUE
+> message('identical(fcl_4.SqrtSigma$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_4.SqrtSigma$SqrtSigma, SqrtSigma))
+identical(fcl_4.SqrtSigma$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
+> message('identical(fcl_4.SqrtSigma$Q, Q) (should be TRUE): ', identical(fcl_4.SqrtSigma$Q, Q))
+identical(fcl_4.SqrtSigma$Q, Q) (should be TRUE): TRUE
 > 
-> identical(fcl_4.Q$Sigma, Sigma)# TRUE
-[1] TRUE
-> identical(fcl_4.Q$P, P)# TRUE
-[1] TRUE
-> identical(fcl_4.Q$SqrtSigma, SqrtSigma)# TRUE
-[1] TRUE
-> identical(fcl_4.Q$Q, Q)# TRUE
-[1] TRUE
+> message('identical(fcl_4.Q$Sigma, Sigma) (should be TRUE): ', identical(fcl_4.Q$Sigma, Sigma))
+identical(fcl_4.Q$Sigma, Sigma) (should be TRUE): TRUE
+> message('identical(fcl_4.Q$P, P) (should be TRUE): ', identical(fcl_4.Q$P, P))
+identical(fcl_4.Q$P, P) (should be TRUE): TRUE
+> message('identical(fcl_4.Q$SqrtSigma, SqrtSigma) (should be TRUE): ', identical(fcl_4.Q$SqrtSigma, SqrtSigma))
+identical(fcl_4.Q$SqrtSigma, SqrtSigma) (should be TRUE): TRUE
+> message('identical(fcl_4.Q$Q, Q) (should be TRUE): ', identical(fcl_4.Q$Q, Q))
+identical(fcl_4.Q$Q, Q) (should be TRUE): TRUE
 > 
 > proc.time()
    user  system elapsed 
-   0.21    0.12    0.34 
+   0.15    0.09    0.25 

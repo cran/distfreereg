@@ -16,8 +16,8 @@ dfr_0 <- distfreereg(test_mean = test_func, theta_init = c(1,1), Y = df$c,
 dfr_1 <- distfreereg(test_mean = test_form, data = df, covariance = list(Sigma = Sig),
                      method = "nls")
 
-identical(dfr_0[["data"]][["Y"]], dfr_1[["data"]][["Y"]])# TRUE
-identical(dfr_0[["data"]][["X"]], dfr_1[["data"]][["X"]])# TRUE
+message('identical(dfr_0[["data"]][["Y"]], dfr_1[["data"]][["Y"]]) (should be TRUE): ', identical(dfr_0[["data"]][["Y"]], dfr_1[["data"]][["Y"]]))
+message('identical(dfr_0[["data"]][["X"]], dfr_1[["data"]][["X"]]) (should be TRUE): ', identical(dfr_0[["data"]][["X"]], dfr_1[["data"]][["X"]]))
 
 all.equal(dfr_0[["J"]], dfr_1[["J"]], check.attributes = FALSE, tolerance = 1e-5)
 all.equal(dfr_0[["fitted_values"]], dfr_1[["fitted_values"]], check.attributes = FALSE, tolerance = 1e-5)

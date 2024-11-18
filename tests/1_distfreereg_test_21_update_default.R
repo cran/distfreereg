@@ -29,14 +29,14 @@ dfr_1b <- update(dfr_1a, control = list(symmetric = FALSE))
 dfr_2b <- update(dfr_2a, control = list(symmetric = FALSE))
 dfr_3b <- update(dfr_3a, control = list(symmetric = FALSE))
 
-identical(dfr_1a[["observed_stats"]], dfr_1b[["observed_stats"]])# TRUE
-identical(dfr_1a[["observed_stats"]], dfr_2a[["observed_stats"]])# TRUE
-identical(dfr_1a[["observed_stats"]], dfr_2b[["observed_stats"]])# TRUE
-all.equal(dfr_1a[["observed_stats"]], dfr_3b[["observed_stats"]])# nearly equal
-identical(dfr_1a[["mcsim_stats"]], dfr_1b[["mcsim_stats"]])# TRUE
-identical(dfr_1a[["mcsim_stats"]], dfr_2a[["mcsim_stats"]])# TRUE
-identical(dfr_1a[["mcsim_stats"]], dfr_2b[["mcsim_stats"]])# TRUE
-identical(dfr_1a[["mcsim_stats"]], dfr_3b[["mcsim_stats"]])# TRUE
+message('identical(dfr_1a[["observed_stats"]], dfr_1b[["observed_stats"]]) (should be TRUE): ', identical(dfr_1a[["observed_stats"]], dfr_1b[["observed_stats"]]))
+message('identical(dfr_1a[["observed_stats"]], dfr_2a[["observed_stats"]]) (should be TRUE): ', identical(dfr_1a[["observed_stats"]], dfr_2a[["observed_stats"]]))
+message('identical(dfr_1a[["observed_stats"]], dfr_2b[["observed_stats"]]) (should be TRUE): ', identical(dfr_1a[["observed_stats"]], dfr_2b[["observed_stats"]]))
+all.equal(dfr_1a[["observed_stats"]], dfr_3b[["observed_stats"]], tolerance = 1e-5)# nearly equal
+message('identical(dfr_1a[["mcsim_stats"]], dfr_1b[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1a[["mcsim_stats"]], dfr_1b[["mcsim_stats"]]))
+message('identical(dfr_1a[["mcsim_stats"]], dfr_2a[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1a[["mcsim_stats"]], dfr_2a[["mcsim_stats"]]))
+message('identical(dfr_1a[["mcsim_stats"]], dfr_2b[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1a[["mcsim_stats"]], dfr_2b[["mcsim_stats"]]))
+message('identical(dfr_1a[["mcsim_stats"]], dfr_3b[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1a[["mcsim_stats"]], dfr_3b[["mcsim_stats"]]))
 
 set.seed(20240303)
 dfr_1c <- update(dfr_1a, override = list(res_order = 1:n))
@@ -45,10 +45,10 @@ dfr_2c <- update(dfr_2a, override = list(res_order = 1:n))
 set.seed(20240303)
 dfr_3c <- update(dfr_3a, override = list(res_order = 1:n))
 
-identical(dfr_1c[["observed_stats"]], dfr_2c[["observed_stats"]])# TRUE
-all.equal(dfr_1c[["observed_stats"]], dfr_3c[["observed_stats"]])# nearly equal
-identical(dfr_1c[["mcsim_stats"]], dfr_2c[["mcsim_stats"]])# TRUE
-identical(dfr_1c[["mcsim_stats"]], dfr_3c[["mcsim_stats"]])# TRUE
+message('identical(dfr_1c[["observed_stats"]], dfr_2c[["observed_stats"]]) (should be TRUE): ', identical(dfr_1c[["observed_stats"]], dfr_2c[["observed_stats"]]))
+all.equal(dfr_1c[["observed_stats"]], dfr_3c[["observed_stats"]], tolerance = 1e-5)# nearly equal
+message('identical(dfr_1c[["mcsim_stats"]], dfr_2c[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1c[["mcsim_stats"]], dfr_2c[["mcsim_stats"]]))
+message('identical(dfr_1c[["mcsim_stats"]], dfr_3c[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1c[["mcsim_stats"]], dfr_3c[["mcsim_stats"]]))
 
 Y_new <- distfreereg:::f2ftheta(f = func, X)(theta) +
   as.vector(distfreereg:::rmvnorm(n = n, reps = 1, mean = rep(0,n), SqrtSigma = distfreereg:::matsqrt(Sig)))
@@ -61,7 +61,7 @@ dfr_2d <- update(dfr_2a, Y = Y_new, J = dfr_1d[["J"]],
 set.seed(20240303)
 dfr_3d <- update(dfr_3a, data = data.frame(c = Y_new, a = X[,1], b = X[,2]))
 
-identical(dfr_1d[["observed_stats"]], dfr_2d[["observed_stats"]])# TRUE
-all.equal(dfr_1d[["theta_hat"]], dfr_3d[["theta_hat"]], check.attributes = FALSE)# TRUE
-identical(dfr_1d[["mcsim_stats"]], dfr_2d[["mcsim_stats"]])# TRUE
-identical(dfr_1d[["mcsim_stats"]], dfr_3d[["mcsim_stats"]])# TRUE
+message('identical(dfr_1d[["observed_stats"]], dfr_2d[["observed_stats"]]) (should be TRUE): ', identical(dfr_1d[["observed_stats"]], dfr_2d[["observed_stats"]]))
+message('all.equal(dfr_1d[["theta_hat"]], dfr_3d[["theta_hat"]], check.attributes = FALSE, tolerance = 1e-5) (should be TRUE): ', all.equal(dfr_1d[["theta_hat"]], dfr_3d[["theta_hat"]], check.attributes = FALSE, tolerance = 1e-5))
+message('identical(dfr_1d[["mcsim_stats"]], dfr_2d[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1d[["mcsim_stats"]], dfr_2d[["mcsim_stats"]]))
+message('identical(dfr_1d[["mcsim_stats"]], dfr_3d[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1d[["mcsim_stats"]], dfr_3d[["mcsim_stats"]]))

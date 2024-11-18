@@ -5,9 +5,10 @@ validate_args_distfreereg_default <-
     validate_extra_arg_list(extra_arg_list, "distfreereg.default()")
     
     if(!is.null(control))
-      validate_named_list(control, valid_names = c("solve_tol", "qr_tol",
-                                                   "orth_tol", "trans_tol",
-                                                   "symmetric", "data"))
+      validate_named_list(control, valid_names = c("matsqrt_tol", "solve_tol",
+                                                   "qr_tol", "orth_tol",
+                                                   "trans_tol", "symmetric",
+                                                   "data"))
 
     control <- combine_lists(control, default_distfreereg_tol())
     validate_control_tols(control)
@@ -112,7 +113,7 @@ validate_args_distfreereg_default <-
            "output is not a single number.")
     }
     return(list(Y = Y, X = X, n = n, J = J, covariance = covariance,
-                solve_tol = control[["solve_tol"]], qr_tol = control[["qr_tol"]],
-                orth_tol = control[["orth_tol"]], trans_tol = control[["trans_tol"]],
-                B = B))
+                matsqrt_tol = control[["matsqrt_tol"]], solve_tol = control[["solve_tol"]],
+                qr_tol = control[["qr_tol"]], orth_tol = control[["orth_tol"]],
+                trans_tol = control[["trans_tol"]], B = B))
   }

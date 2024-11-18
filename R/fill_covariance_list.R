@@ -1,4 +1,4 @@
-fill_covariance_list <- function(need, covariance_list, solve_tol){
+fill_covariance_list <- function(need, covariance_list, matsqrt_tol, solve_tol){
   # This function is used by compare.default() to fill in required but missing
   # elements from the covariance list (that is, the list that contains up to
   # four equivalent specifications of a covariance structure). The function that
@@ -38,10 +38,10 @@ fill_covariance_list <- function(need, covariance_list, solve_tol){
       covariance_list[["SqrtSigma"]] <- matinv(covariance_list[["Q"]], tol = solve_tol)
     } else {
       if(is.null(covariance_list[["Sigma"]])){
-        covariance_list[["Q"]] <- matsqrt(covariance_list[["P"]])
+        covariance_list[["Q"]] <- matsqrt(covariance_list[["P"]], tol = matsqrt_tol)
         covariance_list[["SqrtSigma"]] <- matinv(covariance_list[["Q"]], tol = solve_tol)
       } else {
-        covariance_list[["SqrtSigma"]] <- matsqrt(covariance_list[["Sigma"]])
+        covariance_list[["SqrtSigma"]] <- matsqrt(covariance_list[["Sigma"]], tol = matsqrt_tol)
       }
     }
   }
@@ -68,7 +68,7 @@ fill_covariance_list <- function(need, covariance_list, solve_tol){
       if(is.null(covariance_list[["P"]])){
         covariance_list[["P"]] <- matinv(covariance_list[["Sigma"]], tol = solve_tol)
       }
-      covariance_list[["Q"]] <- matsqrt(covariance_list[["P"]])
+      covariance_list[["Q"]] <- matsqrt(covariance_list[["P"]], tol = matsqrt_tol)
     }
   }
   

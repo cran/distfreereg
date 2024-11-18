@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -31,35 +31,27 @@ Type 'q()' to quit R.
 +                      theta_init = rep(1, length(theta)), verbose = FALSE)
 > 
 > confint_1 <- confint(dfr_1)
-> confint_1
-$ci
-           2.5 %     97.5 %
-theta1  1.448106  2.5237896
-theta2  4.668497  5.2804156
-theta3 -1.320729 -0.7233738
-
-$vcov
-            theta1       theta2       theta3
-theta1  0.07530308 -0.029060421 -0.029720753
-theta2 -0.02906042  0.024368662  0.004904737
-theta3 -0.02972075  0.004904737  0.023222539
-
+> signif(confint_1[["ci"]], digits = 4)
+        2.5 %  97.5 %
+theta1  1.448  2.5240
+theta2  4.668  5.2800
+theta3 -1.321 -0.7234
 > 
 > # Now compare to results from lm().
 > df <- data.frame(a = X[,1], b = X[,2], c = Y)
 > m <- lm(c ~ a + b, data = df, weights = dfr_1[["covariance"]][["P"]])
 > dfr_2 <- distfreereg(test_mean = m, verbose = FALSE)
-> all.equal(dfr_1[["theta_hat"]], dfr_2[["theta_hat"]], check.attributes = FALSE)
+> all.equal(dfr_1[["theta_hat"]], dfr_2[["theta_hat"]], check.attributes = FALSE, tolerance = 1e-4)
 [1] TRUE
 > 
 > confint_2 <- confint(dfr_2)
-> confint_2
-                2.5 %     97.5 %
-(Intercept)  1.466321  2.5055748
-a            4.617972  5.3309401
-b           -1.348177 -0.6959266
+> signif(confint_2, digits = 4)
+             2.5 %  97.5 %
+(Intercept)  1.466  2.5060
+a            4.618  5.3310
+b           -1.348 -0.6959
 > 
-> all.equal(confint_1[["ci"]], confint_2, check.attributes = FALSE)
+> all.equal(confint_1[["ci"]], confint_2, check.attributes = FALSE, tolerance = 1e-4)
 [1] "Mean relative difference: 0.01204974"
 > 
 > 
@@ -68,7 +60,7 @@ b           -1.348177 -0.6959266
 > dfr_3 <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = diag(Sig)),
 +                      theta_init = rep(1, length(theta)), verbose = FALSE)
 > confint_3 <- confint(dfr_3)
-> all.equal(confint_1, confint_3)
+> all.equal(confint_1, confint_3, tolerance = 1e-4)
 [1] TRUE
 > 
 > 
@@ -87,19 +79,11 @@ b           -1.348177 -0.6959266
 +                      theta_init = rep(1, length(theta)), verbose = FALSE)
 > 
 > confint_4 <- confint(dfr_4)
-> confint_4
-$ci
-            2.5 %     97.5 %
-theta1  4.5264952  5.3630091
-theta2  0.8634691  1.2708352
-theta3 -1.3077089 -0.7160684
-
-$vcov
-             theta1       theta2       theta3
-theta1  0.045539701 -0.007876431 -0.025524625
-theta2 -0.007876431  0.010799747  0.002960208
-theta3 -0.025524625  0.002960208  0.022780309
-
+> signif(confint_4[["ci"]], digits = 4)
+         2.5 %  97.5 %
+theta1  4.5260  5.3630
+theta2  0.8635  1.2710
+theta3 -1.3080 -0.7161
 > 
 > # Next, compare to results from nls().
 > df <- data.frame(x1 = X[,1], x2 = X[,2], y = Y)
@@ -111,17 +95,17 @@ Initializing 'k', 'a', 'b' to '1.'.
 Consider specifying 'start' or using a selfStart model
 > 
 > dfr_5 <- distfreereg(test_mean = m, verbose = FALSE)
-> all.equal(dfr_4[["theta_hat"]], dfr_5[["theta_hat"]], check.attributes = FALSE)
-[1] "Mean relative difference: 3.128416e-05"
+> all.equal(dfr_4[["theta_hat"]], dfr_5[["theta_hat"]], check.attributes = FALSE, tolerance = 1e-4)
+[1] TRUE
 > 
 > confint_5 <- confint(dfr_5)
-> confint_5
-       2.5 %     97.5 %
-k  4.5412534  5.3483321
-a  0.7889427  1.3455401
-b -1.3355875 -0.6883695
+> signif(confint_5, digits = 4)
+    2.5 %  97.5 %
+k  4.5410  5.3480
+a  0.7889  1.3460
+b -1.3360 -0.6884
 > 
-> all.equal(confint_4[["ci"]], confint_5, check.attributes = FALSE)
+> all.equal(confint_4[["ci"]], confint_5, check.attributes = FALSE, tolerance = 1e-4)
 [1] "Mean relative difference: 0.01667503"
 > 
 > # Compare to results from using a matrix form for Sigma
@@ -129,9 +113,9 @@ b -1.3355875 -0.6883695
 > dfr_6 <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = diag(Sig)),
 +                      theta_init = rep(1, length(theta)), verbose = FALSE)
 > confint_6 <- confint(dfr_6)
-> all.equal(confint_4, confint_6)
+> all.equal(confint_4, confint_6, tolerance = 1e-4)
 [1] TRUE
 > 
 > proc.time()
    user  system elapsed 
-  23.21    0.34   28.98 
+  13.03    0.17   13.28 

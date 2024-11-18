@@ -30,10 +30,10 @@ dfrform_lm_5 <- distfreereg(test_mean = b ~ a, data = data, covariance = list(Si
                             override = list(mcsim_stats = dfrform_lm_1[["mcsim_stats"]]))
 
 
-identical(dfrform_lm_1[["epsp"]], dfrform_lm_2[["epsp"]])# TRUE
-identical(dfrform_lm_1[["epsp"]], dfrform_lm_4[["epsp"]])# TRUE
-identical(dfrform_lm_1[["epsp"]], dfrform_lm_5[["epsp"]])# TRUE
-identical(dfrform_lm_1[["p"]], dfrform_lm_5[["p"]])# TRUE
+message('identical(dfrform_lm_1[["epsp"]], dfrform_lm_2[["epsp"]]) (should be TRUE): ', identical(dfrform_lm_1[["epsp"]], dfrform_lm_2[["epsp"]]))
+message('identical(dfrform_lm_1[["epsp"]], dfrform_lm_4[["epsp"]]) (should be TRUE): ', identical(dfrform_lm_1[["epsp"]], dfrform_lm_4[["epsp"]]))
+message('identical(dfrform_lm_1[["epsp"]], dfrform_lm_5[["epsp"]]) (should be TRUE): ', identical(dfrform_lm_1[["epsp"]], dfrform_lm_5[["epsp"]]))
+message('identical(dfrform_lm_1[["p"]], dfrform_lm_5[["p"]]) (should be TRUE): ', identical(dfrform_lm_1[["p"]], dfrform_lm_5[["p"]]))
 
 
 
@@ -59,58 +59,58 @@ dfrform_lm_8 <- distfreereg(test_mean = b ~ a, data = data, covariance = list(Si
                             override = list(mcsim_stats = my_mcsim_stats))
 
 # Verify that specified overrides are correct.
-identical(dfrform_lm_1[["res_order"]], dfrform_lm_5[["res_order"]])# FALSE
-identical(dfrform_lm_1[["r"]], dfrform_lm_7[["r"]])# FALSE
-identical(dfrform_lm_1[["mcsim_stats"]], dfrform_lm_8[["mcsim_stats"]])# FALSE
-identical(my_res_order, dfrform_lm_5[["res_order"]])# TRUE
-identical(my_r, dfrform_lm_7[["r"]])# TRUE
-identical(my_mcsim_stats, dfrform_lm_8[["mcsim_stats"]])# TRUE
+message('identical(dfrform_lm_1[["res_order"]], dfrform_lm_5[["res_order"]]) (should be FALSE): ', identical(dfrform_lm_1[["res_order"]], dfrform_lm_5[["res_order"]]))
+message('identical(dfrform_lm_1[["r"]], dfrform_lm_7[["r"]]) (should be FALSE): ', identical(dfrform_lm_1[["r"]], dfrform_lm_7[["r"]]))
+message('identical(dfrform_lm_1[["mcsim_stats"]], dfrform_lm_8[["mcsim_stats"]]) (should be FALSE): ', identical(dfrform_lm_1[["mcsim_stats"]], dfrform_lm_8[["mcsim_stats"]]))
+message('identical(my_res_order, dfrform_lm_5[["res_order"]]) (should be TRUE): ', identical(my_res_order, dfrform_lm_5[["res_order"]]))
+message('identical(my_r, dfrform_lm_7[["r"]]) (should be TRUE): ', identical(my_r, dfrform_lm_7[["r"]]))
+message('identical(my_mcsim_stats, dfrform_lm_8[["mcsim_stats"]]) (should be TRUE): ', identical(my_mcsim_stats, dfrform_lm_8[["mcsim_stats"]]))
 
 # Verify that other things changed or not, as appropriate.
-identical(dfrform_lm_1[["theta_hat"]], dfrform_lm_5[["theta_hat"]])# TRUE
-identical(dfrform_lm_1[["optimization_output"]], dfrform_lm_5[["optimization_output"]])# TRUE
-identical(dfrform_lm_1[["fitted_values"]], dfrform_lm_5[["fitted_values"]])# TRUE
-identical(dfrform_lm_1[["J"]], dfrform_lm_5[["J"]])# TRUE
-identical(dfrform_lm_1[["r"]], dfrform_lm_5[["r"]])# FALSE
-identical(dfrform_lm_1[["r_tilde"]], dfrform_lm_5[["r_tilde"]])# FALSE
-identical(dfrform_lm_1[["mu"]], dfrform_lm_5[["mu"]])# TRUE
-identical(dfrform_lm_1[["residuals"]][["raw"]], dfrform_lm_5[["residuals"]][["raw"]])# TRUE
-identical(dfrform_lm_1[["residuals"]][["sphered"]], dfrform_lm_5[["residuals"]][["sphered"]])# TRUE
-identical(dfrform_lm_1[["residuals"]][["transformed"]], dfrform_lm_5[["residuals"]][["transformed"]])# FALSE
-identical(dfrform_lm_1[["epsp"]], dfrform_lm_5[["epsp"]])# FALSE
-identical(dfrform_lm_1[["observed_stats"]], dfrform_lm_5[["observed_stats"]])# FALSE
-identical(dfrform_lm_1[["mcsim_stats"]], dfrform_lm_5[["mcsim_stats"]])# FALSE
-identical(dfrform_lm_1[["p"]], dfrform_lm_5[["p"]])# FALSE
+message('identical(dfrform_lm_1[["theta_hat"]], dfrform_lm_5[["theta_hat"]]) (should be TRUE): ', identical(dfrform_lm_1[["theta_hat"]], dfrform_lm_5[["theta_hat"]]))
+message('identical(dfrform_lm_1[["optimization_output"]], dfrform_lm_5[["optimization_output"]]) (should be TRUE): ', identical(dfrform_lm_1[["optimization_output"]], dfrform_lm_5[["optimization_output"]]))
+message('identical(dfrform_lm_1[["fitted_values"]], dfrform_lm_5[["fitted_values"]]) (should be TRUE): ', identical(dfrform_lm_1[["fitted_values"]], dfrform_lm_5[["fitted_values"]]))
+message('identical(dfrform_lm_1[["J"]], dfrform_lm_5[["J"]]) (should be TRUE): ', identical(dfrform_lm_1[["J"]], dfrform_lm_5[["J"]]))
+message('identical(dfrform_lm_1[["r"]], dfrform_lm_5[["r"]]) (should be FALSE): ', identical(dfrform_lm_1[["r"]], dfrform_lm_5[["r"]]))
+message('identical(dfrform_lm_1[["r_tilde"]], dfrform_lm_5[["r_tilde"]]) (should be FALSE): ', identical(dfrform_lm_1[["r_tilde"]], dfrform_lm_5[["r_tilde"]]))
+message('identical(dfrform_lm_1[["mu"]], dfrform_lm_5[["mu"]]) (should be TRUE): ', identical(dfrform_lm_1[["mu"]], dfrform_lm_5[["mu"]]))
+message('identical(dfrform_lm_1[["residuals"]][["raw"]], dfrform_lm_5[["residuals"]][["raw"]]) (should be TRUE): ', identical(dfrform_lm_1[["residuals"]][["raw"]], dfrform_lm_5[["residuals"]][["raw"]]))
+message('identical(dfrform_lm_1[["residuals"]][["sphered"]], dfrform_lm_5[["residuals"]][["sphered"]]) (should be TRUE): ', identical(dfrform_lm_1[["residuals"]][["sphered"]], dfrform_lm_5[["residuals"]][["sphered"]]))
+message('identical(dfrform_lm_1[["residuals"]][["transformed"]], dfrform_lm_5[["residuals"]][["transformed"]]) (should be FALSE): ', identical(dfrform_lm_1[["residuals"]][["transformed"]], dfrform_lm_5[["residuals"]][["transformed"]]))
+message('identical(dfrform_lm_1[["epsp"]], dfrform_lm_5[["epsp"]]) (should be FALSE): ', identical(dfrform_lm_1[["epsp"]], dfrform_lm_5[["epsp"]]))
+message('identical(dfrform_lm_1[["observed_stats"]], dfrform_lm_5[["observed_stats"]]) (should be FALSE): ', identical(dfrform_lm_1[["observed_stats"]], dfrform_lm_5[["observed_stats"]]))
+message('identical(dfrform_lm_1[["mcsim_stats"]], dfrform_lm_5[["mcsim_stats"]]) (should be FALSE): ', identical(dfrform_lm_1[["mcsim_stats"]], dfrform_lm_5[["mcsim_stats"]]))
+message('identical(dfrform_lm_1[["p"]], dfrform_lm_5[["p"]]) (should be FALSE): ', identical(dfrform_lm_1[["p"]], dfrform_lm_5[["p"]]))
 
-identical(dfrform_lm_1[["theta_hat"]], dfrform_lm_7[["theta_hat"]])# TRUE
-identical(dfrform_lm_1[["optimization_output"]], dfrform_lm_7[["optimization_output"]])# TRUE
-identical(dfrform_lm_1[["fitted_values"]], dfrform_lm_7[["fitted_values"]])# TRUE
-identical(dfrform_lm_1[["J"]], dfrform_lm_7[["J"]])# TRUE
-identical(dfrform_lm_1[["r"]], dfrform_lm_7[["r"]])# FALSE
-identical(dfrform_lm_1[["r_tilde"]], dfrform_lm_7[["r_tilde"]])# FALSE
-identical(dfrform_lm_1[["mu"]], dfrform_lm_7[["mu"]])# TRUE
-identical(dfrform_lm_1[["residuals"]][["raw"]], dfrform_lm_7[["residuals"]][["raw"]])# TRUE
-identical(dfrform_lm_1[["residuals"]][["sphered"]], dfrform_lm_7[["residuals"]][["sphered"]])# TRUE
-identical(dfrform_lm_1[["residuals"]][["transformed"]], dfrform_lm_7[["residuals"]][["transformed"]])# FALSE
-identical(dfrform_lm_1[["epsp"]], dfrform_lm_7[["epsp"]])# FALSE
-identical(dfrform_lm_1[["observed_stats"]], dfrform_lm_7[["observed_stats"]])# FALSE
-identical(dfrform_lm_1[["mcsim_stats"]], dfrform_lm_7[["mcsim_stats"]])# FALSE
-identical(dfrform_lm_1[["p"]], dfrform_lm_7[["p"]])# FALSE
+message('identical(dfrform_lm_1[["theta_hat"]], dfrform_lm_7[["theta_hat"]]) (should be TRUE): ', identical(dfrform_lm_1[["theta_hat"]], dfrform_lm_7[["theta_hat"]]))
+message('identical(dfrform_lm_1[["optimization_output"]], dfrform_lm_7[["optimization_output"]]) (should be TRUE): ', identical(dfrform_lm_1[["optimization_output"]], dfrform_lm_7[["optimization_output"]]))
+message('identical(dfrform_lm_1[["fitted_values"]], dfrform_lm_7[["fitted_values"]]) (should be TRUE): ', identical(dfrform_lm_1[["fitted_values"]], dfrform_lm_7[["fitted_values"]]))
+message('identical(dfrform_lm_1[["J"]], dfrform_lm_7[["J"]]) (should be TRUE): ', identical(dfrform_lm_1[["J"]], dfrform_lm_7[["J"]]))
+message('identical(dfrform_lm_1[["r"]], dfrform_lm_7[["r"]]) (should be FALSE): ', identical(dfrform_lm_1[["r"]], dfrform_lm_7[["r"]]))
+message('identical(dfrform_lm_1[["r_tilde"]], dfrform_lm_7[["r_tilde"]]) (should be FALSE): ', identical(dfrform_lm_1[["r_tilde"]], dfrform_lm_7[["r_tilde"]]))
+message('identical(dfrform_lm_1[["mu"]], dfrform_lm_7[["mu"]]) (should be TRUE): ', identical(dfrform_lm_1[["mu"]], dfrform_lm_7[["mu"]]))
+message('identical(dfrform_lm_1[["residuals"]][["raw"]], dfrform_lm_7[["residuals"]][["raw"]]) (should be TRUE): ', identical(dfrform_lm_1[["residuals"]][["raw"]], dfrform_lm_7[["residuals"]][["raw"]]))
+message('identical(dfrform_lm_1[["residuals"]][["sphered"]], dfrform_lm_7[["residuals"]][["sphered"]]) (should be TRUE): ', identical(dfrform_lm_1[["residuals"]][["sphered"]], dfrform_lm_7[["residuals"]][["sphered"]]))
+message('identical(dfrform_lm_1[["residuals"]][["transformed"]], dfrform_lm_7[["residuals"]][["transformed"]]) (should be FALSE): ', identical(dfrform_lm_1[["residuals"]][["transformed"]], dfrform_lm_7[["residuals"]][["transformed"]]))
+message('identical(dfrform_lm_1[["epsp"]], dfrform_lm_7[["epsp"]]) (should be FALSE): ', identical(dfrform_lm_1[["epsp"]], dfrform_lm_7[["epsp"]]))
+message('identical(dfrform_lm_1[["observed_stats"]], dfrform_lm_7[["observed_stats"]]) (should be FALSE): ', identical(dfrform_lm_1[["observed_stats"]], dfrform_lm_7[["observed_stats"]]))
+message('identical(dfrform_lm_1[["mcsim_stats"]], dfrform_lm_7[["mcsim_stats"]]) (should be FALSE): ', identical(dfrform_lm_1[["mcsim_stats"]], dfrform_lm_7[["mcsim_stats"]]))
+message('identical(dfrform_lm_1[["p"]], dfrform_lm_7[["p"]]) (should be FALSE): ', identical(dfrform_lm_1[["p"]], dfrform_lm_7[["p"]]))
 
-identical(dfrform_lm_1[["theta_hat"]], dfrform_lm_8[["theta_hat"]])# TRUE
-identical(dfrform_lm_1[["optimization_output"]], dfrform_lm_8[["optimization_output"]])# TRUE
-identical(dfrform_lm_1[["fitted_values"]], dfrform_lm_8[["fitted_values"]])# TRUE
-identical(dfrform_lm_1[["J"]], dfrform_lm_8[["J"]])# TRUE
-identical(dfrform_lm_1[["r"]], dfrform_lm_8[["r"]])# TRUE
-identical(dfrform_lm_1[["r_tilde"]], dfrform_lm_8[["r_tilde"]])# TRUE
-identical(dfrform_lm_1[["mu"]], dfrform_lm_8[["mu"]])# TRUE
-identical(dfrform_lm_1[["residuals"]][["raw"]], dfrform_lm_8[["residuals"]][["raw"]])# TRUE
-identical(dfrform_lm_1[["residuals"]][["sphered"]], dfrform_lm_8[["residuals"]][["sphered"]])# TRUE
-identical(dfrform_lm_1[["residuals"]][["transformed"]], dfrform_lm_8[["residuals"]][["transformed"]])# TRUE
-identical(dfrform_lm_1[["epsp"]], dfrform_lm_8[["epsp"]])# TRUE
-identical(dfrform_lm_1[["observed_stats"]], dfrform_lm_8[["observed_stats"]])# TRUE
-identical(dfrform_lm_1[["mcsim_stats"]], dfrform_lm_8[["mcsim_stats"]])# FALSE
-identical(dfrform_lm_1[["p"]], dfrform_lm_8[["p"]])# FALSE
+message('identical(dfrform_lm_1[["theta_hat"]], dfrform_lm_8[["theta_hat"]]) (should be TRUE): ', identical(dfrform_lm_1[["theta_hat"]], dfrform_lm_8[["theta_hat"]]))
+message('identical(dfrform_lm_1[["optimization_output"]], dfrform_lm_8[["optimization_output"]]) (should be TRUE): ', identical(dfrform_lm_1[["optimization_output"]], dfrform_lm_8[["optimization_output"]]))
+message('identical(dfrform_lm_1[["fitted_values"]], dfrform_lm_8[["fitted_values"]]) (should be TRUE): ', identical(dfrform_lm_1[["fitted_values"]], dfrform_lm_8[["fitted_values"]]))
+message('identical(dfrform_lm_1[["J"]], dfrform_lm_8[["J"]]) (should be TRUE): ', identical(dfrform_lm_1[["J"]], dfrform_lm_8[["J"]]))
+message('identical(dfrform_lm_1[["r"]], dfrform_lm_8[["r"]]) (should be TRUE): ', identical(dfrform_lm_1[["r"]], dfrform_lm_8[["r"]]))
+message('identical(dfrform_lm_1[["r_tilde"]], dfrform_lm_8[["r_tilde"]]) (should be TRUE): ', identical(dfrform_lm_1[["r_tilde"]], dfrform_lm_8[["r_tilde"]]))
+message('identical(dfrform_lm_1[["mu"]], dfrform_lm_8[["mu"]]) (should be TRUE): ', identical(dfrform_lm_1[["mu"]], dfrform_lm_8[["mu"]]))
+message('identical(dfrform_lm_1[["residuals"]][["raw"]], dfrform_lm_8[["residuals"]][["raw"]]) (should be TRUE): ', identical(dfrform_lm_1[["residuals"]][["raw"]], dfrform_lm_8[["residuals"]][["raw"]]))
+message('identical(dfrform_lm_1[["residuals"]][["sphered"]], dfrform_lm_8[["residuals"]][["sphered"]]) (should be TRUE): ', identical(dfrform_lm_1[["residuals"]][["sphered"]], dfrform_lm_8[["residuals"]][["sphered"]]))
+message('identical(dfrform_lm_1[["residuals"]][["transformed"]], dfrform_lm_8[["residuals"]][["transformed"]]) (should be TRUE): ', identical(dfrform_lm_1[["residuals"]][["transformed"]], dfrform_lm_8[["residuals"]][["transformed"]]))
+message('identical(dfrform_lm_1[["epsp"]], dfrform_lm_8[["epsp"]]) (should be TRUE): ', identical(dfrform_lm_1[["epsp"]], dfrform_lm_8[["epsp"]]))
+message('identical(dfrform_lm_1[["observed_stats"]], dfrform_lm_8[["observed_stats"]]) (should be TRUE): ', identical(dfrform_lm_1[["observed_stats"]], dfrform_lm_8[["observed_stats"]]))
+message('identical(dfrform_lm_1[["mcsim_stats"]], dfrform_lm_8[["mcsim_stats"]]) (should be FALSE): ', identical(dfrform_lm_1[["mcsim_stats"]], dfrform_lm_8[["mcsim_stats"]]))
+message('identical(dfrform_lm_1[["p"]], dfrform_lm_8[["p"]]) (should be FALSE): ', identical(dfrform_lm_1[["p"]], dfrform_lm_8[["p"]]))
 
 
 
@@ -145,10 +145,10 @@ dfrform_nls_5 <- distfreereg(test_mean = b ~ f + g*a^h, data = data, covariance 
                              override = list(mcsim_stats = dfrform_nls_1[["mcsim_stats"]]))
 
 
-identical(dfrform_nls_1[["epsp"]], dfrform_nls_2[["epsp"]])# TRUE
-identical(dfrform_nls_1[["epsp"]], dfrform_nls_4[["epsp"]])# TRUE
-identical(dfrform_nls_1[["epsp"]], dfrform_nls_5[["epsp"]])# TRUE
-identical(dfrform_nls_1[["p"]], dfrform_nls_5[["p"]])# TRUE
+message('identical(dfrform_nls_1[["epsp"]], dfrform_nls_2[["epsp"]]) (should be TRUE): ', identical(dfrform_nls_1[["epsp"]], dfrform_nls_2[["epsp"]]))
+message('identical(dfrform_nls_1[["epsp"]], dfrform_nls_4[["epsp"]]) (should be TRUE): ', identical(dfrform_nls_1[["epsp"]], dfrform_nls_4[["epsp"]]))
+message('identical(dfrform_nls_1[["epsp"]], dfrform_nls_5[["epsp"]]) (should be TRUE): ', identical(dfrform_nls_1[["epsp"]], dfrform_nls_5[["epsp"]]))
+message('identical(dfrform_nls_1[["p"]], dfrform_nls_5[["p"]]) (should be TRUE): ', identical(dfrform_nls_1[["p"]], dfrform_nls_5[["p"]]))
 
 
 
@@ -179,69 +179,69 @@ dfrform_nls_8 <- distfreereg(test_mean = b ~ f + g*a^h, data = data, covariance 
                              override = list(mcsim_stats = my_mcsim_stats))
 
 # Verify that specified overrides are correct.
-identical(dfrform_nls_1[["res_order"]], dfrform_nls_5[["res_order"]])# FALSE
-# identical(dfrform_nls_1[["theta_hat"]], dfrform_nls_6[["theta_hat"]])# FALSE
-identical(dfrform_nls_1[["r"]], dfrform_nls_7[["r"]])# FALSE
-identical(dfrform_nls_1[["mcsim_stats"]], dfrform_nls_8[["mcsim_stats"]])# FALSE
-identical(my_res_order, dfrform_nls_5[["res_order"]])# TRUE
-# identical(my_theta_hat, dfrform_nls_6[["theta_hat"]])# TRUE
-identical(my_r, dfrform_nls_7[["r"]])# TRUE
-identical(my_mcsim_stats, dfrform_nls_8[["mcsim_stats"]])# TRUE
+message('identical(dfrform_nls_1[["res_order"]], dfrform_nls_5[["res_order"]]) (should be FALSE): ', identical(dfrform_nls_1[["res_order"]], dfrform_nls_5[["res_order"]]))
+# message('identical(dfrform_nls_1[["theta_hat"]], dfrform_nls_6[["theta_hat"]]) (should be FALSE): ', identical(dfrform_nls_1[["theta_hat"]], dfrform_nls_6[["theta_hat"]]))
+message('identical(dfrform_nls_1[["r"]], dfrform_nls_7[["r"]]) (should be FALSE): ', identical(dfrform_nls_1[["r"]], dfrform_nls_7[["r"]]))
+message('identical(dfrform_nls_1[["mcsim_stats"]], dfrform_nls_8[["mcsim_stats"]]) (should be FALSE): ', identical(dfrform_nls_1[["mcsim_stats"]], dfrform_nls_8[["mcsim_stats"]]))
+message('identical(my_res_order, dfrform_nls_5[["res_order"]]) (should be TRUE): ', identical(my_res_order, dfrform_nls_5[["res_order"]]))
+# message('identical(my_theta_hat, dfrform_nls_6[["theta_hat"]]) (should be TRUE): ', identical(my_theta_hat, dfrform_nls_6[["theta_hat"]]))
+message('identical(my_r, dfrform_nls_7[["r"]]) (should be TRUE): ', identical(my_r, dfrform_nls_7[["r"]]))
+message('identical(my_mcsim_stats, dfrform_nls_8[["mcsim_stats"]]) (should be TRUE): ', identical(my_mcsim_stats, dfrform_nls_8[["mcsim_stats"]]))
 
 # Verify that other things changed or not, as appropriate.
-identical(dfrform_nls_1[["theta_hat"]], dfrform_nls_5[["theta_hat"]])# TRUE
-identical(dfrform_nls_1[["fitted_values"]], dfrform_nls_5[["fitted_values"]])# TRUE
-identical(dfrform_nls_1[["J"]], dfrform_nls_5[["J"]])# TRUE
-identical(dfrform_nls_1[["r"]], dfrform_nls_5[["r"]])# FALSE
-identical(dfrform_nls_1[["r_tilde"]], dfrform_nls_5[["r_tilde"]])# FALSE
-identical(dfrform_nls_1[["mu"]], dfrform_nls_5[["mu"]])# TRUE
-identical(dfrform_nls_1[["residuals"]][["raw"]], dfrform_nls_5[["residuals"]][["raw"]])# TRUE
-identical(dfrform_nls_1[["residuals"]][["sphered"]], dfrform_nls_5[["residuals"]][["sphered"]])# TRUE
-identical(dfrform_nls_1[["residuals"]][["transformed"]], dfrform_nls_5[["residuals"]][["transformed"]])# FALSE
-identical(dfrform_nls_1[["epsp"]], dfrform_nls_5[["epsp"]])# FALSE
-identical(dfrform_nls_1[["observed_stats"]], dfrform_nls_5[["observed_stats"]])# FALSE
-identical(dfrform_nls_1[["mcsim_stats"]], dfrform_nls_5[["mcsim_stats"]])# FALSE
-identical(dfrform_nls_1[["p"]], dfrform_nls_5[["p"]])# FALSE
+message('identical(dfrform_nls_1[["theta_hat"]], dfrform_nls_5[["theta_hat"]]) (should be TRUE): ', identical(dfrform_nls_1[["theta_hat"]], dfrform_nls_5[["theta_hat"]]))
+message('identical(dfrform_nls_1[["fitted_values"]], dfrform_nls_5[["fitted_values"]]) (should be TRUE): ', identical(dfrform_nls_1[["fitted_values"]], dfrform_nls_5[["fitted_values"]]))
+message('identical(dfrform_nls_1[["J"]], dfrform_nls_5[["J"]]) (should be TRUE): ', identical(dfrform_nls_1[["J"]], dfrform_nls_5[["J"]]))
+message('identical(dfrform_nls_1[["r"]], dfrform_nls_5[["r"]]) (should be FALSE): ', identical(dfrform_nls_1[["r"]], dfrform_nls_5[["r"]]))
+message('identical(dfrform_nls_1[["r_tilde"]], dfrform_nls_5[["r_tilde"]]) (should be FALSE): ', identical(dfrform_nls_1[["r_tilde"]], dfrform_nls_5[["r_tilde"]]))
+message('identical(dfrform_nls_1[["mu"]], dfrform_nls_5[["mu"]]) (should be TRUE): ', identical(dfrform_nls_1[["mu"]], dfrform_nls_5[["mu"]]))
+message('identical(dfrform_nls_1[["residuals"]][["raw"]], dfrform_nls_5[["residuals"]][["raw"]]) (should be TRUE): ', identical(dfrform_nls_1[["residuals"]][["raw"]], dfrform_nls_5[["residuals"]][["raw"]]))
+message('identical(dfrform_nls_1[["residuals"]][["sphered"]], dfrform_nls_5[["residuals"]][["sphered"]]) (should be TRUE): ', identical(dfrform_nls_1[["residuals"]][["sphered"]], dfrform_nls_5[["residuals"]][["sphered"]]))
+message('identical(dfrform_nls_1[["residuals"]][["transformed"]], dfrform_nls_5[["residuals"]][["transformed"]]) (should be FALSE): ', identical(dfrform_nls_1[["residuals"]][["transformed"]], dfrform_nls_5[["residuals"]][["transformed"]]))
+message('identical(dfrform_nls_1[["epsp"]], dfrform_nls_5[["epsp"]]) (should be FALSE): ', identical(dfrform_nls_1[["epsp"]], dfrform_nls_5[["epsp"]]))
+message('identical(dfrform_nls_1[["observed_stats"]], dfrform_nls_5[["observed_stats"]]) (should be FALSE): ', identical(dfrform_nls_1[["observed_stats"]], dfrform_nls_5[["observed_stats"]]))
+message('identical(dfrform_nls_1[["mcsim_stats"]], dfrform_nls_5[["mcsim_stats"]]) (should be FALSE): ', identical(dfrform_nls_1[["mcsim_stats"]], dfrform_nls_5[["mcsim_stats"]]))
+message('identical(dfrform_nls_1[["p"]], dfrform_nls_5[["p"]]) (should be FALSE): ', identical(dfrform_nls_1[["p"]], dfrform_nls_5[["p"]]))
 
-# identical(dfrform_nls_1[["theta_hat"]], dfrform_nls_6[["theta_hat"]])# FALSE
-# identical(dfrform_nls_1[["optimization_output"]], dfrform_nls_6[["optimization_output"]])# FALSE
-# identical(dfrform_nls_1[["fitted_values"]], dfrform_nls_6[["fitted_values"]])# FALSE
-# identical(dfrform_nls_1[["J"]], dfrform_nls_6[["J"]])# FALSE
-# identical(dfrform_nls_1[["r"]], dfrform_nls_6[["r"]])# TRUE
-# identical(dfrform_nls_1[["r_tilde"]], dfrform_nls_6[["r_tilde"]])# FALSE
-# identical(dfrform_nls_1[["mu"]], dfrform_nls_6[["mu"]])# FALSE
-# identical(dfrform_nls_1[["residuals"]][["raw"]], dfrform_nls_6[["residuals"]][["raw"]])# FALSE
-# identical(dfrform_nls_1[["residuals"]][["sphered"]], dfrform_nls_6[["residuals"]][["sphered"]])# FALSE
-# identical(dfrform_nls_1[["residuals"]][["transformed"]], dfrform_nls_6[["residuals"]][["transformed"]])# FALSE
-# identical(dfrform_nls_1[["epsp"]], dfrform_nls_6[["epsp"]])# FALSE
-# identical(dfrform_nls_1[["observed_stats"]], dfrform_nls_6[["observed_stats"]])# FALSE
-# identical(dfrform_nls_1[["mcsim_stats"]], dfrform_nls_6[["mcsim_stats"]])# TRUE
-# identical(dfrform_nls_1[["p"]], dfrform_nls_6[["p"]])# FALSE
+# message('identical(dfrform_nls_1[["theta_hat"]], dfrform_nls_6[["theta_hat"]]) (should be FALSE): ', identical(dfrform_nls_1[["theta_hat"]], dfrform_nls_6[["theta_hat"]]))
+# message('identical(dfrform_nls_1[["optimization_output"]], dfrform_nls_6[["optimization_output"]]) (should be FALSE): ', identical(dfrform_nls_1[["optimization_output"]], dfrform_nls_6[["optimization_output"]]))
+# message('identical(dfrform_nls_1[["fitted_values"]], dfrform_nls_6[["fitted_values"]]) (should be FALSE): ', identical(dfrform_nls_1[["fitted_values"]], dfrform_nls_6[["fitted_values"]]))
+# message('identical(dfrform_nls_1[["J"]], dfrform_nls_6[["J"]]) (should be FALSE): ', identical(dfrform_nls_1[["J"]], dfrform_nls_6[["J"]]))
+# message('identical(dfrform_nls_1[["r"]], dfrform_nls_6[["r"]]) (should be TRUE): ', identical(dfrform_nls_1[["r"]], dfrform_nls_6[["r"]]))
+# message('identical(dfrform_nls_1[["r_tilde"]], dfrform_nls_6[["r_tilde"]]) (should be FALSE): ', identical(dfrform_nls_1[["r_tilde"]], dfrform_nls_6[["r_tilde"]]))
+# message('identical(dfrform_nls_1[["mu"]], dfrform_nls_6[["mu"]]) (should be FALSE): ', identical(dfrform_nls_1[["mu"]], dfrform_nls_6[["mu"]]))
+# message('identical(dfrform_nls_1[["residuals"]][["raw"]], dfrform_nls_6[["residuals"]][["raw"]]) (should be FALSE): ', identical(dfrform_nls_1[["residuals"]][["raw"]], dfrform_nls_6[["residuals"]][["raw"]]))
+# message('identical(dfrform_nls_1[["residuals"]][["sphered"]], dfrform_nls_6[["residuals"]][["sphered"]]) (should be FALSE): ', identical(dfrform_nls_1[["residuals"]][["sphered"]], dfrform_nls_6[["residuals"]][["sphered"]]))
+# message('identical(dfrform_nls_1[["residuals"]][["transformed"]], dfrform_nls_6[["residuals"]][["transformed"]]) (should be FALSE): ', identical(dfrform_nls_1[["residuals"]][["transformed"]], dfrform_nls_6[["residuals"]][["transformed"]]))
+# message('identical(dfrform_nls_1[["epsp"]], dfrform_nls_6[["epsp"]]) (should be FALSE): ', identical(dfrform_nls_1[["epsp"]], dfrform_nls_6[["epsp"]]))
+# message('identical(dfrform_nls_1[["observed_stats"]], dfrform_nls_6[["observed_stats"]]) (should be FALSE): ', identical(dfrform_nls_1[["observed_stats"]], dfrform_nls_6[["observed_stats"]]))
+# message('identical(dfrform_nls_1[["mcsim_stats"]], dfrform_nls_6[["mcsim_stats"]]) (should be TRUE): ', identical(dfrform_nls_1[["mcsim_stats"]], dfrform_nls_6[["mcsim_stats"]]))
+# message('identical(dfrform_nls_1[["p"]], dfrform_nls_6[["p"]]) (should be FALSE): ', identical(dfrform_nls_1[["p"]], dfrform_nls_6[["p"]]))
 
-identical(dfrform_nls_1[["theta_hat"]], dfrform_nls_7[["theta_hat"]])# TRUE
-identical(dfrform_nls_1[["fitted_values"]], dfrform_nls_7[["fitted_values"]])# TRUE
-identical(dfrform_nls_1[["J"]], dfrform_nls_7[["J"]])# TRUE
-identical(dfrform_nls_1[["r"]], dfrform_nls_7[["r"]])# FALSE
-identical(dfrform_nls_1[["r_tilde"]], dfrform_nls_7[["r_tilde"]])# FALSE
-identical(dfrform_nls_1[["mu"]], dfrform_nls_7[["mu"]])# TRUE
-identical(dfrform_nls_1[["residuals"]][["raw"]], dfrform_nls_7[["residuals"]][["raw"]])# TRUE
-identical(dfrform_nls_1[["residuals"]][["sphered"]], dfrform_nls_7[["residuals"]][["sphered"]])# TRUE
-identical(dfrform_nls_1[["residuals"]][["transformed"]], dfrform_nls_7[["residuals"]][["transformed"]])# FALSE
-identical(dfrform_nls_1[["epsp"]], dfrform_nls_7[["epsp"]])# FALSE
-identical(dfrform_nls_1[["observed_stats"]], dfrform_nls_7[["observed_stats"]])# FALSE
-identical(dfrform_nls_1[["mcsim_stats"]], dfrform_nls_7[["mcsim_stats"]])# FALSE
-identical(dfrform_nls_1[["p"]], dfrform_nls_7[["p"]])# FALSE
+message('identical(dfrform_nls_1[["theta_hat"]], dfrform_nls_7[["theta_hat"]]) (should be TRUE): ', identical(dfrform_nls_1[["theta_hat"]], dfrform_nls_7[["theta_hat"]]))
+message('identical(dfrform_nls_1[["fitted_values"]], dfrform_nls_7[["fitted_values"]]) (should be TRUE): ', identical(dfrform_nls_1[["fitted_values"]], dfrform_nls_7[["fitted_values"]]))
+message('identical(dfrform_nls_1[["J"]], dfrform_nls_7[["J"]]) (should be TRUE): ', identical(dfrform_nls_1[["J"]], dfrform_nls_7[["J"]]))
+message('identical(dfrform_nls_1[["r"]], dfrform_nls_7[["r"]]) (should be FALSE): ', identical(dfrform_nls_1[["r"]], dfrform_nls_7[["r"]]))
+message('identical(dfrform_nls_1[["r_tilde"]], dfrform_nls_7[["r_tilde"]]) (should be FALSE): ', identical(dfrform_nls_1[["r_tilde"]], dfrform_nls_7[["r_tilde"]]))
+message('identical(dfrform_nls_1[["mu"]], dfrform_nls_7[["mu"]]) (should be TRUE): ', identical(dfrform_nls_1[["mu"]], dfrform_nls_7[["mu"]]))
+message('identical(dfrform_nls_1[["residuals"]][["raw"]], dfrform_nls_7[["residuals"]][["raw"]]) (should be TRUE): ', identical(dfrform_nls_1[["residuals"]][["raw"]], dfrform_nls_7[["residuals"]][["raw"]]))
+message('identical(dfrform_nls_1[["residuals"]][["sphered"]], dfrform_nls_7[["residuals"]][["sphered"]]) (should be TRUE): ', identical(dfrform_nls_1[["residuals"]][["sphered"]], dfrform_nls_7[["residuals"]][["sphered"]]))
+message('identical(dfrform_nls_1[["residuals"]][["transformed"]], dfrform_nls_7[["residuals"]][["transformed"]]) (should be FALSE): ', identical(dfrform_nls_1[["residuals"]][["transformed"]], dfrform_nls_7[["residuals"]][["transformed"]]))
+message('identical(dfrform_nls_1[["epsp"]], dfrform_nls_7[["epsp"]]) (should be FALSE): ', identical(dfrform_nls_1[["epsp"]], dfrform_nls_7[["epsp"]]))
+message('identical(dfrform_nls_1[["observed_stats"]], dfrform_nls_7[["observed_stats"]]) (should be FALSE): ', identical(dfrform_nls_1[["observed_stats"]], dfrform_nls_7[["observed_stats"]]))
+message('identical(dfrform_nls_1[["mcsim_stats"]], dfrform_nls_7[["mcsim_stats"]]) (should be FALSE): ', identical(dfrform_nls_1[["mcsim_stats"]], dfrform_nls_7[["mcsim_stats"]]))
+message('identical(dfrform_nls_1[["p"]], dfrform_nls_7[["p"]]) (should be FALSE): ', identical(dfrform_nls_1[["p"]], dfrform_nls_7[["p"]]))
 
-identical(dfrform_nls_1[["theta_hat"]], dfrform_nls_8[["theta_hat"]])# TRUE
-identical(dfrform_nls_1[["fitted_values"]], dfrform_nls_8[["fitted_values"]])# TRUE
-identical(dfrform_nls_1[["J"]], dfrform_nls_8[["J"]])# TRUE
-identical(dfrform_nls_1[["r"]], dfrform_nls_8[["r"]])# TRUE
-identical(dfrform_nls_1[["r_tilde"]], dfrform_nls_8[["r_tilde"]])# TRUE
-identical(dfrform_nls_1[["mu"]], dfrform_nls_8[["mu"]])# TRUE
-identical(dfrform_nls_1[["residuals"]][["raw"]], dfrform_nls_8[["residuals"]][["raw"]])# TRUE
-identical(dfrform_nls_1[["residuals"]][["sphered"]], dfrform_nls_8[["residuals"]][["sphered"]])# TRUE
-identical(dfrform_nls_1[["residuals"]][["transformed"]], dfrform_nls_8[["residuals"]][["transformed"]])# TRUE
-identical(dfrform_nls_1[["epsp"]], dfrform_nls_8[["epsp"]])# TRUE
-identical(dfrform_nls_1[["observed_stats"]], dfrform_nls_8[["observed_stats"]])# TRUE
-identical(dfrform_nls_1[["mcsim_stats"]], dfrform_nls_8[["mcsim_stats"]])# FALSE
-identical(dfrform_nls_1[["p"]], dfrform_nls_8[["p"]])# FALSE
+message('identical(dfrform_nls_1[["theta_hat"]], dfrform_nls_8[["theta_hat"]]) (should be TRUE): ', identical(dfrform_nls_1[["theta_hat"]], dfrform_nls_8[["theta_hat"]]))
+message('identical(dfrform_nls_1[["fitted_values"]], dfrform_nls_8[["fitted_values"]]) (should be TRUE): ', identical(dfrform_nls_1[["fitted_values"]], dfrform_nls_8[["fitted_values"]]))
+message('identical(dfrform_nls_1[["J"]], dfrform_nls_8[["J"]]) (should be TRUE): ', identical(dfrform_nls_1[["J"]], dfrform_nls_8[["J"]]))
+message('identical(dfrform_nls_1[["r"]], dfrform_nls_8[["r"]]) (should be TRUE): ', identical(dfrform_nls_1[["r"]], dfrform_nls_8[["r"]]))
+message('identical(dfrform_nls_1[["r_tilde"]], dfrform_nls_8[["r_tilde"]]) (should be TRUE): ', identical(dfrform_nls_1[["r_tilde"]], dfrform_nls_8[["r_tilde"]]))
+message('identical(dfrform_nls_1[["mu"]], dfrform_nls_8[["mu"]]) (should be TRUE): ', identical(dfrform_nls_1[["mu"]], dfrform_nls_8[["mu"]]))
+message('identical(dfrform_nls_1[["residuals"]][["raw"]], dfrform_nls_8[["residuals"]][["raw"]]) (should be TRUE): ', identical(dfrform_nls_1[["residuals"]][["raw"]], dfrform_nls_8[["residuals"]][["raw"]]))
+message('identical(dfrform_nls_1[["residuals"]][["sphered"]], dfrform_nls_8[["residuals"]][["sphered"]]) (should be TRUE): ', identical(dfrform_nls_1[["residuals"]][["sphered"]], dfrform_nls_8[["residuals"]][["sphered"]]))
+message('identical(dfrform_nls_1[["residuals"]][["transformed"]], dfrform_nls_8[["residuals"]][["transformed"]]) (should be TRUE): ', identical(dfrform_nls_1[["residuals"]][["transformed"]], dfrform_nls_8[["residuals"]][["transformed"]]))
+message('identical(dfrform_nls_1[["epsp"]], dfrform_nls_8[["epsp"]]) (should be TRUE): ', identical(dfrform_nls_1[["epsp"]], dfrform_nls_8[["epsp"]]))
+message('identical(dfrform_nls_1[["observed_stats"]], dfrform_nls_8[["observed_stats"]]) (should be TRUE): ', identical(dfrform_nls_1[["observed_stats"]], dfrform_nls_8[["observed_stats"]]))
+message('identical(dfrform_nls_1[["mcsim_stats"]], dfrform_nls_8[["mcsim_stats"]]) (should be FALSE): ', identical(dfrform_nls_1[["mcsim_stats"]], dfrform_nls_8[["mcsim_stats"]]))
+message('identical(dfrform_nls_1[["p"]], dfrform_nls_8[["p"]]) (should be FALSE): ', identical(dfrform_nls_1[["p"]], dfrform_nls_8[["p"]]))

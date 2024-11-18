@@ -19,7 +19,7 @@ new_Y <- Y^2
 dfr_1a <- distfreereg(Y = new_Y, X = X, test_mean = func, covariance = list(Sigma = Sig),
                       verbose = FALSE, theta_init = c(1,1,1))
 dfr_1b <- update(dfr_0, Y = new_Y)
-identical(dfr_1a[-1], dfr_1b[-1])# TRUE
+message('identical(dfr_1a[-1], dfr_1b[-1]) (should be TRUE): ', identical(dfr_1a[-1], dfr_1b[-1]))
 
 
 set.seed(20240320)
@@ -27,28 +27,28 @@ new_X <- X*X
 dfr_2a <- distfreereg(Y = Y, X = new_X, test_mean = func, covariance = list(Sigma = Sig),
                       verbose = FALSE, theta_init = c(1,1,1))
 dfr_2b <- update(dfr_0, X = new_X)
-identical(dfr_2a[-c(1,17,18)], dfr_2b[-c(1,17,18)])# TRUE
+message('identical(dfr_2a[-c(1,17,18)], dfr_2b[-c(1,17,18)]) (should be TRUE): ', identical(dfr_2a[-c(1,17,18)], dfr_2b[-c(1,17,18)]))
 
 
 set.seed(20240320)
 dfr_3a <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = Sig %*% Sig),
                       verbose = FALSE, theta_init = c(1,1,1))
 dfr_3b <- update(dfr_0, covariance = list(Sigma = Sig %*% Sig))
-identical(dfr_3a[-1], dfr_3b[-1])# TRUE
+message('identical(dfr_3a[-1], dfr_3b[-1]) (should be TRUE): ', identical(dfr_3a[-1], dfr_3b[-1]))
 
 
 set.seed(20240320)
 dfr_4a <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = Sig),
                       verbose = FALSE, theta_init = c(1,1,1), override = list(J = dfr_0[["J"]]^2))
 dfr_4b <- update(dfr_0, override = list(J = dfr_0[["J"]]^2))
-identical(dfr_4a[-c(1,6)], dfr_4b[-c(1,6)])# TRUE; ignore optimization_output
+message('identical(dfr_4a[-c(1,6)], dfr_4b[-c(1,6)]) (should be TRUE): ', identical(dfr_4a[-c(1,6)], dfr_4b[-c(1,6)]))
 
 
 set.seed(20240320)
 dfr_5a <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = Sig),
                       verbose = FALSE, theta_init = c(1,1,1), override = list(fitted_values = dfr_0[["fitted_values"]]^2))
 dfr_5b <- update(dfr_0, override = list(fitted_values = dfr_0[["fitted_values"]]^2))
-identical(dfr_5a[-c(1,6)], dfr_5b[-c(1,6)])# TRUE
+message('identical(dfr_5a[-c(1,6)], dfr_5b[-c(1,6)]) (should be TRUE): ', identical(dfr_5a[-c(1,6)], dfr_5b[-c(1,6)]))
 
 
 set.seed(20240320)
@@ -57,8 +57,8 @@ dfr_6a <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = 
 dfr_6b <- update(dfr_0, ordering = "natural")
 set.seed(20240320)
 dfr_6c <- update(dfr_0, ordering = "natural")
-identical(dfr_6a[-c(1,6)], dfr_6b[-c(1,6)])# FALSE
-identical(dfr_6a[-c(1,6)], dfr_6c[-c(1,6)])# TRUE
+message('identical(dfr_6a[-c(1,6)], dfr_6b[-c(1,6)]) (should be FALSE): ', identical(dfr_6a[-c(1,6)], dfr_6b[-c(1,6)]))
+message('identical(dfr_6a[-c(1,6)], dfr_6c[-c(1,6)]) (should be TRUE): ', identical(dfr_6a[-c(1,6)], dfr_6c[-c(1,6)]))
 
 
 set.seed(20240320)
@@ -67,8 +67,8 @@ dfr_7a <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = 
 dfr_7b <- update(dfr_0, B = 1e2)
 set.seed(20240320)
 dfr_7c <- update(dfr_0, B = 1e2)
-identical(dfr_7a[-c(1,6)], dfr_7b[-c(1,6)])# FALSE
-identical(dfr_7a[-c(1,6)], dfr_7c[-c(1,6)])# TRUE
+message('identical(dfr_7a[-c(1,6)], dfr_7b[-c(1,6)]) (should be FALSE): ', identical(dfr_7a[-c(1,6)], dfr_7b[-c(1,6)]))
+message('identical(dfr_7a[-c(1,6)], dfr_7c[-c(1,6)]) (should be TRUE): ', identical(dfr_7a[-c(1,6)], dfr_7c[-c(1,6)]))
 
 
 set.seed(20240320)
@@ -79,8 +79,8 @@ dfr_8a <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = 
 dfr_8b <- update(dfr_0, override = list(res_order = new_ordering))
 set.seed(20240320)
 dfr_8c <- update(dfr_0, override = list(res_order = new_ordering))
-identical(dfr_8a[-c(1,6)], dfr_8b[-c(1,6)])# FALSE
-identical(dfr_8a[-c(1,6)], dfr_8c[-c(1,6)])# TRUE
+message('identical(dfr_8a[-c(1,6)], dfr_8b[-c(1,6)]) (should be FALSE): ', identical(dfr_8a[-c(1,6)], dfr_8b[-c(1,6)]))
+message('identical(dfr_8a[-c(1,6)], dfr_8c[-c(1,6)]) (should be TRUE): ', identical(dfr_8a[-c(1,6)], dfr_8c[-c(1,6)]))
 
 
 set.seed(20240320)
@@ -91,8 +91,8 @@ dfr_9a <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = 
 dfr_9b <- update(dfr_0, override = list(r = new_r))
 set.seed(20240320)
 dfr_9c <- update(dfr_0, override = list(r = new_r))
-identical(dfr_9a[-c(1,6)], dfr_9b[-c(1,6)])# FALSE
-identical(dfr_9a[-c(1,6)], dfr_9c[-c(1,6)])# TRUE
+message('identical(dfr_9a[-c(1,6)], dfr_9b[-c(1,6)]) (should be FALSE): ', identical(dfr_9a[-c(1,6)], dfr_9b[-c(1,6)]))
+message('identical(dfr_9a[-c(1,6)], dfr_9c[-c(1,6)]) (should be TRUE): ', identical(dfr_9a[-c(1,6)], dfr_9c[-c(1,6)]))
 
 
 set.seed(20240320)
@@ -101,7 +101,7 @@ set.seed(20240320)
 dfr_10a <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = Sig),
                        verbose = FALSE, theta_init = c(1,1,1), override = list(mcsim_stats = new_mc))
 dfr_10b <- update(dfr_0, override = list(mcsim_stats = new_mc))
-identical(dfr_10a[-c(1,6)], dfr_10b[-c(1,6)])# TRUE
+message('identical(dfr_10a[-c(1,6)], dfr_10b[-c(1,6)]) (should be TRUE): ', identical(dfr_10a[-c(1,6)], dfr_10b[-c(1,6)]))
 
 
 set.seed(20240320)
@@ -110,7 +110,7 @@ set.seed(20240320)
 dfr_11a <- distfreereg(Y = Y, X = X, test_mean = new_func, covariance = list(Sigma = Sig),
                        verbose = FALSE, theta_init = c(1,1,1))
 dfr_11b <- update(dfr_0, test_mean = new_func)
-identical(dfr_11a[-1], dfr_11b[-1])# TRUE
+message('identical(dfr_11a[-1], dfr_11b[-1]) (should be TRUE): ', identical(dfr_11a[-1], dfr_11b[-1]))
 
 
 set.seed(20240320)
@@ -119,5 +119,5 @@ dfr_12a <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma =
 dfr_12b <- update(dfr_0, stat = "KSmin")
 set.seed(20240320)
 dfr_12c <- update(dfr_0, stat = "KSmin")
-identical(dfr_12a[-c(1,6)], dfr_12b[-c(1,6)])# FALSE
-identical(dfr_12a[-c(1,6)], dfr_12c[-c(1,6)])# TRUE
+message('identical(dfr_12a[-c(1,6)], dfr_12b[-c(1,6)]) (should be FALSE): ', identical(dfr_12a[-c(1,6)], dfr_12b[-c(1,6)]))
+message('identical(dfr_12a[-c(1,6)], dfr_12c[-c(1,6)]) (should be TRUE): ', identical(dfr_12a[-c(1,6)], dfr_12c[-c(1,6)]))

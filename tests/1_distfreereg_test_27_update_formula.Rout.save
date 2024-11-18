@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -98,10 +98,10 @@ Type 'q()' to quit R.
 > dfr_6b <- update(dfr_0, ordering = "natural")
 > set.seed(20240320)
 > dfr_6c <- update(dfr_0, ordering = "natural")
-> identical(dfr_6a[["epsp"]], dfr_6b[["epsp"]])# TRUE
-[1] TRUE
-> identical(dfr_6a[["mcsim_stats"]], dfr_6b[["mcsim_stats"]])# FALSE
-[1] FALSE
+> message('identical(dfr_6a[["epsp"]], dfr_6b[["epsp"]]) (should be TRUE): ', identical(dfr_6a[["epsp"]], dfr_6b[["epsp"]]))
+identical(dfr_6a[["epsp"]], dfr_6b[["epsp"]]) (should be TRUE): TRUE
+> message('identical(dfr_6a[["mcsim_stats"]], dfr_6b[["mcsim_stats"]]) (should be FALSE): ', identical(dfr_6a[["mcsim_stats"]], dfr_6b[["mcsim_stats"]]))
+identical(dfr_6a[["mcsim_stats"]], dfr_6b[["mcsim_stats"]]) (should be FALSE): FALSE
 > setequal(ident_list(dfr_6a, dfr_6c), c("test_mean", "model.call", "model.terms"))# TRUE
 [1] TRUE
 > 
@@ -112,10 +112,10 @@ Type 'q()' to quit R.
 > dfr_7b <- update(dfr_0, B = 1e2)
 > set.seed(20240320)
 > dfr_7c <- update(dfr_0, B = 1e2)
-> identical(dfr_7a[["epsp"]], dfr_7b[["epsp"]])# TRUE
-[1] TRUE
-> identical(dfr_7a[["mcsim_stats"]], dfr_7b[["mcsim_stats"]])# FALSE
-[1] FALSE
+> message('identical(dfr_7a[["epsp"]], dfr_7b[["epsp"]]) (should be TRUE): ', identical(dfr_7a[["epsp"]], dfr_7b[["epsp"]]))
+identical(dfr_7a[["epsp"]], dfr_7b[["epsp"]]) (should be TRUE): TRUE
+> message('identical(dfr_7a[["mcsim_stats"]], dfr_7b[["mcsim_stats"]]) (should be FALSE): ', identical(dfr_7a[["mcsim_stats"]], dfr_7b[["mcsim_stats"]]))
+identical(dfr_7a[["mcsim_stats"]], dfr_7b[["mcsim_stats"]]) (should be FALSE): FALSE
 > setequal(ident_list(dfr_7a, dfr_7c), c("call", "test_mean", "model.call", "model.terms"))# TRUE
 [1] TRUE
 > 
@@ -128,10 +128,10 @@ Type 'q()' to quit R.
 > dfr_8b <- update(dfr_0, override = list(res_order = new_ordering))
 > set.seed(20240320)
 > dfr_8c <- update(dfr_0, override = list(res_order = new_ordering))
-> identical(dfr_8a[["epsp"]], dfr_8b[["epsp"]])# TRUE
-[1] TRUE
-> identical(dfr_8a[["mcsim_stats"]], dfr_8b[["mcsim_stats"]])# FALSE
-[1] FALSE
+> message('identical(dfr_8a[["epsp"]], dfr_8b[["epsp"]]) (should be TRUE): ', identical(dfr_8a[["epsp"]], dfr_8b[["epsp"]]))
+identical(dfr_8a[["epsp"]], dfr_8b[["epsp"]]) (should be TRUE): TRUE
+> message('identical(dfr_8a[["mcsim_stats"]], dfr_8b[["mcsim_stats"]]) (should be FALSE): ', identical(dfr_8a[["mcsim_stats"]], dfr_8b[["mcsim_stats"]]))
+identical(dfr_8a[["mcsim_stats"]], dfr_8b[["mcsim_stats"]]) (should be FALSE): FALSE
 > setequal(ident_list(dfr_8a, dfr_8c), c("call", "test_mean", "model.call", "model.terms"))# TRUE
 [1] TRUE
 > 
@@ -144,10 +144,10 @@ Type 'q()' to quit R.
 > dfr_9b <- update(dfr_0, override = list(r = new_r))
 > set.seed(20240320)
 > dfr_9c <- update(dfr_0, override = list(r = new_r))
-> identical(dfr_9a[["epsp"]], dfr_9b[["epsp"]])# TRUE
-[1] TRUE
-> identical(dfr_9a[["mcsim_stats"]], dfr_9b[["mcsim_stats"]])# FALSE
-[1] FALSE
+> message('identical(dfr_9a[["epsp"]], dfr_9b[["epsp"]]) (should be TRUE): ', identical(dfr_9a[["epsp"]], dfr_9b[["epsp"]]))
+identical(dfr_9a[["epsp"]], dfr_9b[["epsp"]]) (should be TRUE): TRUE
+> message('identical(dfr_9a[["mcsim_stats"]], dfr_9b[["mcsim_stats"]]) (should be FALSE): ', identical(dfr_9a[["mcsim_stats"]], dfr_9b[["mcsim_stats"]]))
+identical(dfr_9a[["mcsim_stats"]], dfr_9b[["mcsim_stats"]]) (should be FALSE): FALSE
 > setequal(ident_list(dfr_9a, dfr_9c), c("call", "test_mean", "model.call", "model.terms"))# TRUE
 [1] TRUE
 > 
@@ -179,11 +179,11 @@ Type 'q()' to quit R.
 > dfr_12b <- update(dfr_0, stat = "KSmin")
 > set.seed(20240320)
 > dfr_12c <- update(dfr_0, stat = "KSmin")
-> identical(dfr_12a[["mcsim_stats"]], dfr_12b[["mcsim_stats"]])# FALSE
-[1] FALSE
+> message('identical(dfr_12a[["mcsim_stats"]], dfr_12b[["mcsim_stats"]]) (should be FALSE): ', identical(dfr_12a[["mcsim_stats"]], dfr_12b[["mcsim_stats"]]))
+identical(dfr_12a[["mcsim_stats"]], dfr_12b[["mcsim_stats"]]) (should be FALSE): FALSE
 > setequal(ident_list(dfr_12a, dfr_12c), c("call", "test_mean", "model.call", "model.terms"))# TRUE
 [1] TRUE
 > 
 > proc.time()
    user  system elapsed 
-  10.04    0.29   10.68 
+   6.79    0.17    7.09 

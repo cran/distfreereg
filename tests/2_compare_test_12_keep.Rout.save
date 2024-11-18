@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -44,10 +44,10 @@ Calculating required true covariance specification matrices...
 Generating errors...
 Running simulation...
 > 
-> identical(cdfr_1$dfrs, cdfr_2$dfrs)# TRUE
-[1] TRUE
-> identical(length(cdfr_1$dfrs), 10L)# TRUE
-[1] TRUE
+> message('identical(cdfr_1$dfrs, cdfr_2$dfrs) (should be TRUE): ', identical(cdfr_1$dfrs, cdfr_2$dfrs))
+identical(cdfr_1$dfrs, cdfr_2$dfrs) (should be TRUE): TRUE
+> message('identical(length(cdfr_1$dfrs), 10L) (should be TRUE): ', identical(length(cdfr_1$dfrs), 10L))
+identical(length(cdfr_1$dfrs), 10L) (should be TRUE): TRUE
 > class(cdfr_1$dfrs)
 [1] "list"
 > 
@@ -84,4 +84,4 @@ In validate_numeric(keep, pos_int = TRUE, min_len = 1, max_len = reps,  :
 > 
 > proc.time()
    user  system elapsed 
-   1.93    0.14    2.07 
+   1.48    0.14    1.56 

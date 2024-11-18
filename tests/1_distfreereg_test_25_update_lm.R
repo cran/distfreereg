@@ -17,15 +17,15 @@ dfr_01a <- distfreereg(test_mean = m, verbose = FALSE)
 dfr_04a <- distfreereg(test_mean = m,
                        verbose = FALSE, ordering = "optimal")
 dfr_04b <- update(dfr_01a, ordering = "optimal")
-identical(dfr_01a[["res_order"]], dfr_04a[["res_order"]])# FALSE
-identical(dfr_04a[["res_order"]], dfr_04b[["res_order"]])# TRUE
-identical(dfr_04a[["r"]], dfr_04b[["r"]])# TRUE
+message('identical(dfr_01a[["res_order"]], dfr_04a[["res_order"]]) (should be FALSE): ', identical(dfr_01a[["res_order"]], dfr_04a[["res_order"]]))
+message('identical(dfr_04a[["res_order"]], dfr_04b[["res_order"]]) (should be TRUE): ', identical(dfr_04a[["res_order"]], dfr_04b[["res_order"]]))
+message('identical(dfr_04a[["r"]], dfr_04b[["r"]]) (should be TRUE): ', identical(dfr_04a[["r"]], dfr_04b[["r"]]))
 
 dfr_04c <- distfreereg(test_mean = m,
                        verbose = FALSE, override = list(res_order = dfr_04a[["res_order"]]))
-identical(dfr_04a[["r"]], dfr_04c[["r"]])# TRUE
+message('identical(dfr_04a[["r"]], dfr_04c[["r"]]) (should be TRUE): ', identical(dfr_04a[["r"]], dfr_04c[["r"]]))
 
 dfr_05a <- distfreereg(test_mean = m,
                        verbose = FALSE, ordering = "asis")
 dfr_05b <- update(dfr_04c, ordering = "asis")# presence of "asis" should clear override from dfr_04c
-identical(dfr_05a[["r"]], dfr_05b[["r"]])# TRUE
+message('identical(dfr_05a[["r"]], dfr_05b[["r"]]) (should be TRUE): ', identical(dfr_05a[["r"]], dfr_05b[["r"]]))

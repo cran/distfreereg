@@ -7,13 +7,13 @@ Sig <- rWishart(1, df = n, Sigma = diag(n))[,,1]
 theta <- c(2,5)
 X <- matrix(rexp(n, rate = 1))
 
-cdfr_1 <- compare(reps = 5, prog = Inf, theta = theta, true_mean = func, true_X = X,
+cdfr <- compare(reps = 5, prog = Inf, theta = theta, true_mean = func, true_X = X,
                   X = X, test_mean = func,
                   true_covariance = list(Sigma = Sig),
                   covariance = list(Sigma = Sig),
                   theta_init = rep(1, length(theta)), manual = function(dfr) residuals(dfr))
 
-cdfr_1$manual
+lapply(cdfr[["manual"]], signif, digits = 4)
 
 tryCatch(compare(reps = 5, prog = Inf, theta = theta, true_mean = func, true_X = X,
                  X = X, test_mean = func,

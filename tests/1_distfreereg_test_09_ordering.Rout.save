@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -249,10 +249,10 @@ Optimal assignment:
  [55]  83  77  44  59  13  30  81   8  22  70  75 100  80  67  65  68   3  85
  [73]   5  42  53  62   2  17  49  54  31  88  18   7  19  11  21  45  58  61
  [91]  46  74  91  99  34  36  89  38  73  87
-> identical(dfr_4[["res_order"]], dfr_5[["res_order"]])# TRUE
-[1] TRUE
-> identical(dfr_4[["res_order"]], dfr_6[["res_order"]])# TRUE
-[1] TRUE
+> message('identical(dfr_4[["res_order"]], dfr_5[["res_order"]]) (should be TRUE): ', identical(dfr_4[["res_order"]], dfr_5[["res_order"]]))
+identical(dfr_4[["res_order"]], dfr_5[["res_order"]]) (should be TRUE): TRUE
+> message('identical(dfr_4[["res_order"]], dfr_6[["res_order"]]) (should be TRUE): ', identical(dfr_4[["res_order"]], dfr_6[["res_order"]]))
+identical(dfr_4[["res_order"]], dfr_6[["res_order"]]) (should be TRUE): TRUE
 > 
 > 
 > # Compare the results above with what should be the identical results with the
@@ -410,18 +410,18 @@ Running Monte Carlo simulation...
 ...9000 of 10000
 ...10000 of 10000
 > 
-> identical(dfr_1[["res_order"]], dfr_form_lm_1[["res_order"]])# TRUE
-[1] TRUE
-> identical(dfr_2[["res_order"]], dfr_form_lm_2[["res_order"]])# TRUE
-[1] TRUE
-> identical(dfr_3[["res_order"]], dfr_form_lm_3[["res_order"]])# TRUE
-[1] TRUE
-> identical(dfr_4[["res_order"]], dfr_form_lm_4[["res_order"]])# TRUE
-[1] TRUE
-> identical(dfr_5[["res_order"]], dfr_form_lm_5[["res_order"]])# TRUE
-[1] TRUE
-> identical(dfr_6[["res_order"]], dfr_form_lm_6[["res_order"]])# TRUE
-[1] TRUE
+> message('identical(dfr_1[["res_order"]], dfr_form_lm_1[["res_order"]]) (should be TRUE): ', identical(dfr_1[["res_order"]], dfr_form_lm_1[["res_order"]]))
+identical(dfr_1[["res_order"]], dfr_form_lm_1[["res_order"]]) (should be TRUE): TRUE
+> message('identical(dfr_2[["res_order"]], dfr_form_lm_2[["res_order"]]) (should be TRUE): ', identical(dfr_2[["res_order"]], dfr_form_lm_2[["res_order"]]))
+identical(dfr_2[["res_order"]], dfr_form_lm_2[["res_order"]]) (should be TRUE): TRUE
+> message('identical(dfr_3[["res_order"]], dfr_form_lm_3[["res_order"]]) (should be TRUE): ', identical(dfr_3[["res_order"]], dfr_form_lm_3[["res_order"]]))
+identical(dfr_3[["res_order"]], dfr_form_lm_3[["res_order"]]) (should be TRUE): TRUE
+> message('identical(dfr_4[["res_order"]], dfr_form_lm_4[["res_order"]]) (should be TRUE): ', identical(dfr_4[["res_order"]], dfr_form_lm_4[["res_order"]]))
+identical(dfr_4[["res_order"]], dfr_form_lm_4[["res_order"]]) (should be TRUE): TRUE
+> message('identical(dfr_5[["res_order"]], dfr_form_lm_5[["res_order"]]) (should be TRUE): ', identical(dfr_5[["res_order"]], dfr_form_lm_5[["res_order"]]))
+identical(dfr_5[["res_order"]], dfr_form_lm_5[["res_order"]]) (should be TRUE): TRUE
+> message('identical(dfr_6[["res_order"]], dfr_form_lm_6[["res_order"]]) (should be TRUE): ', identical(dfr_6[["res_order"]], dfr_form_lm_6[["res_order"]]))
+identical(dfr_6[["res_order"]], dfr_form_lm_6[["res_order"]]) (should be TRUE): TRUE
 > 
 > 
 > 
@@ -609,18 +609,18 @@ In (function (formula, data = parent.frame(), start, control = nls.control(),  :
 Initializing 'u', 'v', 'w' to '1.'.
 Consider specifying 'start' or using a selfStart model
 > 
-> identical(dfr_1[["res_order"]], dfr_form_nls_1[["res_order"]])# TRUE
-[1] TRUE
-> identical(dfr_2[["res_order"]], dfr_form_nls_2[["res_order"]])# FALSE; dfr_2 includes an intercept column
-[1] FALSE
-> identical(dfr_3[["res_order"]], dfr_form_nls_3[["res_order"]])# TRUE
-[1] TRUE
-> identical(dfr_4[["res_order"]], dfr_form_nls_4[["res_order"]])# TRUE
-[1] TRUE
-> identical(dfr_5[["res_order"]], dfr_form_nls_5[["res_order"]])# TRUE
-[1] TRUE
-> identical(dfr_6[["res_order"]], dfr_form_nls_6[["res_order"]])# TRUE
-[1] TRUE
+> message('identical(dfr_1[["res_order"]], dfr_form_nls_1[["res_order"]]) (should be TRUE): ', identical(dfr_1[["res_order"]], dfr_form_nls_1[["res_order"]]))
+identical(dfr_1[["res_order"]], dfr_form_nls_1[["res_order"]]) (should be TRUE): TRUE
+> message('identical(dfr_2[["res_order"]], dfr_form_nls_2[["res_order"]]) (should be FALSE): ', identical(dfr_2[["res_order"]], dfr_form_nls_2[["res_order"]]))
+identical(dfr_2[["res_order"]], dfr_form_nls_2[["res_order"]]) (should be FALSE): FALSE
+> message('identical(dfr_3[["res_order"]], dfr_form_nls_3[["res_order"]]) (should be TRUE): ', identical(dfr_3[["res_order"]], dfr_form_nls_3[["res_order"]]))
+identical(dfr_3[["res_order"]], dfr_form_nls_3[["res_order"]]) (should be TRUE): TRUE
+> message('identical(dfr_4[["res_order"]], dfr_form_nls_4[["res_order"]]) (should be TRUE): ', identical(dfr_4[["res_order"]], dfr_form_nls_4[["res_order"]]))
+identical(dfr_4[["res_order"]], dfr_form_nls_4[["res_order"]]) (should be TRUE): TRUE
+> message('identical(dfr_5[["res_order"]], dfr_form_nls_5[["res_order"]]) (should be TRUE): ', identical(dfr_5[["res_order"]], dfr_form_nls_5[["res_order"]]))
+identical(dfr_5[["res_order"]], dfr_form_nls_5[["res_order"]]) (should be TRUE): TRUE
+> message('identical(dfr_6[["res_order"]], dfr_form_nls_6[["res_order"]]) (should be TRUE): ', identical(dfr_6[["res_order"]], dfr_form_nls_6[["res_order"]]))
+identical(dfr_6[["res_order"]], dfr_form_nls_6[["res_order"]]) (should be TRUE): TRUE
 > 
 > 
 > 
@@ -772,18 +772,18 @@ Running Monte Carlo simulation...
 ...9000 of 10000
 ...10000 of 10000
 > 
-> identical(dfr_1[["res_order"]], dfr_lm_1[["res_order"]])# TRUE
-[1] TRUE
-> identical(dfr_2[["res_order"]], dfr_lm_2[["res_order"]])# TRUE
-[1] TRUE
-> identical(dfr_3[["res_order"]], dfr_lm_3[["res_order"]])# TRUE
-[1] TRUE
-> identical(dfr_4[["res_order"]], dfr_lm_4[["res_order"]])# TRUE
-[1] TRUE
-> identical(dfr_5[["res_order"]], dfr_lm_5[["res_order"]])# TRUE
-[1] TRUE
-> identical(dfr_6[["res_order"]], dfr_lm_6[["res_order"]])# TRUE
-[1] TRUE
+> message('identical(dfr_1[["res_order"]], dfr_lm_1[["res_order"]]) (should be TRUE): ', identical(dfr_1[["res_order"]], dfr_lm_1[["res_order"]]))
+identical(dfr_1[["res_order"]], dfr_lm_1[["res_order"]]) (should be TRUE): TRUE
+> message('identical(dfr_2[["res_order"]], dfr_lm_2[["res_order"]]) (should be TRUE): ', identical(dfr_2[["res_order"]], dfr_lm_2[["res_order"]]))
+identical(dfr_2[["res_order"]], dfr_lm_2[["res_order"]]) (should be TRUE): TRUE
+> message('identical(dfr_3[["res_order"]], dfr_lm_3[["res_order"]]) (should be TRUE): ', identical(dfr_3[["res_order"]], dfr_lm_3[["res_order"]]))
+identical(dfr_3[["res_order"]], dfr_lm_3[["res_order"]]) (should be TRUE): TRUE
+> message('identical(dfr_4[["res_order"]], dfr_lm_4[["res_order"]]) (should be TRUE): ', identical(dfr_4[["res_order"]], dfr_lm_4[["res_order"]]))
+identical(dfr_4[["res_order"]], dfr_lm_4[["res_order"]]) (should be TRUE): TRUE
+> message('identical(dfr_5[["res_order"]], dfr_lm_5[["res_order"]]) (should be TRUE): ', identical(dfr_5[["res_order"]], dfr_lm_5[["res_order"]]))
+identical(dfr_5[["res_order"]], dfr_lm_5[["res_order"]]) (should be TRUE): TRUE
+> message('identical(dfr_6[["res_order"]], dfr_lm_6[["res_order"]]) (should be TRUE): ', identical(dfr_6[["res_order"]], dfr_lm_6[["res_order"]]))
+identical(dfr_6[["res_order"]], dfr_lm_6[["res_order"]]) (should be TRUE): TRUE
 > 
 > 
 > 
@@ -935,19 +935,19 @@ Running Monte Carlo simulation...
 ...9000 of 10000
 ...10000 of 10000
 > 
-> identical(dfr_1[["res_order"]], dfr_nls_1[["res_order"]])# TRUE
-[1] TRUE
-> identical(dfr_2[["res_order"]], dfr_nls_2[["res_order"]])# FALSE; dfr_2 contains an intercept column
-[1] FALSE
-> identical(dfr_3[["res_order"]], dfr_nls_3[["res_order"]])# TRUE
-[1] TRUE
-> identical(dfr_4[["res_order"]], dfr_nls_4[["res_order"]])# TRUE
-[1] TRUE
-> identical(dfr_5[["res_order"]], dfr_nls_5[["res_order"]])# TRUE
-[1] TRUE
-> identical(dfr_6[["res_order"]], dfr_nls_6[["res_order"]])# TRUE
-[1] TRUE
+> message('identical(dfr_1[["res_order"]], dfr_nls_1[["res_order"]]) (should be TRUE): ', identical(dfr_1[["res_order"]], dfr_nls_1[["res_order"]]))
+identical(dfr_1[["res_order"]], dfr_nls_1[["res_order"]]) (should be TRUE): TRUE
+> message('identical(dfr_2[["res_order"]], dfr_nls_2[["res_order"]]) (should be FALSE): ', identical(dfr_2[["res_order"]], dfr_nls_2[["res_order"]]))
+identical(dfr_2[["res_order"]], dfr_nls_2[["res_order"]]) (should be FALSE): FALSE
+> message('identical(dfr_3[["res_order"]], dfr_nls_3[["res_order"]]) (should be TRUE): ', identical(dfr_3[["res_order"]], dfr_nls_3[["res_order"]]))
+identical(dfr_3[["res_order"]], dfr_nls_3[["res_order"]]) (should be TRUE): TRUE
+> message('identical(dfr_4[["res_order"]], dfr_nls_4[["res_order"]]) (should be TRUE): ', identical(dfr_4[["res_order"]], dfr_nls_4[["res_order"]]))
+identical(dfr_4[["res_order"]], dfr_nls_4[["res_order"]]) (should be TRUE): TRUE
+> message('identical(dfr_5[["res_order"]], dfr_nls_5[["res_order"]]) (should be TRUE): ', identical(dfr_5[["res_order"]], dfr_nls_5[["res_order"]]))
+identical(dfr_5[["res_order"]], dfr_nls_5[["res_order"]]) (should be TRUE): TRUE
+> message('identical(dfr_6[["res_order"]], dfr_nls_6[["res_order"]]) (should be TRUE): ', identical(dfr_6[["res_order"]], dfr_nls_6[["res_order"]]))
+identical(dfr_6[["res_order"]], dfr_nls_6[["res_order"]]) (should be TRUE): TRUE
 > 
 > proc.time()
    user  system elapsed 
-  17.39    0.40   18.07 
+  12.67    0.25   13.20 

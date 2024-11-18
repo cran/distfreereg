@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -158,4 +158,4 @@ attr(,"class")
 > 
 > proc.time()
    user  system elapsed 
-   0.37    0.04    0.37 
+   0.23    0.06    0.25 

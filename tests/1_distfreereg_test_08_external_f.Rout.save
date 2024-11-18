@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -32,8 +32,8 @@ Type 'q()' to quit R.
 > dfr_2 <- distfreereg(Y = Y, X = X, covariance = list(Sigma = Sig), verbose = FALSE,
 +                      fitted_values = dfr_1[["fitted_values"]], J = dfr_1[["J"]])
 > 
-> identical(dfr_1[["epsp"]], dfr_2[["epsp"]])# TRUE
-[1] TRUE
+> message('identical(dfr_1[["epsp"]], dfr_2[["epsp"]]) (should be TRUE): ', identical(dfr_1[["epsp"]], dfr_2[["epsp"]]))
+identical(dfr_1[["epsp"]], dfr_2[["epsp"]]) (should be TRUE): TRUE
 > 
 > dfr_1
 
@@ -66,4 +66,4 @@ Stat      Value  Pr(>Value)       MCSE
 > 
 > proc.time()
    user  system elapsed 
-   1.20    0.20    1.36 
+   0.96    0.07    1.04 

@@ -21,5 +21,5 @@ dfr_2 <- distfreereg(test_mean = test_mean_lower, Y = Y, X = X,
                      covariance = list(Sigma = Sigma),
                      theta_init = rep(1, length(theta)))
 
-identical(dfr_1$theta_hat, dfr_2$theta_hat)# TRUE
-identical(dfr_1$observed_stats, dfr_2$observed_stats)# TRUE
+message('identical(dfr_1$theta_hat, dfr_2$theta_hat) (should be TRUE): ', identical(dfr_1$theta_hat, dfr_2$theta_hat))
+message('identical(dfr_1$observed_stats, dfr_2$observed_stats) (should be TRUE): ', identical(dfr_1$observed_stats, dfr_2$observed_stats))

@@ -27,6 +27,6 @@ cdfr_2 <- compare(true_mean = func, true_covariance = list(Sigma = Sig),
                   true_X = as.matrix(data[,-3]), test_mean = m,
                   reps = 10, B = 10, prog = Inf, theta = theta)
 
-identical(cdfr_1[["observed_stats"]], cdfr_2[["observed_stats"]])# TRUE
-identical(cdfr_1[["mcsim_stats"]], cdfr_2[["mcsim_stats"]])# TRUE
-identical(cdfr_1[["p"]], cdfr_2[["p"]])# TRUE
+message('identical(cdfr_1[["observed_stats"]], cdfr_2[["observed_stats"]]) (should be TRUE): ', identical(cdfr_1[["observed_stats"]], cdfr_2[["observed_stats"]]))
+message('identical(cdfr_1[["mcsim_stats"]], cdfr_2[["mcsim_stats"]]) (should be TRUE): ', identical(cdfr_1[["mcsim_stats"]], cdfr_2[["mcsim_stats"]]))
+message('identical(cdfr_1[["p"]], cdfr_2[["p"]]) (should be TRUE): ', identical(cdfr_1[["p"]], cdfr_2[["p"]]))

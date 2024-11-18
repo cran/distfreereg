@@ -78,8 +78,8 @@ dfr_6a <- distfreereg(data = data, test_mean = form, covariance = list(Sigma = S
 dfr_6b <- update(dfr_0, ordering = "natural")
 set.seed(20240320)
 dfr_6c <- update(dfr_0, ordering = "natural")
-identical(dfr_6a[["epsp"]], dfr_6b[["epsp"]])# TRUE
-identical(dfr_6a[["mcsim_stats"]], dfr_6b[["mcsim_stats"]])# FALSE
+message('identical(dfr_6a[["epsp"]], dfr_6b[["epsp"]]) (should be TRUE): ', identical(dfr_6a[["epsp"]], dfr_6b[["epsp"]]))
+message('identical(dfr_6a[["mcsim_stats"]], dfr_6b[["mcsim_stats"]]) (should be FALSE): ', identical(dfr_6a[["mcsim_stats"]], dfr_6b[["mcsim_stats"]]))
 setequal(ident_list(dfr_6a, dfr_6c), c("test_mean", "model.call", "model.terms"))# TRUE
 
 
@@ -89,8 +89,8 @@ dfr_7a <- distfreereg(data = data, test_mean = form, covariance = list(Sigma = S
 dfr_7b <- update(dfr_0, B = 1e2)
 set.seed(20240320)
 dfr_7c <- update(dfr_0, B = 1e2)
-identical(dfr_7a[["epsp"]], dfr_7b[["epsp"]])# TRUE
-identical(dfr_7a[["mcsim_stats"]], dfr_7b[["mcsim_stats"]])# FALSE
+message('identical(dfr_7a[["epsp"]], dfr_7b[["epsp"]]) (should be TRUE): ', identical(dfr_7a[["epsp"]], dfr_7b[["epsp"]]))
+message('identical(dfr_7a[["mcsim_stats"]], dfr_7b[["mcsim_stats"]]) (should be FALSE): ', identical(dfr_7a[["mcsim_stats"]], dfr_7b[["mcsim_stats"]]))
 setequal(ident_list(dfr_7a, dfr_7c), c("call", "test_mean", "model.call", "model.terms"))# TRUE
 
 
@@ -102,8 +102,8 @@ dfr_8a <- distfreereg(data = data, test_mean = form, covariance = list(Sigma = S
 dfr_8b <- update(dfr_0, override = list(res_order = new_ordering))
 set.seed(20240320)
 dfr_8c <- update(dfr_0, override = list(res_order = new_ordering))
-identical(dfr_8a[["epsp"]], dfr_8b[["epsp"]])# TRUE
-identical(dfr_8a[["mcsim_stats"]], dfr_8b[["mcsim_stats"]])# FALSE
+message('identical(dfr_8a[["epsp"]], dfr_8b[["epsp"]]) (should be TRUE): ', identical(dfr_8a[["epsp"]], dfr_8b[["epsp"]]))
+message('identical(dfr_8a[["mcsim_stats"]], dfr_8b[["mcsim_stats"]]) (should be FALSE): ', identical(dfr_8a[["mcsim_stats"]], dfr_8b[["mcsim_stats"]]))
 setequal(ident_list(dfr_8a, dfr_8c), c("call", "test_mean", "model.call", "model.terms"))# TRUE
 
 
@@ -115,8 +115,8 @@ dfr_9a <- distfreereg(data = data, test_mean = form, covariance = list(Sigma = S
 dfr_9b <- update(dfr_0, override = list(r = new_r))
 set.seed(20240320)
 dfr_9c <- update(dfr_0, override = list(r = new_r))
-identical(dfr_9a[["epsp"]], dfr_9b[["epsp"]])# TRUE
-identical(dfr_9a[["mcsim_stats"]], dfr_9b[["mcsim_stats"]])# FALSE
+message('identical(dfr_9a[["epsp"]], dfr_9b[["epsp"]]) (should be TRUE): ', identical(dfr_9a[["epsp"]], dfr_9b[["epsp"]]))
+message('identical(dfr_9a[["mcsim_stats"]], dfr_9b[["mcsim_stats"]]) (should be FALSE): ', identical(dfr_9a[["mcsim_stats"]], dfr_9b[["mcsim_stats"]]))
 setequal(ident_list(dfr_9a, dfr_9c), c("call", "test_mean", "model.call", "model.terms"))# TRUE
 
 
@@ -145,5 +145,5 @@ dfr_12a <- distfreereg(data = data, test_mean = form, covariance = list(Sigma = 
 dfr_12b <- update(dfr_0, stat = "KSmin")
 set.seed(20240320)
 dfr_12c <- update(dfr_0, stat = "KSmin")
-identical(dfr_12a[["mcsim_stats"]], dfr_12b[["mcsim_stats"]])# FALSE
+message('identical(dfr_12a[["mcsim_stats"]], dfr_12b[["mcsim_stats"]]) (should be FALSE): ', identical(dfr_12a[["mcsim_stats"]], dfr_12b[["mcsim_stats"]]))
 setequal(ident_list(dfr_12a, dfr_12c), c("call", "test_mean", "model.call", "model.terms"))# TRUE

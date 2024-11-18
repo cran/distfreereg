@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -52,23 +52,22 @@ Warning message:
 In validate_args_distfreereg_default(Y = Y, X = X, covariance = covariance,  :
   At least one column of X contains only one value. Verify that the model is identifiable.
 > 
-> identical(dfr_1a[["observed_stats"]], dfr_1b[["observed_stats"]])# TRUE
+> message('identical(dfr_1a[["observed_stats"]], dfr_1b[["observed_stats"]]) (should be TRUE): ', identical(dfr_1a[["observed_stats"]], dfr_1b[["observed_stats"]]))
+identical(dfr_1a[["observed_stats"]], dfr_1b[["observed_stats"]]) (should be TRUE): TRUE
+> message('identical(dfr_1a[["observed_stats"]], dfr_2a[["observed_stats"]]) (should be TRUE): ', identical(dfr_1a[["observed_stats"]], dfr_2a[["observed_stats"]]))
+identical(dfr_1a[["observed_stats"]], dfr_2a[["observed_stats"]]) (should be TRUE): TRUE
+> message('identical(dfr_1a[["observed_stats"]], dfr_2b[["observed_stats"]]) (should be TRUE): ', identical(dfr_1a[["observed_stats"]], dfr_2b[["observed_stats"]]))
+identical(dfr_1a[["observed_stats"]], dfr_2b[["observed_stats"]]) (should be TRUE): TRUE
+> all.equal(dfr_1a[["observed_stats"]], dfr_3b[["observed_stats"]], tolerance = 1e-5)# nearly equal
 [1] TRUE
-> identical(dfr_1a[["observed_stats"]], dfr_2a[["observed_stats"]])# TRUE
-[1] TRUE
-> identical(dfr_1a[["observed_stats"]], dfr_2b[["observed_stats"]])# TRUE
-[1] TRUE
-> all.equal(dfr_1a[["observed_stats"]], dfr_3b[["observed_stats"]])# nearly equal
-[1] "Component \"KS\": Mean relative difference: 3.909289e-08" 
-[2] "Component \"CvM\": Mean relative difference: 1.109057e-07"
-> identical(dfr_1a[["mcsim_stats"]], dfr_1b[["mcsim_stats"]])# TRUE
-[1] TRUE
-> identical(dfr_1a[["mcsim_stats"]], dfr_2a[["mcsim_stats"]])# TRUE
-[1] TRUE
-> identical(dfr_1a[["mcsim_stats"]], dfr_2b[["mcsim_stats"]])# TRUE
-[1] TRUE
-> identical(dfr_1a[["mcsim_stats"]], dfr_3b[["mcsim_stats"]])# TRUE
-[1] TRUE
+> message('identical(dfr_1a[["mcsim_stats"]], dfr_1b[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1a[["mcsim_stats"]], dfr_1b[["mcsim_stats"]]))
+identical(dfr_1a[["mcsim_stats"]], dfr_1b[["mcsim_stats"]]) (should be TRUE): TRUE
+> message('identical(dfr_1a[["mcsim_stats"]], dfr_2a[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1a[["mcsim_stats"]], dfr_2a[["mcsim_stats"]]))
+identical(dfr_1a[["mcsim_stats"]], dfr_2a[["mcsim_stats"]]) (should be TRUE): TRUE
+> message('identical(dfr_1a[["mcsim_stats"]], dfr_2b[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1a[["mcsim_stats"]], dfr_2b[["mcsim_stats"]]))
+identical(dfr_1a[["mcsim_stats"]], dfr_2b[["mcsim_stats"]]) (should be TRUE): TRUE
+> message('identical(dfr_1a[["mcsim_stats"]], dfr_3b[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1a[["mcsim_stats"]], dfr_3b[["mcsim_stats"]]))
+identical(dfr_1a[["mcsim_stats"]], dfr_3b[["mcsim_stats"]]) (should be TRUE): TRUE
 > 
 > set.seed(20240303)
 > dfr_1c <- update(dfr_1a, override = list(res_order = 1:n))
@@ -80,15 +79,14 @@ Warning message:
 In validate_args_distfreereg_default(Y = Y, X = X, covariance = covariance,  :
   At least one column of X contains only one value. Verify that the model is identifiable.
 > 
-> identical(dfr_1c[["observed_stats"]], dfr_2c[["observed_stats"]])# TRUE
+> message('identical(dfr_1c[["observed_stats"]], dfr_2c[["observed_stats"]]) (should be TRUE): ', identical(dfr_1c[["observed_stats"]], dfr_2c[["observed_stats"]]))
+identical(dfr_1c[["observed_stats"]], dfr_2c[["observed_stats"]]) (should be TRUE): TRUE
+> all.equal(dfr_1c[["observed_stats"]], dfr_3c[["observed_stats"]], tolerance = 1e-5)# nearly equal
 [1] TRUE
-> all.equal(dfr_1c[["observed_stats"]], dfr_3c[["observed_stats"]])# nearly equal
-[1] "Component \"KS\": Mean relative difference: 1.161913e-07" 
-[2] "Component \"CvM\": Mean relative difference: 2.769842e-08"
-> identical(dfr_1c[["mcsim_stats"]], dfr_2c[["mcsim_stats"]])# TRUE
-[1] TRUE
-> identical(dfr_1c[["mcsim_stats"]], dfr_3c[["mcsim_stats"]])# TRUE
-[1] TRUE
+> message('identical(dfr_1c[["mcsim_stats"]], dfr_2c[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1c[["mcsim_stats"]], dfr_2c[["mcsim_stats"]]))
+identical(dfr_1c[["mcsim_stats"]], dfr_2c[["mcsim_stats"]]) (should be TRUE): TRUE
+> message('identical(dfr_1c[["mcsim_stats"]], dfr_3c[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1c[["mcsim_stats"]], dfr_3c[["mcsim_stats"]]))
+identical(dfr_1c[["mcsim_stats"]], dfr_3c[["mcsim_stats"]]) (should be TRUE): TRUE
 > 
 > Y_new <- distfreereg:::f2ftheta(f = func, X)(theta) +
 +   as.vector(distfreereg:::rmvnorm(n = n, reps = 1, mean = rep(0,n), SqrtSigma = distfreereg:::matsqrt(Sig)))
@@ -104,15 +102,15 @@ Warning message:
 In validate_args_distfreereg_default(Y = Y, X = X, covariance = covariance,  :
   At least one column of X contains only one value. Verify that the model is identifiable.
 > 
-> identical(dfr_1d[["observed_stats"]], dfr_2d[["observed_stats"]])# TRUE
-[1] TRUE
-> all.equal(dfr_1d[["theta_hat"]], dfr_3d[["theta_hat"]], check.attributes = FALSE)# TRUE
-[1] TRUE
-> identical(dfr_1d[["mcsim_stats"]], dfr_2d[["mcsim_stats"]])# TRUE
-[1] TRUE
-> identical(dfr_1d[["mcsim_stats"]], dfr_3d[["mcsim_stats"]])# TRUE
-[1] TRUE
+> message('identical(dfr_1d[["observed_stats"]], dfr_2d[["observed_stats"]]) (should be TRUE): ', identical(dfr_1d[["observed_stats"]], dfr_2d[["observed_stats"]]))
+identical(dfr_1d[["observed_stats"]], dfr_2d[["observed_stats"]]) (should be TRUE): TRUE
+> message('all.equal(dfr_1d[["theta_hat"]], dfr_3d[["theta_hat"]], check.attributes = FALSE, tolerance = 1e-5) (should be TRUE): ', all.equal(dfr_1d[["theta_hat"]], dfr_3d[["theta_hat"]], check.attributes = FALSE, tolerance = 1e-5))
+all.equal(dfr_1d[["theta_hat"]], dfr_3d[["theta_hat"]], check.attributes = FALSE, tolerance = 1e-5) (should be TRUE): TRUE
+> message('identical(dfr_1d[["mcsim_stats"]], dfr_2d[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1d[["mcsim_stats"]], dfr_2d[["mcsim_stats"]]))
+identical(dfr_1d[["mcsim_stats"]], dfr_2d[["mcsim_stats"]]) (should be TRUE): TRUE
+> message('identical(dfr_1d[["mcsim_stats"]], dfr_3d[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1d[["mcsim_stats"]], dfr_3d[["mcsim_stats"]]))
+identical(dfr_1d[["mcsim_stats"]], dfr_3d[["mcsim_stats"]]) (should be TRUE): TRUE
 > 
 > proc.time()
    user  system elapsed 
-   3.28    0.29    3.57 
+   2.42    0.18    2.54 

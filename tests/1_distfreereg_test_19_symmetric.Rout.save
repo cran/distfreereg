@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -31,8 +31,8 @@ Type 'q()' to quit R.
 > dfr_2 <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = Sig), theta_init = c(1,1,1), verbose = FALSE,
 +                      control = list(symmetric = FALSE))
 > 
-> identical(dfr_1[["epsp"]], dfr_2[["epsp"]])# TRUE
-[1] TRUE
+> message('identical(dfr_1[["epsp"]], dfr_2[["epsp"]]) (should be TRUE): ', identical(dfr_1[["epsp"]], dfr_2[["epsp"]]))
+identical(dfr_1[["epsp"]], dfr_2[["epsp"]]) (should be TRUE): TRUE
 > 
 > tryCatch(distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = Sig), theta_init = c(1,1,1), verbose = FALSE,
 +                      control = list(symmetric = TRUE)),
@@ -52,10 +52,10 @@ In validate_sqmat(covariance_list[[x]], n, symmetric, message = c("Error in vali
 +                      theta_init = c(1,1,1), verbose = FALSE, control = list(symmetric = FALSE)),
 +          error = function(e) warning(e))
 Warning message:
-In matsqrt(covariance_list[["P"]]) :
-  covariance_list[["P"]] has eigenvalues less than the tolerance, the smallest of which is -19.3976879510803
+In matsqrt(covariance_list[["P"]], tol = matsqrt_tol) :
+  covariance_list[["P"]] has eigenvalues less than the tolerance, the smallest of which is about -19.4
 > 
 > 
 > proc.time()
    user  system elapsed 
-   1.53    0.12    1.62 
+   1.06    0.18    1.20 

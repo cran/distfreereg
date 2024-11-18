@@ -20,8 +20,8 @@ set.seed(20240206)
 dfr_3 <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = Sig), theta_init = c(1,1,1),
                      verbose = FALSE, B = 10.6)
 
-identical(dfr_1[["mcsim_stats"]], dfr_2[["mcsim_stats"]])# TRUE
-identical(dfr_1[["mcsim_stats"]], dfr_3[["mcsim_stats"]])# TRUE
+message('identical(dfr_1[["mcsim_stats"]], dfr_2[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1[["mcsim_stats"]], dfr_2[["mcsim_stats"]]))
+message('identical(dfr_1[["mcsim_stats"]], dfr_3[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1[["mcsim_stats"]], dfr_3[["mcsim_stats"]]))
 
 
 # Verify that the code works for B = 1.

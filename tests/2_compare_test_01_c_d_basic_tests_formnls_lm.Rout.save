@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -67,143 +67,34 @@ In validate_args_compare(true_mean = true_mean, true_method = true_method,  :
 > 
 > # 1000
 > set.seed(20240308)
-> compare(true_mean = true_form,
-+         true_method = "nls",
-+         test_mean = test_m,
-+         true_data = true_data,
-+         # data = data,
-+         # true_X = true_X,
-+         # X = X,
-+         true_covariance = list(Sigma = Sig),
-+         reps = 10, B = 10, prog = Inf, theta = theta)
+> cdfr <- compare(true_mean = true_form,
++                 true_method = "nls",
++                 test_mean = test_m,
++                 true_data = true_data,
++                 # data = data,
++                 # true_X = true_X,
++                 # X = X,
++                 true_covariance = list(Sigma = Sig),
++                 reps = 10, B = 10, prog = Inf, theta = theta)
 Calculating required true covariance specification matrices...
 Generating errors...
 Running simulation...
-$call
-compare(true_mean = true_form, true_method = "nls", true_covariance = list(Sigma = Sig), 
-    true_data = true_data, theta = theta, reps = 10, prog = Inf, 
-    test_mean = test_m, B = 10)
-
-$Y_mean
-[1] -0.08083294  0.39607258 10.71587895 -5.96330631  6.59338881
-
-$errors
-            [,1]       [,2]        [,3]       [,4]       [,5]       [,6]
-[1,]  0.09269443  0.1107518 -0.72699965  1.9066676 -1.9687369 -0.5093118
-[2,]  0.38978400  1.6986443  0.08909226  0.3537098 -2.6713632 -0.1205789
-[3,] -0.55495617  0.6490708  1.39628534 -0.3192786  2.0640453  0.1138312
-[4,]  1.50558537 -0.8352299 -1.00773951  1.3116040 -2.0321312 -1.8259299
-[5,] -0.87300942  0.7703001 -0.28579528  0.5481195  0.9305848  1.2903712
-           [,7]       [,8]       [,9]     [,10]
-[1,]  0.3315788  1.5647931  0.1580786  1.847205
-[2,]  2.1247323 -0.5002445 -0.9703005 -1.195763
-[3,] -0.4111160 -0.3298619 -1.4194939 -3.268081
-[4,]  1.2306388  1.3001159 -0.3527038  2.988818
-[5,] -1.2567613  0.2033576  1.8236847 -3.281417
-
-$theta
-j k 
-2 5 
-
-$true_mean
-c ~ j * a + k * b
-
-$true_covariance
-$true_covariance$Sigma
-           [,1]       [,2]      [,3]       [,4]       [,5]
-[1,]  1.3423272  0.5240361 -1.169411  1.2386896 -0.7011735
-[2,]  0.5240361  5.6752296 -0.470731  0.4987678  0.9066802
-[3,] -1.1694109 -0.4707310  4.717190 -1.4308501  1.3320697
-[4,]  1.2386896  0.4987678 -1.430850  1.7324472 -1.3467562
-[5,] -0.7011735  0.9066802  1.332070 -1.3467562  2.2590953
-
-$true_covariance$SqrtSigma
-           [,1]       [,2]       [,3]       [,4]       [,5]
-[1,]  0.9707843  0.1379701 -0.3003784  0.5128981 -0.1660654
-[2,]  0.1379701  2.3538326 -0.1051953  0.1572826  0.2825990
-[3,] -0.3003784 -0.1051953  2.0937815 -0.3497248  0.3311618
-[4,]  0.5128981  0.1572826 -0.3497248  1.0347608 -0.5016049
-[5,] -0.1660654  0.2825990  0.3311618 -0.5016049  1.3380507
-
-
-$true_X
-NULL
-
-$true_data
-          a            b          c
-1 0.8940946 -0.373804436  2.2136254
-2 0.2095964 -0.004624046 -0.8937159
-3 1.3383909  1.607819416  9.2110719
-4 0.3209320 -1.321034070 -4.6685932
-5 0.4236196  1.149229938  7.0185360
-
-$test_mean
-
-Call:
-lm(formula = test_form, data = data)
-
-Coefficients:
-     a  I(b^2)  
- 5.025  -4.101  
-
-
-$covariance
-$covariance$SqrtSigma
-[1] 2.186648
-
-$covariance$Q
-[1] 0.4573209
-
-
-$X
-NULL
-
-$data
-NULL
-
-$observed_stats
-          KS        CvM
-1  0.5084140 0.12076252
-2  0.5679822 0.12672524
-3  0.4435286 0.11359492
-4  0.5866819 0.13310106
-5  0.3933775 0.08516659
-6  0.4622800 0.11939874
-7  0.6090761 0.12274898
-8  0.6142957 0.12630831
-9  0.5545030 0.11840522
-10 0.6574976 0.10892339
-
-$mcsim_stats
-$mcsim_stats$KS
- [1] 0.5324074 0.9456040 0.6496223 0.9017966 0.3768204 0.5736862 0.5041341
- [8] 0.2178798 0.7054823 1.3070893
-
-$mcsim_stats$CvM
- [1] 0.09555906 0.29490307 0.22142658 0.28293499 0.04394204 0.08858156
- [7] 0.10649117 0.02641345 0.22303510 0.73925043
-
-
-$p
-    KS CvM
-1  0.7 0.5
-2  0.6 0.5
-3  0.8 0.5
-4  0.5 0.5
-5  0.8 0.8
-6  0.8 0.5
-7  0.5 0.5
-8  0.5 0.5
-9  0.6 0.5
-10 0.4 0.5
-
-attr(,"class")
-[1] "compare"
 Warning message:
 In (function (formula, data = parent.frame(), start, control = nls.control(),  :
   No starting values specified for some parameters.
 Initializing 'j', 'k' to '1.'.
 Consider specifying 'start' or using a selfStart model
+> 
+> signif(cdfr[["observed_stats"]][["KS"]], digits = 4)
+ [1] 0.5084 0.5680 0.4435 0.5867 0.3934 0.4623 0.6091 0.6143 0.5545 0.6575
+> signif(cdfr[["observed_stats"]][["CvM"]], digits = 4)
+ [1] 0.12080 0.12670 0.11360 0.13310 0.08517 0.11940 0.12270 0.12630 0.11840
+[10] 0.10890
+> signif(cdfr[["mcsim_stats"]][["KS"]], digits = 4)
+ [1] 0.5324 0.9456 0.6496 0.9018 0.3768 0.5737 0.5041 0.2179 0.7055 1.3070
+> signif(cdfr[["mcsim_stats"]][["CvM"]], digits = 4)
+ [1] 0.09556 0.29490 0.22140 0.28290 0.04394 0.08858 0.10650 0.02641 0.22300
+[10] 0.73930
 > 
 > # 0100
 > set.seed(20240308)
@@ -430,4 +321,4 @@ In validate_args_compare(true_mean = true_mean, true_method = true_method,  :
 > 
 > proc.time()
    user  system elapsed 
-   0.39    0.23    0.60 
+   0.35    0.06    0.40 

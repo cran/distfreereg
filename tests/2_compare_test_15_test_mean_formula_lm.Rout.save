@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -98,7 +98,7 @@ $theta
 $true_mean
 function (x, theta) 
 sum(theta * x)
-<bytecode: 0x000001eca8d9e378>
+<bytecode: 0x0000018bfb9b4308>
 
 $true_covariance
 $true_covariance$Sigma
@@ -352,13 +352,13 @@ Calculating required true covariance specification matrices...
 Generating errors...
 Running simulation...
 > 
-> identical(cdfr_1[["observed_stats"]], cdfr_2[["observed_stats"]])# TRUE
-[1] TRUE
-> identical(cdfr_1[["mcsim_stats"]], cdfr_2[["mcsim_stats"]])# TRUE
-[1] TRUE
-> identical(cdfr_1[["p"]], cdfr_2[["p"]])# TRUE
-[1] TRUE
+> message('identical(cdfr_1[["observed_stats"]], cdfr_2[["observed_stats"]]) (should be TRUE): ', identical(cdfr_1[["observed_stats"]], cdfr_2[["observed_stats"]]))
+identical(cdfr_1[["observed_stats"]], cdfr_2[["observed_stats"]]) (should be TRUE): TRUE
+> message('identical(cdfr_1[["mcsim_stats"]], cdfr_2[["mcsim_stats"]]) (should be TRUE): ', identical(cdfr_1[["mcsim_stats"]], cdfr_2[["mcsim_stats"]]))
+identical(cdfr_1[["mcsim_stats"]], cdfr_2[["mcsim_stats"]]) (should be TRUE): TRUE
+> message('identical(cdfr_1[["p"]], cdfr_2[["p"]]) (should be TRUE): ', identical(cdfr_1[["p"]], cdfr_2[["p"]]))
+identical(cdfr_1[["p"]], cdfr_2[["p"]]) (should be TRUE): TRUE
 > 
 > proc.time()
    user  system elapsed 
-   0.37    0.14    0.48 
+   0.28    0.09    0.35 

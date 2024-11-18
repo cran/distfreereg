@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -32,15 +32,15 @@ Type 'q()' to quit R.
 > dfr_01a <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = Sig), theta_init = c(1,1), verbose = FALSE)
 > dfr_01b <- update(dfr_01a, theta_init = c(3,3))
 > 
-> identical(dfr_01a[["r"]], dfr_01b[["r"]])# TRUE
-[1] TRUE
-> all.equal(dfr_01a[["epsp"]], dfr_01b[["epsp"]], tolerance = 1e-4)# TRUE
-[1] TRUE
+> message('identical(dfr_01a[["r"]], dfr_01b[["r"]]) (should be TRUE): ', identical(dfr_01a[["r"]], dfr_01b[["r"]]))
+identical(dfr_01a[["r"]], dfr_01b[["r"]]) (should be TRUE): TRUE
+> message('all.equal(dfr_01a[["epsp"]], dfr_01b[["epsp"]], tolerance = 1e-4) (should be TRUE): ', all.equal(dfr_01a[["epsp"]], dfr_01b[["epsp"]], tolerance = 1e-4))
+all.equal(dfr_01a[["epsp"]], dfr_01b[["epsp"]], tolerance = 1e-4) (should be TRUE): TRUE
 > 
 > # Tests for theta_hat
 > dfr_01f <- update(dfr_01a, override = list(theta_hat = dfr_01a[["theta_hat"]]))
-> identical(dfr_01a[["epsp"]], dfr_01f[["epsp"]])# TRUE
-[1] TRUE
+> message('identical(dfr_01a[["epsp"]], dfr_01f[["epsp"]]) (should be TRUE): ', identical(dfr_01a[["epsp"]], dfr_01f[["epsp"]]))
+identical(dfr_01a[["epsp"]], dfr_01f[["epsp"]]) (should be TRUE): TRUE
 > 
 > 
 > # Verify that changing the test_mean function does not change mcsim_stats unless
@@ -48,55 +48,55 @@ Type 'q()' to quit R.
 > dfr_02a <- update(dfr_01a, test_mean = function(x, theta) theta[1] + theta[2]*x^2)
 > dfr_02b <- update(dfr_01a, test_mean = function(x, theta) theta[1] + theta[2]*x + theta[3]*x^2,
 +                   theta_init = c(1,1,1))
-> identical(dfr_01a[["mcsim_stats"]], dfr_02a[["mcsim_stats"]])# TRUE
-[1] TRUE
-> identical(dfr_01a[["mcsim_stats"]], dfr_02b[["mcsim_stats"]])# FALSE
-[1] FALSE
+> message('identical(dfr_01a[["mcsim_stats"]], dfr_02a[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_01a[["mcsim_stats"]], dfr_02a[["mcsim_stats"]]))
+identical(dfr_01a[["mcsim_stats"]], dfr_02a[["mcsim_stats"]]) (should be TRUE): TRUE
+> message('identical(dfr_01a[["mcsim_stats"]], dfr_02b[["mcsim_stats"]]) (should be FALSE): ', identical(dfr_01a[["mcsim_stats"]], dfr_02b[["mcsim_stats"]]))
+identical(dfr_01a[["mcsim_stats"]], dfr_02b[["mcsim_stats"]]) (should be FALSE): FALSE
 > 
 > 
 > dfr_03a <- update(dfr_01a, theta_init = c(3,3))
-> identical(dfr_01a[["theta_hat"]], dfr_03a[["theta_hat"]])# FALSE
-[1] FALSE
-> identical(dfr_01a[["epsp"]], dfr_03a[["epsp"]])# FALSE
-[1] FALSE
+> message('identical(dfr_01a[["theta_hat"]], dfr_03a[["theta_hat"]]) (should be FALSE): ', identical(dfr_01a[["theta_hat"]], dfr_03a[["theta_hat"]]))
+identical(dfr_01a[["theta_hat"]], dfr_03a[["theta_hat"]]) (should be FALSE): FALSE
+> message('identical(dfr_01a[["epsp"]], dfr_03a[["epsp"]]) (should be FALSE): ', identical(dfr_01a[["epsp"]], dfr_03a[["epsp"]]))
+identical(dfr_01a[["epsp"]], dfr_03a[["epsp"]]) (should be FALSE): FALSE
 > 
 > dfr_01g <- update(dfr_01a, theta_init = c(3,3), override = list(theta_hat = dfr_01a[["theta_hat"]]))
-> identical(dfr_01a[["epsp"]], dfr_01g[["epsp"]])# TRUE
-[1] TRUE
+> message('identical(dfr_01a[["epsp"]], dfr_01g[["epsp"]]) (should be TRUE): ', identical(dfr_01a[["epsp"]], dfr_01g[["epsp"]]))
+identical(dfr_01a[["epsp"]], dfr_01g[["epsp"]]) (should be TRUE): TRUE
 > 
 > # Tests for res_order
 > dfr_04a <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = Sig), theta_init = c(1,1),
 +                        verbose = FALSE, ordering = "optimal")
 > dfr_04b <- update(dfr_01a, ordering = "optimal")
-> identical(dfr_01a[["res_order"]], dfr_04a[["res_order"]])# FALSE
-[1] FALSE
-> identical(dfr_04a[["res_order"]], dfr_04b[["res_order"]])# TRUE
-[1] TRUE
-> identical(dfr_04a[["r"]], dfr_04b[["r"]])# TRUE
-[1] TRUE
+> message('identical(dfr_01a[["res_order"]], dfr_04a[["res_order"]]) (should be FALSE): ', identical(dfr_01a[["res_order"]], dfr_04a[["res_order"]]))
+identical(dfr_01a[["res_order"]], dfr_04a[["res_order"]]) (should be FALSE): FALSE
+> message('identical(dfr_04a[["res_order"]], dfr_04b[["res_order"]]) (should be TRUE): ', identical(dfr_04a[["res_order"]], dfr_04b[["res_order"]]))
+identical(dfr_04a[["res_order"]], dfr_04b[["res_order"]]) (should be TRUE): TRUE
+> message('identical(dfr_04a[["r"]], dfr_04b[["r"]]) (should be TRUE): ', identical(dfr_04a[["r"]], dfr_04b[["r"]]))
+identical(dfr_04a[["r"]], dfr_04b[["r"]]) (should be TRUE): TRUE
 > 
 > dfr_04c <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = Sig), theta_init = c(1,1),
 +                        verbose = FALSE, override = list(res_order = dfr_04a[["res_order"]]))
-> identical(dfr_04a[["r"]], dfr_04c[["r"]])# TRUE
-[1] TRUE
+> message('identical(dfr_04a[["r"]], dfr_04c[["r"]]) (should be TRUE): ', identical(dfr_04a[["r"]], dfr_04c[["r"]]))
+identical(dfr_04a[["r"]], dfr_04c[["r"]]) (should be TRUE): TRUE
 > 
 > dfr_05a <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = Sig), theta_init = c(1,1),
 +                        verbose = FALSE, ordering = "asis")
 > dfr_05b <- update(dfr_04c, ordering = "asis")# presence of "asis" should clear override from dfr_04c
-> identical(dfr_05a[["r"]], dfr_05b[["r"]])# TRUE
-[1] TRUE
+> message('identical(dfr_05a[["r"]], dfr_05b[["r"]]) (should be TRUE): ', identical(dfr_05a[["r"]], dfr_05b[["r"]]))
+identical(dfr_05a[["r"]], dfr_05b[["r"]]) (should be TRUE): TRUE
 > 
 > # Tests for clearing only one entry from override
 > dfr_06a <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = Sig), theta_init = c(1,1),
 +                        verbose = FALSE, override = list(theta_hat = c(2,5),
 +                                                         res_order = dfr_04a[["res_order"]]))
 > dfr_06b <- update(dfr_06a, ordering = "asis")
-> identical(dfr_06a[["theta_hat"]], dfr_06b[["theta_hat"]])# TRUE
-[1] TRUE
-> identical(dfr_06a[["res_order"]], dfr_04a[["res_order"]])# TRUE
-[1] TRUE
-> identical(dfr_06a[["res_order"]], dfr_06b[["res_order"]])# FALSE
-[1] FALSE
+> message('identical(dfr_06a[["theta_hat"]], dfr_06b[["theta_hat"]]) (should be TRUE): ', identical(dfr_06a[["theta_hat"]], dfr_06b[["theta_hat"]]))
+identical(dfr_06a[["theta_hat"]], dfr_06b[["theta_hat"]]) (should be TRUE): TRUE
+> message('identical(dfr_06a[["res_order"]], dfr_04a[["res_order"]]) (should be TRUE): ', identical(dfr_06a[["res_order"]], dfr_04a[["res_order"]]))
+identical(dfr_06a[["res_order"]], dfr_04a[["res_order"]]) (should be TRUE): TRUE
+> message('identical(dfr_06a[["res_order"]], dfr_06b[["res_order"]]) (should be FALSE): ', identical(dfr_06a[["res_order"]], dfr_06b[["res_order"]]))
+identical(dfr_06a[["res_order"]], dfr_06b[["res_order"]]) (should be FALSE): FALSE
 > 
 > 
 > # Tests for r and mcsim_stats
@@ -105,14 +105,14 @@ Type 'q()' to quit R.
 > dfr_07b <- update(dfr_07a, Y = rnorm(n))
 > dfr_07c <- update(dfr_07a, Y = rnorm(n+1))
 > 
-> identical(dfr_07a[["r"]], dfr_07b[["r"]])# TRUE
-[1] TRUE
-> identical(dfr_07a[["mcsim_stats"]], dfr_07b[["mcsim_stats"]])# TRUE
-[1] TRUE
-> identical(dfr_07a[["r"]], dfr_07c[["r"]])# FALSE
-[1] FALSE
-> identical(dfr_07a[["mcsim_stats"]], dfr_07c[["mcsim_stats"]])# FALSE
-[1] FALSE
+> message('identical(dfr_07a[["r"]], dfr_07b[["r"]]) (should be TRUE): ', identical(dfr_07a[["r"]], dfr_07b[["r"]]))
+identical(dfr_07a[["r"]], dfr_07b[["r"]]) (should be TRUE): TRUE
+> message('identical(dfr_07a[["mcsim_stats"]], dfr_07b[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_07a[["mcsim_stats"]], dfr_07b[["mcsim_stats"]]))
+identical(dfr_07a[["mcsim_stats"]], dfr_07b[["mcsim_stats"]]) (should be TRUE): TRUE
+> message('identical(dfr_07a[["r"]], dfr_07c[["r"]]) (should be FALSE): ', identical(dfr_07a[["r"]], dfr_07c[["r"]]))
+identical(dfr_07a[["r"]], dfr_07c[["r"]]) (should be FALSE): FALSE
+> message('identical(dfr_07a[["mcsim_stats"]], dfr_07c[["mcsim_stats"]]) (should be FALSE): ', identical(dfr_07a[["mcsim_stats"]], dfr_07c[["mcsim_stats"]]))
+identical(dfr_07a[["mcsim_stats"]], dfr_07c[["mcsim_stats"]]) (should be FALSE): FALSE
 > 
 > dfr_08a <- distfreereg(Y = Y, covariance = list(Sigma = 1), X = X, test_mean = func,
 +                        theta_init = c(1,1), verbose = FALSE)
@@ -120,15 +120,15 @@ Type 'q()' to quit R.
 > dfr_08c <- update(dfr_08a,
 +                   test_mean = function(x, theta) theta[1] + theta[2]*x[1] + theta[3]*x[1]^2,
 +                   theta_init = c(1,1,1))
-> identical(dfr_08a[["r"]], dfr_08b[["r"]])# TRUE
-[1] TRUE
-> identical(dfr_08a[["mcsim_stats"]], dfr_08b[["mcsim_stats"]])# TRUE
-[1] TRUE
-> identical(dfr_08a[["r"]], dfr_08c[["r"]])# FALSE
-[1] FALSE
-> identical(dfr_08a[["mcsim_stats"]], dfr_08c[["mcsim_stats"]])# FALSE
-[1] FALSE
+> message('identical(dfr_08a[["r"]], dfr_08b[["r"]]) (should be TRUE): ', identical(dfr_08a[["r"]], dfr_08b[["r"]]))
+identical(dfr_08a[["r"]], dfr_08b[["r"]]) (should be TRUE): TRUE
+> message('identical(dfr_08a[["mcsim_stats"]], dfr_08b[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_08a[["mcsim_stats"]], dfr_08b[["mcsim_stats"]]))
+identical(dfr_08a[["mcsim_stats"]], dfr_08b[["mcsim_stats"]]) (should be TRUE): TRUE
+> message('identical(dfr_08a[["r"]], dfr_08c[["r"]]) (should be FALSE): ', identical(dfr_08a[["r"]], dfr_08c[["r"]]))
+identical(dfr_08a[["r"]], dfr_08c[["r"]]) (should be FALSE): FALSE
+> message('identical(dfr_08a[["mcsim_stats"]], dfr_08c[["mcsim_stats"]]) (should be FALSE): ', identical(dfr_08a[["mcsim_stats"]], dfr_08c[["mcsim_stats"]]))
+identical(dfr_08a[["mcsim_stats"]], dfr_08c[["mcsim_stats"]]) (should be FALSE): FALSE
 > 
 > proc.time()
    user  system elapsed 
-   7.29    0.26    7.54 
+   5.21    0.20    5.43 

@@ -13,17 +13,17 @@ dfr_2 <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(P = solve
 dfr_1
 dfr_2
 
-all.equal(dfr_1[["epsp"]], dfr_2[["epsp"]])# TRUE
+message('all.equal(dfr_1[["epsp"]], dfr_2[["epsp"]], tolerance = 1e-5) (should be TRUE): ', all.equal(dfr_1[["epsp"]], dfr_2[["epsp"]], tolerance = 1e-5))
 
 # Verify that r and mu are orthogonal.
-all.equal(crossprod(dfr_1[["r"]]), diag(length(dfr_1[["theta_hat"]])))# TRUE
-all.equal(crossprod(dfr_1[["mu"]]), diag(length(dfr_1[["theta_hat"]])))# TRUE
+message('all.equal(crossprod(dfr_1[["r"]]), diag(length(dfr_1[["theta_hat"]])), tolerance = 1e-5) (should be TRUE): ', all.equal(crossprod(dfr_1[["r"]]), diag(length(dfr_1[["theta_hat"]])), tolerance = 1e-5))
+message('all.equal(crossprod(dfr_1[["mu"]]), diag(length(dfr_1[["theta_hat"]])), tolerance = 1e-5) (should be TRUE): ', all.equal(crossprod(dfr_1[["mu"]]), diag(length(dfr_1[["theta_hat"]])), tolerance = 1e-5))
 
-fitted(dfr_1)
+signif(fitted(dfr_1), digits = 5)
 
-all.equal(residuals(dfr_1), residuals(dfr_1, type = "raw"))# TRUE
-residuals(dfr_1, type = "sphered")
-residuals(dfr_1, type = "transformed")
+message('all.equal(residuals(dfr_1), residuals(dfr_1, type = "raw"), tolerance = 1e-5) (should be TRUE): ', all.equal(residuals(dfr_1), residuals(dfr_1, type = "raw"), tolerance = 1e-5))
+signif(residuals(dfr_1, type = "sphered"), digits = 5)
+signif(residuals(dfr_1, type = "transformed"), digits = 5)
 
 
 
@@ -53,30 +53,32 @@ dfr_6 <- distfreereg(test_mean = form, data = data, covariance = list(Sigma = Si
                      method = "nls", verbose = FALSE,
                      override = list(res_order = dfr_1[["res_order"]]))
 
-identical(dfr_1[["epsp"]], dfr_3[["epsp"]])# TRUE
-all.equal(dfr_1[["theta_hat"]], dfr_4[["theta_hat"]], check.attributes = FALSE)# TRUE, or small relative difference
-all.equal(dfr_1[["epsp"]], dfr_4[["epsp"]], check.attributes = FALSE)# TRUE, or small relative difference
-all.equal(dfr_1[["epsp"]], dfr_5[["epsp"]], check.attributes = FALSE)# TRUE, or small relative difference
-all.equal(dfr_1[["epsp"]], dfr_6[["epsp"]])# TRUE, or small relative difference
-identical(dfr_1[["observed_stats"]], dfr_3[["observed_stats"]])# TRUE
-all.equal(dfr_1[["observed_stats"]], dfr_4[["observed_stats"]], check.attributes = FALSE)# TRUE, or small relative difference
-all.equal(dfr_1[["observed_stats"]], dfr_5[["observed_stats"]], check.attributes = FALSE)# TRUE, or small relative difference
-all.equal(dfr_1[["observed_stats"]], dfr_6[["observed_stats"]])# TRUE, or small relative difference
-identical(dfr_1[["mcsim_stats"]], dfr_3[["mcsim_stats"]])# TRUE
-identical(dfr_1[["mcsim_stats"]], dfr_4[["mcsim_stats"]])# TRUE
-identical(dfr_1[["mcsim_stats"]], dfr_5[["mcsim_stats"]])# TRUE
-identical(dfr_1[["mcsim_stats"]], dfr_6[["mcsim_stats"]])# TRUE
-identical(dfr_1[["p"]], dfr_3[["p"]])# TRUE
-identical(dfr_1[["p"]], dfr_4[["p"]])# TRUE
-identical(dfr_1[["p"]], dfr_5[["p"]])# TRUE
-identical(dfr_1[["p"]], dfr_6[["p"]])# TRUE
+message('identical(dfr_1[["epsp"]], dfr_3[["epsp"]]) (should be TRUE): ', identical(dfr_1[["epsp"]], dfr_3[["epsp"]]))
+message('all.equal(dfr_1[["theta_hat"]], dfr_4[["theta_hat"]], check.attributes = FALSE, tolerance = 1e-5) (should be TRUE): ', all.equal(dfr_1[["theta_hat"]], dfr_4[["theta_hat"]], check.attributes = FALSE, tolerance = 1e-5))
+message('all.equal(dfr_1[["epsp"]], dfr_4[["epsp"]], check.attributes = FALSE, tolerance = 1e-5) (should be TRUE): ', all.equal(dfr_1[["epsp"]], dfr_4[["epsp"]], check.attributes = FALSE, tolerance = 1e-5))
+message('all.equal(dfr_1[["epsp"]], dfr_5[["epsp"]], check.attributes = FALSE, tolerance = 1e-5) (should be TRUE): ', all.equal(dfr_1[["epsp"]], dfr_5[["epsp"]], check.attributes = FALSE, tolerance = 1e-5))
+message('all.equal(dfr_1[["epsp"]], dfr_6[["epsp"]], tolerance = 1e-5) (should be TRUE): ', all.equal(dfr_1[["epsp"]], dfr_6[["epsp"]], tolerance = 1e-5))
+message('identical(dfr_1[["observed_stats"]], dfr_3[["observed_stats"]]) (should be TRUE): ', identical(dfr_1[["observed_stats"]], dfr_3[["observed_stats"]]))
+all.equal(dfr_1[["observed_stats"]], dfr_4[["observed_stats"]],
+          check.attributes = FALSE, tolerance = 1e-5)# TRUE, or small relative difference
+all.equal(dfr_1[["observed_stats"]], dfr_5[["observed_stats"]],
+          check.attributes = FALSE, tolerance = 1e-5)# TRUE, or small relative difference
+message('all.equal(dfr_1[["observed_stats"]], dfr_6[["observed_stats"]], tolerance = 1e-5) (should be TRUE): ', all.equal(dfr_1[["observed_stats"]], dfr_6[["observed_stats"]], tolerance = 1e-5))
+message('identical(dfr_1[["mcsim_stats"]], dfr_3[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1[["mcsim_stats"]], dfr_3[["mcsim_stats"]]))
+message('identical(dfr_1[["mcsim_stats"]], dfr_4[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1[["mcsim_stats"]], dfr_4[["mcsim_stats"]]))
+message('identical(dfr_1[["mcsim_stats"]], dfr_5[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1[["mcsim_stats"]], dfr_5[["mcsim_stats"]]))
+message('identical(dfr_1[["mcsim_stats"]], dfr_6[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1[["mcsim_stats"]], dfr_6[["mcsim_stats"]]))
+message('identical(dfr_1[["p"]], dfr_3[["p"]]) (should be TRUE): ', identical(dfr_1[["p"]], dfr_3[["p"]]))
+message('identical(dfr_1[["p"]], dfr_4[["p"]]) (should be TRUE): ', identical(dfr_1[["p"]], dfr_4[["p"]]))
+message('identical(dfr_1[["p"]], dfr_5[["p"]]) (should be TRUE): ', identical(dfr_1[["p"]], dfr_5[["p"]]))
+message('identical(dfr_1[["p"]], dfr_6[["p"]]) (should be TRUE): ', identical(dfr_1[["p"]], dfr_6[["p"]]))
 
 
 m_nls <- nls(form, data = data, weights = 1/diag(Sig))
 set.seed(20240303)
 dfr_7 <- distfreereg(test_mean = m_nls,
                      override = list(res_order = dfr_1[["res_order"]]))
-identical(dfr_6[["epsp"]], dfr_7[["epsp"]])# TRUE
-identical(dfr_6[["observed_stats"]], dfr_7[["observed_stats"]])# TRUE
-identical(dfr_6[["mcsim_stats"]], dfr_7[["mcsim_stats"]])# TRUE
-identical(dfr_6[["p"]], dfr_7[["p"]])# TRUE
+message('identical(dfr_6[["epsp"]], dfr_7[["epsp"]]) (should be TRUE): ', identical(dfr_6[["epsp"]], dfr_7[["epsp"]]))
+message('identical(dfr_6[["observed_stats"]], dfr_7[["observed_stats"]]) (should be TRUE): ', identical(dfr_6[["observed_stats"]], dfr_7[["observed_stats"]]))
+message('identical(dfr_6[["mcsim_stats"]], dfr_7[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_6[["mcsim_stats"]], dfr_7[["mcsim_stats"]]))
+message('identical(dfr_6[["p"]], dfr_7[["p"]]) (should be TRUE): ', identical(dfr_6[["p"]], dfr_7[["p"]]))

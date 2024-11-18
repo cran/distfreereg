@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -63,11 +63,11 @@ Stat      Value  Pr(>Value)       MCSE
 > dfr_2 <- distfreereg(test_mean = test_mean_function, X = X, Y = Y, covariance = list(Sigma = Sig),
 +                      theta_init = rep(1,4), verbose = FALSE)
 > 
-> all.equal(dfr_1[["epsp"]], dfr_2[["epsp"]], check.attributes = FALSE)# TRUE, or small relative difference
-[1] "Mean relative difference: 2.087606e-06"
-> identical(dfr_1[["mcsim_stats"]], dfr_2[["mcsim_stats"]])# TRUE
-[1] TRUE
+> message('all.equal(dfr_1[["epsp"]], dfr_2[["epsp"]], check.attributes = FALSE, tolerance = 1e-5) (should be TRUE): ', all.equal(dfr_1[["epsp"]], dfr_2[["epsp"]], check.attributes = FALSE, tolerance = 1e-5))
+all.equal(dfr_1[["epsp"]], dfr_2[["epsp"]], check.attributes = FALSE, tolerance = 1e-5) (should be TRUE): TRUE
+> message('identical(dfr_1[["mcsim_stats"]], dfr_2[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1[["mcsim_stats"]], dfr_2[["mcsim_stats"]]))
+identical(dfr_1[["mcsim_stats"]], dfr_2[["mcsim_stats"]]) (should be TRUE): TRUE
 > 
 > proc.time()
    user  system elapsed 
-   1.00    0.12    1.15 
+   0.73    0.06    0.79 

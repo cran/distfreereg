@@ -30,6 +30,7 @@ distfreereg.nls <-
     covariance <- get_cov(m, verbose = verbose)
     covariance <- fill_covariance_list(need = "SqrtSigma",
                                        covariance_list = covariance,
+                                       matsqrt_tol = control[["matsqrt_tol"]],
                                        solve_tol = control[["solve_tol"]])
     
     # Get the estimated Jacobian and the fitted values.

@@ -7,4 +7,4 @@ comb_list <- distfreereg:::combine_lists(list_1, list_2)
 
 cl <- list(0, a = 1, b = 2, c = 4, d = 5)
 
-identical(comb_list, cl)# TRUE
+message('identical(comb_list, cl) (should be TRUE): ', identical(comb_list, cl))

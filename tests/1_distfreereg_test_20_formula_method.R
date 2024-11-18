@@ -31,5 +31,5 @@ set.seed(20240303)
 dfr_2 <- distfreereg(test_mean = test_mean_function, X = X, Y = Y, covariance = list(Sigma = Sig),
                      theta_init = rep(1,4), verbose = FALSE)
 
-all.equal(dfr_1[["epsp"]], dfr_2[["epsp"]], check.attributes = FALSE)# TRUE, or small relative difference
-identical(dfr_1[["mcsim_stats"]], dfr_2[["mcsim_stats"]])# TRUE
+message('all.equal(dfr_1[["epsp"]], dfr_2[["epsp"]], check.attributes = FALSE, tolerance = 1e-5) (should be TRUE): ', all.equal(dfr_1[["epsp"]], dfr_2[["epsp"]], check.attributes = FALSE, tolerance = 1e-5))
+message('identical(dfr_1[["mcsim_stats"]], dfr_2[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1[["mcsim_stats"]], dfr_2[["mcsim_stats"]]))

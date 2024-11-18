@@ -41,7 +41,8 @@ compare <-
     test_Y <- vargs[["test_Y"]]; data <- vargs[["data"]];
     n <- vargs[["n"]]; reps <- vargs[["reps"]]; prog <- vargs[["prog"]]
     keep <- vargs[["keep"]]; arg_list <- vargs[["arg_list"]]
-    solve_tol <- vargs[["solve_tol"]]; covariance <- vargs[["covariance"]]
+    matsqrt_tol <- vargs[["matsqrt_tol"]]; solve_tol <- vargs[["solve_tol"]]
+    covariance <- vargs[["covariance"]]
     
     Y_mean <- generate_Y_mean(true_mean = true_mean, true_X = true_X,
                               true_data = true_data, n = n, theta = theta,
@@ -54,6 +55,7 @@ compare <-
     cov_args <- possible_cov_args[which(possible_cov_args %in% err_dist_fun_formals)]
     true_covariance <- fill_covariance_list(need = intersect(cov_args, possible_cov_args),
                                             covariance_list = true_covariance,
+                                            matsqrt_tol = matsqrt_tol,
                                             solve_tol = solve_tol)
     
     error_matrix <- generate_error_matrix(err_dist_fun = err_dist_fun,

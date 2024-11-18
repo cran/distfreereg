@@ -151,20 +151,20 @@ comp_dfr_15 <- compare(reps = 10, prog = Inf, theta = theta, true_mean = func, t
                        true_covariance = list(Sigma = Sig, P = P, SqrtSigma = SqrtSigma, Q = Q),
                        theta_init = rep(1, length(theta)))
 
-all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_2[["observed_stats"]])# TRUE
-all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_3[["observed_stats"]])# TRUE
-all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_4[["observed_stats"]])# TRUE
-all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_5[["observed_stats"]])# TRUE
-all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_6[["observed_stats"]])# TRUE
-all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_7[["observed_stats"]])# TRUE
-all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_8[["observed_stats"]])# TRUE
-all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_9[["observed_stats"]])# TRUE
-all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_10[["observed_stats"]])# TRUE
-all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_11[["observed_stats"]])# TRUE
-all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_12[["observed_stats"]])# TRUE
-all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_13[["observed_stats"]])# TRUE
-all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_14[["observed_stats"]])# TRUE
-all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_15[["observed_stats"]])# TRUE
+message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_2[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_2[["observed_stats"]]))
+message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_3[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_3[["observed_stats"]]))
+message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_4[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_4[["observed_stats"]]))
+message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_5[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_5[["observed_stats"]]))
+message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_6[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_6[["observed_stats"]]))
+message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_7[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_7[["observed_stats"]]))
+message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_8[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_8[["observed_stats"]]))
+message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_9[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_9[["observed_stats"]]))
+message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_10[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_10[["observed_stats"]]))
+message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_11[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_11[["observed_stats"]]))
+message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_12[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_12[["observed_stats"]]))
+message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_13[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_13[["observed_stats"]]))
+message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_14[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_14[["observed_stats"]]))
+message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_15[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_15[["observed_stats"]]))
 
 
 
@@ -213,6 +213,6 @@ all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_15[["observed_stats"]])# TRUE
 #                        covariance = list(Q = Q_func),
 #                        theta_init = rep(1, length(theta)))
 # 
-# all.equal(comp_dfr_16[["observed_stats"]], comp_dfr_17[["observed_stats"]])# TRUE
-# all.equal(comp_dfr_16[["observed_stats"]], comp_dfr_18[["observed_stats"]])# TRUE
-# all.equal(comp_dfr_16[["observed_stats"]], comp_dfr_19[["observed_stats"]])# TRUE
+# message('all.equal(comp_dfr_16[["observed_stats"]], comp_dfr_17[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_16[["observed_stats"]], comp_dfr_17[["observed_stats"]]))
+# message('all.equal(comp_dfr_16[["observed_stats"]], comp_dfr_18[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_16[["observed_stats"]], comp_dfr_18[["observed_stats"]]))
+# message('all.equal(comp_dfr_16[["observed_stats"]], comp_dfr_19[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_16[["observed_stats"]], comp_dfr_19[["observed_stats"]]))

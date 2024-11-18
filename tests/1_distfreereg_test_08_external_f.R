@@ -15,7 +15,7 @@ dfr_1 <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = S
 dfr_2 <- distfreereg(Y = Y, X = X, covariance = list(Sigma = Sig), verbose = FALSE,
                      fitted_values = dfr_1[["fitted_values"]], J = dfr_1[["J"]])
 
-identical(dfr_1[["epsp"]], dfr_2[["epsp"]])# TRUE
+message('identical(dfr_1[["epsp"]], dfr_2[["epsp"]]) (should be TRUE): ', identical(dfr_1[["epsp"]], dfr_2[["epsp"]]))
 
 dfr_1
 dfr_2

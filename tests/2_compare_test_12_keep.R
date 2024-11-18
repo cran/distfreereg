@@ -21,8 +21,8 @@ cdfr_2 <- compare(reps = 10, prog = Inf, theta = theta, true_mean = func, true_X
                   covariance = list(Sigma = Sig),
                   theta_init = rep(1, length(theta)), keep = 1:10)
 
-identical(cdfr_1$dfrs, cdfr_2$dfrs)# TRUE
-identical(length(cdfr_1$dfrs), 10L)# TRUE
+message('identical(cdfr_1$dfrs, cdfr_2$dfrs) (should be TRUE): ', identical(cdfr_1$dfrs, cdfr_2$dfrs))
+message('identical(length(cdfr_1$dfrs), 10L) (should be TRUE): ', identical(length(cdfr_1$dfrs), 10L))
 class(cdfr_1$dfrs)
 
 cdfr_3 <- compare(reps = 10, prog = Inf, theta = theta, true_mean = func, true_X = X,

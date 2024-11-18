@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -33,13 +33,13 @@ Calculating required true covariance specification matrices...
 Generating errors...
 Running simulation...
 > 
-> cdfr_1[["observed_stats"]]
-         KS        CvM
-1 0.3300109 0.01677466
-2 0.5271925 0.05753554
-3 0.5037589 0.05040049
-4 1.4389510 0.51717738
-5 0.6013990 0.10405503
+> signif(cdfr_1[["observed_stats"]], digits = 4)
+      KS     CvM
+1 0.3300 0.01677
+2 0.5272 0.05754
+3 0.5038 0.05040
+4 1.4390 0.51720
+5 0.6014 0.10410
 > 
 > edf <- function(reps, n, sd = 1) matrix(rnorm(n * reps, sd = sd), nrow = n) 
 > 
@@ -53,13 +53,13 @@ Calculating required true covariance specification matrices...
 Generating errors...
 Running simulation...
 > 
-> cdfr_2[["observed_stats"]]
-         KS       CvM
-1 0.6246893 0.1216074
-2 0.4113312 0.0517080
-3 1.4121701 0.4070914
-4 0.8752930 0.3715370
-5 0.7135945 0.1514012
+> signif(cdfr_2[["observed_stats"]], digits = 4)
+      KS     CvM
+1 0.6247 0.12160
+2 0.4113 0.05171
+3 1.4120 0.40710
+4 0.8753 0.37150
+5 0.7136 0.15140
 > 
 > cdfr_3 <- compare(reps = 5, prog = Inf, theta = theta, true_mean = func, true_X = X,
 +                   X = X, test_mean = func,
@@ -71,14 +71,14 @@ Calculating required true covariance specification matrices...
 Generating errors...
 Running simulation...
 > 
-> cdfr_3[["observed_stats"]]
-         KS       CvM
-1  6.411393 14.462397
-2 10.391708 38.720294
-3  2.557337  1.822490
-4  2.263593  1.005263
-5 13.496633 34.736472
+> signif(cdfr_3[["observed_stats"]], digits = 4)
+      KS    CvM
+1  6.411 14.460
+2 10.390 38.720
+3  2.557  1.822
+4  2.264  1.005
+5 13.500 34.740
 > 
 > proc.time()
    user  system elapsed 
-   1.65    0.15    1.82 
+   1.39    0.09    1.48 

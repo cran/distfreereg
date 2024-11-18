@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -22,14 +22,14 @@ Type 'q()' to quit R.
 > Sig <- rWishart(1, df = n, Sigma = diag(n))[,,1]
 > P <- distfreereg:::matinv(Sig, tol = eval(as.list(solve.default)[["tol"]]))
 > 
-> all.equal(diag(1, n), Sig %*% P)# TRUE
-[1] TRUE
+> message('all.equal(diag(1, n), Sig %*% P) (should be TRUE): ', all.equal(diag(1, n), Sig %*% P))
+all.equal(diag(1, n), Sig %*% P) (should be TRUE): TRUE
 > 
 > Q <- distfreereg:::matsqrt(P)
 > 
-> all.equal(Q %*% Q, P)# TRUE
-[1] TRUE
+> message('all.equal(Q %*% Q, P) (should be TRUE): ', all.equal(Q %*% Q, P))
+all.equal(Q %*% Q, P) (should be TRUE): TRUE
 > 
 > proc.time()
    user  system elapsed 
-   0.15    0.12    0.26 
+    0.1     0.1     0.2 

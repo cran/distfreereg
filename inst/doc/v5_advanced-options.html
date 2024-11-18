@@ -629,16 +629,15 @@ with the listed columns in the listed order.</p>
 <div id="grouping" class="section level2">
 <h2>Grouping</h2>
 <p>The previous example’s covariates contain many repeated observations.
-For example, there are 5 repetitions of <span class="math inline">\((X_1,X_2)=(1,7)\)</span>. When using the natural
-ordering (or any other), these observations are indistinguishable, and
-their order among themselves is dependent on the order in which they
-happen to appear in <code>X</code>. To avoid this arbitrariness in the
-calculation of test statistics, a grouping option is available. When the
-<code>group</code> argument is <code>TRUE</code>, the transformed
-residuals for repeated covariate values are added before forming the
-EPSP. This avoids dependence on the order in which the observations
-enter the data. To implement this, we can update <code>dfr</code> as
-follows.</p>
+When using the natural ordering (or any other), these observations are
+indistinguishable, and their order among themselves is dependent on the
+order in which they happen to appear in <code>X</code>. To avoid this
+arbitrariness in the calculation of test statistics, a grouping option
+is available. When the <code>group</code> argument is <code>TRUE</code>,
+the transformed residuals for repeated covariate values are added before
+forming the EPSP. This avoids dependence on the order in which the
+observations enter the data. To implement this, we can update
+<code>dfr</code> as follows.</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>dfr_grouped <span class="ot">&lt;-</span> <span class="fu">update</span>(dfr, <span class="at">group =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Note that the length of <code>epsp</code> is no longer the sample
 size. It is instead the number of unique combinations of values in the

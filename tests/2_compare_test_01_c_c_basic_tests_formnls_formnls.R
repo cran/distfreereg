@@ -77,18 +77,23 @@ tryCatch(compare(true_mean = true_form,
 
 # 1100
 set.seed(20240308)
-compare(true_mean = true_form,
-        true_method = "nls",
-        test_mean = test_form,
-        true_data = true_data,
-        data = data,
-        # true_X = true_X,
-        # X = X,
-        true_covariance = list(Sigma = Sig),
-        covariance = list(Sigma = diag(Sig)),
-        method = "nls",
-        theta_init = c(j = 1, k = 1),
-        reps = 10, B = 10, prog = Inf, theta = theta)
+cdfr <- compare(true_mean = true_form,
+                true_method = "nls",
+                test_mean = test_form,
+                true_data = true_data,
+                data = data,
+                # true_X = true_X,
+                # X = X,
+                true_covariance = list(Sigma = Sig),
+                covariance = list(Sigma = diag(Sig)),
+                method = "nls",
+                theta_init = c(j = 1, k = 1),
+                reps = 10, B = 10, prog = Inf, theta = theta)
+
+signif(cdfr[["observed_stats"]][["KS"]], digits = 4)
+signif(cdfr[["observed_stats"]][["CvM"]], digits = 4)
+signif(cdfr[["mcsim_stats"]][["KS"]], digits = 4)
+signif(cdfr[["mcsim_stats"]][["CvM"]], digits = 4)
 
 # 0010
 set.seed(20240308)

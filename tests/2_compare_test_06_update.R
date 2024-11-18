@@ -6,16 +6,22 @@ Sig <- rWishart(1, df = n, Sigma = diag(n))[,,1]
 theta <- c(2,5)
 X <- matrix(rexp(n, rate = 1))
 
-comp_dfr <- compare(reps = 10, B = 10, prog = Inf, theta = theta, true_mean = func, true_X = X,
-                    X = X, test_mean = func, covariance = list(Sigma = Sig),
-                    true_covariance = list(Sigma = Sig), theta_init = rep(1, length(theta)))
+cdfr <- compare(reps = 10, B = 10, prog = Inf, theta = theta, true_mean = func, true_X = X,
+                X = X, test_mean = func, covariance = list(Sigma = Sig),
+                true_covariance = list(Sigma = Sig), theta_init = rep(1, length(theta)))
 
-comp_dfr
+signif(cdfr[["observed_stats"]][["KS"]], digits = 4)
+signif(cdfr[["observed_stats"]][["CvM"]], digits = 4)
+signif(cdfr[["mcsim_stats"]][["KS"]], digits = 4)
+signif(cdfr[["mcsim_stats"]][["CvM"]], digits = 4)
 
-comp_dfr_2 <- update(comp_dfr, true_covariance = list(Sigma = 1))
+cdfr_2 <- update(cdfr, true_covariance = list(Sigma = 1))
 
-comp_dfr_2
+signif(cdfr_2[["observed_stats"]][["KS"]], digits = 4)
+signif(cdfr_2[["observed_stats"]][["CvM"]], digits = 4)
+signif(cdfr_2[["mcsim_stats"]][["KS"]], digits = 4)
+signif(cdfr_2[["mcsim_stats"]][["CvM"]], digits = 4)
 
-ks.test(comp_dfr)
+ks.test(cdfr)
 
-rejection(comp_dfr, alpha = seq(from = 0, to = 1, by = 0.1))
+rejection(cdfr, alpha = seq(from = 0, to = 1, by = 0.1))

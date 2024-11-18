@@ -17,8 +17,8 @@ dfr_2 <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(P = P), t
 set.seed(20240227)
 dfr_3 <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Q = Q), theta_init = c(1,1,1), verbose = FALSE)
 
-identical(dfr_1[["epsp"]], dfr_2[["epsp"]])# TRUE
-identical(dfr_1[["epsp"]], dfr_3[["epsp"]])# TRUE
+message('identical(dfr_1[["epsp"]], dfr_2[["epsp"]]) (should be TRUE): ', identical(dfr_1[["epsp"]], dfr_2[["epsp"]]))
+message('identical(dfr_1[["epsp"]], dfr_3[["epsp"]]) (should be TRUE): ', identical(dfr_1[["epsp"]], dfr_3[["epsp"]]))
 
 set.seed(20240227)
 dfr_4 <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = 7), theta_init = c(1,1,1), verbose = FALSE)
@@ -29,6 +29,6 @@ dfr_6 <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Q = 1/sqr
 set.seed(20240227)
 dfr_7 <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = diag(7, nrow = n)), theta_init = c(1,1,1), verbose = FALSE)
 
-identical(dfr_4[["epsp"]], dfr_5[["epsp"]])# TRUE
-identical(dfr_4[["epsp"]], dfr_6[["epsp"]])# TRUE
-identical(dfr_4[["epsp"]], dfr_7[["epsp"]])# TRUE
+message('identical(dfr_4[["epsp"]], dfr_5[["epsp"]]) (should be TRUE): ', identical(dfr_4[["epsp"]], dfr_5[["epsp"]]))
+message('identical(dfr_4[["epsp"]], dfr_6[["epsp"]]) (should be TRUE): ', identical(dfr_4[["epsp"]], dfr_6[["epsp"]]))
+message('identical(dfr_4[["epsp"]], dfr_7[["epsp"]]) (should be TRUE): ', identical(dfr_4[["epsp"]], dfr_7[["epsp"]]))

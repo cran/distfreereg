@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -56,15 +56,15 @@ Consider specifying 'start' or using a selfStart model
 [1] TRUE
 > is.null(formula(dfr_2))# TRUE
 [1] TRUE
-> identical(formula(dfr_3), dfr_3[["test_mean"]])# TRUE
-[1] TRUE
-> identical(formula(dfr_4), formula(dfr_4[["test_mean"]]))# TRUE
-[1] TRUE
-> identical(formula(dfr_5), dfr_5[["test_mean"]])# TRUE
-[1] TRUE
-> identical(formula(dfr_6), formula(dfr_6[["test_mean"]]))# TRUE
-[1] TRUE
+> message('identical(formula(dfr_3), dfr_3[["test_mean"]]) (should be TRUE): ', identical(formula(dfr_3), dfr_3[["test_mean"]]))
+identical(formula(dfr_3), dfr_3[["test_mean"]]) (should be TRUE): TRUE
+> message('identical(formula(dfr_4), formula(dfr_4[["test_mean"]])) (should be TRUE): ', identical(formula(dfr_4), formula(dfr_4[["test_mean"]])))
+identical(formula(dfr_4), formula(dfr_4[["test_mean"]])) (should be TRUE): TRUE
+> message('identical(formula(dfr_5), dfr_5[["test_mean"]]) (should be TRUE): ', identical(formula(dfr_5), dfr_5[["test_mean"]]))
+identical(formula(dfr_5), dfr_5[["test_mean"]]) (should be TRUE): TRUE
+> message('identical(formula(dfr_6), formula(dfr_6[["test_mean"]])) (should be TRUE): ', identical(formula(dfr_6), formula(dfr_6[["test_mean"]])))
+identical(formula(dfr_6), formula(dfr_6[["test_mean"]])) (should be TRUE): TRUE
 > 
 > proc.time()
    user  system elapsed 
-   3.20    0.17    3.37 
+   2.37    0.18    2.56 

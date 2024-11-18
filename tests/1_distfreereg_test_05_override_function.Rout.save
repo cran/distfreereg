@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -39,16 +39,16 @@ Type 'q()' to quit R.
 > dfrfunc_5 <- distfreereg(Y = Y, X = X, test_mean = func, theta_init = c(1,1), verbose = FALSE,
 +                          covariance = list(Sigma = Sig), override = list(mcsim_stats = dfrfunc_1[["mcsim_stats"]]))
 > 
-> identical(dfrfunc_1[["epsp"]], dfrfunc_2[["epsp"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["epsp"]], dfrfunc_3[["epsp"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["epsp"]], dfrfunc_4[["epsp"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["epsp"]], dfrfunc_5[["epsp"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["p"]], dfrfunc_5[["p"]])# TRUE
-[1] TRUE
+> message('identical(dfrfunc_1[["epsp"]], dfrfunc_2[["epsp"]]) (should be TRUE): ', identical(dfrfunc_1[["epsp"]], dfrfunc_2[["epsp"]]))
+identical(dfrfunc_1[["epsp"]], dfrfunc_2[["epsp"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["epsp"]], dfrfunc_3[["epsp"]]) (should be TRUE): ', identical(dfrfunc_1[["epsp"]], dfrfunc_3[["epsp"]]))
+identical(dfrfunc_1[["epsp"]], dfrfunc_3[["epsp"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["epsp"]], dfrfunc_4[["epsp"]]) (should be TRUE): ', identical(dfrfunc_1[["epsp"]], dfrfunc_4[["epsp"]]))
+identical(dfrfunc_1[["epsp"]], dfrfunc_4[["epsp"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["epsp"]], dfrfunc_5[["epsp"]]) (should be TRUE): ', identical(dfrfunc_1[["epsp"]], dfrfunc_5[["epsp"]]))
+identical(dfrfunc_1[["epsp"]], dfrfunc_5[["epsp"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["p"]], dfrfunc_5[["p"]]) (should be TRUE): ', identical(dfrfunc_1[["p"]], dfrfunc_5[["p"]]))
+identical(dfrfunc_1[["p"]], dfrfunc_5[["p"]]) (should be TRUE): TRUE
 > 
 > 
 > 
@@ -77,140 +77,140 @@ Type 'q()' to quit R.
 +                          override = list(mcsim_stats = my_mcsim_stats))
 > 
 > # Verify that specified overrides are correct.
-> identical(dfrfunc_1[["res_order"]], dfrfunc_5[["res_order"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["theta_hat"]], dfrfunc_6[["theta_hat"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["r"]], dfrfunc_7[["r"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["mcsim_stats"]], dfrfunc_8[["mcsim_stats"]])# FALSE
-[1] FALSE
-> identical(my_res_order, dfrfunc_5[["res_order"]])# TRUE
-[1] TRUE
-> identical(my_theta_hat, dfrfunc_6[["theta_hat"]])# TRUE
-[1] TRUE
-> identical(my_r, dfrfunc_7[["r"]])# TRUE
-[1] TRUE
-> identical(my_mcsim_stats, dfrfunc_8[["mcsim_stats"]])# TRUE
-[1] TRUE
+> message('identical(dfrfunc_1[["res_order"]], dfrfunc_5[["res_order"]]) (should be FALSE): ', identical(dfrfunc_1[["res_order"]], dfrfunc_5[["res_order"]]))
+identical(dfrfunc_1[["res_order"]], dfrfunc_5[["res_order"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["theta_hat"]], dfrfunc_6[["theta_hat"]]) (should be FALSE): ', identical(dfrfunc_1[["theta_hat"]], dfrfunc_6[["theta_hat"]]))
+identical(dfrfunc_1[["theta_hat"]], dfrfunc_6[["theta_hat"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["r"]], dfrfunc_7[["r"]]) (should be FALSE): ', identical(dfrfunc_1[["r"]], dfrfunc_7[["r"]]))
+identical(dfrfunc_1[["r"]], dfrfunc_7[["r"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["mcsim_stats"]], dfrfunc_8[["mcsim_stats"]]) (should be FALSE): ', identical(dfrfunc_1[["mcsim_stats"]], dfrfunc_8[["mcsim_stats"]]))
+identical(dfrfunc_1[["mcsim_stats"]], dfrfunc_8[["mcsim_stats"]]) (should be FALSE): FALSE
+> message('identical(my_res_order, dfrfunc_5[["res_order"]]) (should be TRUE): ', identical(my_res_order, dfrfunc_5[["res_order"]]))
+identical(my_res_order, dfrfunc_5[["res_order"]]) (should be TRUE): TRUE
+> message('identical(my_theta_hat, dfrfunc_6[["theta_hat"]]) (should be TRUE): ', identical(my_theta_hat, dfrfunc_6[["theta_hat"]]))
+identical(my_theta_hat, dfrfunc_6[["theta_hat"]]) (should be TRUE): TRUE
+> message('identical(my_r, dfrfunc_7[["r"]]) (should be TRUE): ', identical(my_r, dfrfunc_7[["r"]]))
+identical(my_r, dfrfunc_7[["r"]]) (should be TRUE): TRUE
+> message('identical(my_mcsim_stats, dfrfunc_8[["mcsim_stats"]]) (should be TRUE): ', identical(my_mcsim_stats, dfrfunc_8[["mcsim_stats"]]))
+identical(my_mcsim_stats, dfrfunc_8[["mcsim_stats"]]) (should be TRUE): TRUE
 > 
 > # Verify that other things changed or not, as appropriate.
-> identical(dfrfunc_1[["theta_hat"]], dfrfunc_5[["theta_hat"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["optimization_output"]], dfrfunc_5[["optimization_output"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["fitted_values"]], dfrfunc_5[["fitted_values"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["J"]], dfrfunc_5[["J"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["r"]], dfrfunc_5[["r"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["r_tilde"]], dfrfunc_5[["r_tilde"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["mu"]], dfrfunc_5[["mu"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["residuals"]][["raw"]], dfrfunc_5[["residuals"]][["raw"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["residuals"]][["sphered"]], dfrfunc_5[["residuals"]][["sphered"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["residuals"]][["transformed"]], dfrfunc_5[["residuals"]][["transformed"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["epsp"]], dfrfunc_5[["epsp"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["observed_stats"]], dfrfunc_5[["observed_stats"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["mcsim_stats"]], dfrfunc_5[["mcsim_stats"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["p"]], dfrfunc_5[["p"]])# FALSE
-[1] FALSE
+> message('identical(dfrfunc_1[["theta_hat"]], dfrfunc_5[["theta_hat"]]) (should be TRUE): ', identical(dfrfunc_1[["theta_hat"]], dfrfunc_5[["theta_hat"]]))
+identical(dfrfunc_1[["theta_hat"]], dfrfunc_5[["theta_hat"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["optimization_output"]], dfrfunc_5[["optimization_output"]]) (should be TRUE): ', identical(dfrfunc_1[["optimization_output"]], dfrfunc_5[["optimization_output"]]))
+identical(dfrfunc_1[["optimization_output"]], dfrfunc_5[["optimization_output"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["fitted_values"]], dfrfunc_5[["fitted_values"]]) (should be TRUE): ', identical(dfrfunc_1[["fitted_values"]], dfrfunc_5[["fitted_values"]]))
+identical(dfrfunc_1[["fitted_values"]], dfrfunc_5[["fitted_values"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["J"]], dfrfunc_5[["J"]]) (should be TRUE): ', identical(dfrfunc_1[["J"]], dfrfunc_5[["J"]]))
+identical(dfrfunc_1[["J"]], dfrfunc_5[["J"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["r"]], dfrfunc_5[["r"]]) (should be FALSE): ', identical(dfrfunc_1[["r"]], dfrfunc_5[["r"]]))
+identical(dfrfunc_1[["r"]], dfrfunc_5[["r"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["r_tilde"]], dfrfunc_5[["r_tilde"]]) (should be FALSE): ', identical(dfrfunc_1[["r_tilde"]], dfrfunc_5[["r_tilde"]]))
+identical(dfrfunc_1[["r_tilde"]], dfrfunc_5[["r_tilde"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["mu"]], dfrfunc_5[["mu"]]) (should be TRUE): ', identical(dfrfunc_1[["mu"]], dfrfunc_5[["mu"]]))
+identical(dfrfunc_1[["mu"]], dfrfunc_5[["mu"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["residuals"]][["raw"]], dfrfunc_5[["residuals"]][["raw"]]) (should be TRUE): ', identical(dfrfunc_1[["residuals"]][["raw"]], dfrfunc_5[["residuals"]][["raw"]]))
+identical(dfrfunc_1[["residuals"]][["raw"]], dfrfunc_5[["residuals"]][["raw"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["residuals"]][["sphered"]], dfrfunc_5[["residuals"]][["sphered"]]) (should be TRUE): ', identical(dfrfunc_1[["residuals"]][["sphered"]], dfrfunc_5[["residuals"]][["sphered"]]))
+identical(dfrfunc_1[["residuals"]][["sphered"]], dfrfunc_5[["residuals"]][["sphered"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["residuals"]][["transformed"]], dfrfunc_5[["residuals"]][["transformed"]]) (should be FALSE): ', identical(dfrfunc_1[["residuals"]][["transformed"]], dfrfunc_5[["residuals"]][["transformed"]]))
+identical(dfrfunc_1[["residuals"]][["transformed"]], dfrfunc_5[["residuals"]][["transformed"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["epsp"]], dfrfunc_5[["epsp"]]) (should be FALSE): ', identical(dfrfunc_1[["epsp"]], dfrfunc_5[["epsp"]]))
+identical(dfrfunc_1[["epsp"]], dfrfunc_5[["epsp"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["observed_stats"]], dfrfunc_5[["observed_stats"]]) (should be FALSE): ', identical(dfrfunc_1[["observed_stats"]], dfrfunc_5[["observed_stats"]]))
+identical(dfrfunc_1[["observed_stats"]], dfrfunc_5[["observed_stats"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["mcsim_stats"]], dfrfunc_5[["mcsim_stats"]]) (should be FALSE): ', identical(dfrfunc_1[["mcsim_stats"]], dfrfunc_5[["mcsim_stats"]]))
+identical(dfrfunc_1[["mcsim_stats"]], dfrfunc_5[["mcsim_stats"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["p"]], dfrfunc_5[["p"]]) (should be FALSE): ', identical(dfrfunc_1[["p"]], dfrfunc_5[["p"]]))
+identical(dfrfunc_1[["p"]], dfrfunc_5[["p"]]) (should be FALSE): FALSE
 > 
-> identical(dfrfunc_1[["theta_hat"]], dfrfunc_6[["theta_hat"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["optimization_output"]], dfrfunc_6[["optimization_output"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["fitted_values"]], dfrfunc_6[["fitted_values"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["J"]], dfrfunc_6[["J"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["r"]], dfrfunc_6[["r"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["r_tilde"]], dfrfunc_6[["r_tilde"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["mu"]], dfrfunc_6[["mu"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["residuals"]][["raw"]], dfrfunc_6[["residuals"]][["raw"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["residuals"]][["sphered"]], dfrfunc_6[["residuals"]][["sphered"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["residuals"]][["transformed"]], dfrfunc_6[["residuals"]][["transformed"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["epsp"]], dfrfunc_6[["epsp"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["observed_stats"]], dfrfunc_6[["observed_stats"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["mcsim_stats"]], dfrfunc_6[["mcsim_stats"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["p"]], dfrfunc_6[["p"]])# FALSE
-[1] FALSE
+> message('identical(dfrfunc_1[["theta_hat"]], dfrfunc_6[["theta_hat"]]) (should be FALSE): ', identical(dfrfunc_1[["theta_hat"]], dfrfunc_6[["theta_hat"]]))
+identical(dfrfunc_1[["theta_hat"]], dfrfunc_6[["theta_hat"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["optimization_output"]], dfrfunc_6[["optimization_output"]]) (should be FALSE): ', identical(dfrfunc_1[["optimization_output"]], dfrfunc_6[["optimization_output"]]))
+identical(dfrfunc_1[["optimization_output"]], dfrfunc_6[["optimization_output"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["fitted_values"]], dfrfunc_6[["fitted_values"]]) (should be FALSE): ', identical(dfrfunc_1[["fitted_values"]], dfrfunc_6[["fitted_values"]]))
+identical(dfrfunc_1[["fitted_values"]], dfrfunc_6[["fitted_values"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["J"]], dfrfunc_6[["J"]]) (should be FALSE): ', identical(dfrfunc_1[["J"]], dfrfunc_6[["J"]]))
+identical(dfrfunc_1[["J"]], dfrfunc_6[["J"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["r"]], dfrfunc_6[["r"]]) (should be TRUE): ', identical(dfrfunc_1[["r"]], dfrfunc_6[["r"]]))
+identical(dfrfunc_1[["r"]], dfrfunc_6[["r"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["r_tilde"]], dfrfunc_6[["r_tilde"]]) (should be FALSE): ', identical(dfrfunc_1[["r_tilde"]], dfrfunc_6[["r_tilde"]]))
+identical(dfrfunc_1[["r_tilde"]], dfrfunc_6[["r_tilde"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["mu"]], dfrfunc_6[["mu"]]) (should be FALSE): ', identical(dfrfunc_1[["mu"]], dfrfunc_6[["mu"]]))
+identical(dfrfunc_1[["mu"]], dfrfunc_6[["mu"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["residuals"]][["raw"]], dfrfunc_6[["residuals"]][["raw"]]) (should be FALSE): ', identical(dfrfunc_1[["residuals"]][["raw"]], dfrfunc_6[["residuals"]][["raw"]]))
+identical(dfrfunc_1[["residuals"]][["raw"]], dfrfunc_6[["residuals"]][["raw"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["residuals"]][["sphered"]], dfrfunc_6[["residuals"]][["sphered"]]) (should be FALSE): ', identical(dfrfunc_1[["residuals"]][["sphered"]], dfrfunc_6[["residuals"]][["sphered"]]))
+identical(dfrfunc_1[["residuals"]][["sphered"]], dfrfunc_6[["residuals"]][["sphered"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["residuals"]][["transformed"]], dfrfunc_6[["residuals"]][["transformed"]]) (should be FALSE): ', identical(dfrfunc_1[["residuals"]][["transformed"]], dfrfunc_6[["residuals"]][["transformed"]]))
+identical(dfrfunc_1[["residuals"]][["transformed"]], dfrfunc_6[["residuals"]][["transformed"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["epsp"]], dfrfunc_6[["epsp"]]) (should be FALSE): ', identical(dfrfunc_1[["epsp"]], dfrfunc_6[["epsp"]]))
+identical(dfrfunc_1[["epsp"]], dfrfunc_6[["epsp"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["observed_stats"]], dfrfunc_6[["observed_stats"]]) (should be FALSE): ', identical(dfrfunc_1[["observed_stats"]], dfrfunc_6[["observed_stats"]]))
+identical(dfrfunc_1[["observed_stats"]], dfrfunc_6[["observed_stats"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["mcsim_stats"]], dfrfunc_6[["mcsim_stats"]]) (should be TRUE): ', identical(dfrfunc_1[["mcsim_stats"]], dfrfunc_6[["mcsim_stats"]]))
+identical(dfrfunc_1[["mcsim_stats"]], dfrfunc_6[["mcsim_stats"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["p"]], dfrfunc_6[["p"]]) (should be FALSE): ', identical(dfrfunc_1[["p"]], dfrfunc_6[["p"]]))
+identical(dfrfunc_1[["p"]], dfrfunc_6[["p"]]) (should be FALSE): FALSE
 > 
-> identical(dfrfunc_1[["theta_hat"]], dfrfunc_7[["theta_hat"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["optimization_output"]], dfrfunc_7[["optimization_output"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["fitted_values"]], dfrfunc_7[["fitted_values"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["J"]], dfrfunc_7[["J"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["r"]], dfrfunc_7[["r"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["r_tilde"]], dfrfunc_7[["r_tilde"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["mu"]], dfrfunc_7[["mu"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["residuals"]][["raw"]], dfrfunc_7[["residuals"]][["raw"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["residuals"]][["sphered"]], dfrfunc_7[["residuals"]][["sphered"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["residuals"]][["transformed"]], dfrfunc_7[["residuals"]][["transformed"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["epsp"]], dfrfunc_7[["epsp"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["observed_stats"]], dfrfunc_7[["observed_stats"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["mcsim_stats"]], dfrfunc_7[["mcsim_stats"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["p"]], dfrfunc_7[["p"]])# FALSE
-[1] FALSE
+> message('identical(dfrfunc_1[["theta_hat"]], dfrfunc_7[["theta_hat"]]) (should be TRUE): ', identical(dfrfunc_1[["theta_hat"]], dfrfunc_7[["theta_hat"]]))
+identical(dfrfunc_1[["theta_hat"]], dfrfunc_7[["theta_hat"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["optimization_output"]], dfrfunc_7[["optimization_output"]]) (should be TRUE): ', identical(dfrfunc_1[["optimization_output"]], dfrfunc_7[["optimization_output"]]))
+identical(dfrfunc_1[["optimization_output"]], dfrfunc_7[["optimization_output"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["fitted_values"]], dfrfunc_7[["fitted_values"]]) (should be TRUE): ', identical(dfrfunc_1[["fitted_values"]], dfrfunc_7[["fitted_values"]]))
+identical(dfrfunc_1[["fitted_values"]], dfrfunc_7[["fitted_values"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["J"]], dfrfunc_7[["J"]]) (should be TRUE): ', identical(dfrfunc_1[["J"]], dfrfunc_7[["J"]]))
+identical(dfrfunc_1[["J"]], dfrfunc_7[["J"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["r"]], dfrfunc_7[["r"]]) (should be FALSE): ', identical(dfrfunc_1[["r"]], dfrfunc_7[["r"]]))
+identical(dfrfunc_1[["r"]], dfrfunc_7[["r"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["r_tilde"]], dfrfunc_7[["r_tilde"]]) (should be FALSE): ', identical(dfrfunc_1[["r_tilde"]], dfrfunc_7[["r_tilde"]]))
+identical(dfrfunc_1[["r_tilde"]], dfrfunc_7[["r_tilde"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["mu"]], dfrfunc_7[["mu"]]) (should be TRUE): ', identical(dfrfunc_1[["mu"]], dfrfunc_7[["mu"]]))
+identical(dfrfunc_1[["mu"]], dfrfunc_7[["mu"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["residuals"]][["raw"]], dfrfunc_7[["residuals"]][["raw"]]) (should be TRUE): ', identical(dfrfunc_1[["residuals"]][["raw"]], dfrfunc_7[["residuals"]][["raw"]]))
+identical(dfrfunc_1[["residuals"]][["raw"]], dfrfunc_7[["residuals"]][["raw"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["residuals"]][["sphered"]], dfrfunc_7[["residuals"]][["sphered"]]) (should be TRUE): ', identical(dfrfunc_1[["residuals"]][["sphered"]], dfrfunc_7[["residuals"]][["sphered"]]))
+identical(dfrfunc_1[["residuals"]][["sphered"]], dfrfunc_7[["residuals"]][["sphered"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["residuals"]][["transformed"]], dfrfunc_7[["residuals"]][["transformed"]]) (should be FALSE): ', identical(dfrfunc_1[["residuals"]][["transformed"]], dfrfunc_7[["residuals"]][["transformed"]]))
+identical(dfrfunc_1[["residuals"]][["transformed"]], dfrfunc_7[["residuals"]][["transformed"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["epsp"]], dfrfunc_7[["epsp"]]) (should be FALSE): ', identical(dfrfunc_1[["epsp"]], dfrfunc_7[["epsp"]]))
+identical(dfrfunc_1[["epsp"]], dfrfunc_7[["epsp"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["observed_stats"]], dfrfunc_7[["observed_stats"]]) (should be FALSE): ', identical(dfrfunc_1[["observed_stats"]], dfrfunc_7[["observed_stats"]]))
+identical(dfrfunc_1[["observed_stats"]], dfrfunc_7[["observed_stats"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["mcsim_stats"]], dfrfunc_7[["mcsim_stats"]]) (should be FALSE): ', identical(dfrfunc_1[["mcsim_stats"]], dfrfunc_7[["mcsim_stats"]]))
+identical(dfrfunc_1[["mcsim_stats"]], dfrfunc_7[["mcsim_stats"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["p"]], dfrfunc_7[["p"]]) (should be FALSE): ', identical(dfrfunc_1[["p"]], dfrfunc_7[["p"]]))
+identical(dfrfunc_1[["p"]], dfrfunc_7[["p"]]) (should be FALSE): FALSE
 > 
-> identical(dfrfunc_1[["theta_hat"]], dfrfunc_8[["theta_hat"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["optimization_output"]], dfrfunc_8[["optimization_output"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["fitted_values"]], dfrfunc_8[["fitted_values"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["J"]], dfrfunc_8[["J"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["r"]], dfrfunc_8[["r"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["r_tilde"]], dfrfunc_8[["r_tilde"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["mu"]], dfrfunc_8[["mu"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["residuals"]][["raw"]], dfrfunc_8[["residuals"]][["raw"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["residuals"]][["sphered"]], dfrfunc_8[["residuals"]][["sphered"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["residuals"]][["transformed"]], dfrfunc_8[["residuals"]][["transformed"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["epsp"]], dfrfunc_8[["epsp"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["observed_stats"]], dfrfunc_8[["observed_stats"]])# TRUE
-[1] TRUE
-> identical(dfrfunc_1[["mcsim_stats"]], dfrfunc_8[["mcsim_stats"]])# FALSE
-[1] FALSE
-> identical(dfrfunc_1[["p"]], dfrfunc_8[["p"]])# FALSE
-[1] FALSE
+> message('identical(dfrfunc_1[["theta_hat"]], dfrfunc_8[["theta_hat"]]) (should be TRUE): ', identical(dfrfunc_1[["theta_hat"]], dfrfunc_8[["theta_hat"]]))
+identical(dfrfunc_1[["theta_hat"]], dfrfunc_8[["theta_hat"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["optimization_output"]], dfrfunc_8[["optimization_output"]]) (should be TRUE): ', identical(dfrfunc_1[["optimization_output"]], dfrfunc_8[["optimization_output"]]))
+identical(dfrfunc_1[["optimization_output"]], dfrfunc_8[["optimization_output"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["fitted_values"]], dfrfunc_8[["fitted_values"]]) (should be TRUE): ', identical(dfrfunc_1[["fitted_values"]], dfrfunc_8[["fitted_values"]]))
+identical(dfrfunc_1[["fitted_values"]], dfrfunc_8[["fitted_values"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["J"]], dfrfunc_8[["J"]]) (should be TRUE): ', identical(dfrfunc_1[["J"]], dfrfunc_8[["J"]]))
+identical(dfrfunc_1[["J"]], dfrfunc_8[["J"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["r"]], dfrfunc_8[["r"]]) (should be TRUE): ', identical(dfrfunc_1[["r"]], dfrfunc_8[["r"]]))
+identical(dfrfunc_1[["r"]], dfrfunc_8[["r"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["r_tilde"]], dfrfunc_8[["r_tilde"]]) (should be TRUE): ', identical(dfrfunc_1[["r_tilde"]], dfrfunc_8[["r_tilde"]]))
+identical(dfrfunc_1[["r_tilde"]], dfrfunc_8[["r_tilde"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["mu"]], dfrfunc_8[["mu"]]) (should be TRUE): ', identical(dfrfunc_1[["mu"]], dfrfunc_8[["mu"]]))
+identical(dfrfunc_1[["mu"]], dfrfunc_8[["mu"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["residuals"]][["raw"]], dfrfunc_8[["residuals"]][["raw"]]) (should be TRUE): ', identical(dfrfunc_1[["residuals"]][["raw"]], dfrfunc_8[["residuals"]][["raw"]]))
+identical(dfrfunc_1[["residuals"]][["raw"]], dfrfunc_8[["residuals"]][["raw"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["residuals"]][["sphered"]], dfrfunc_8[["residuals"]][["sphered"]]) (should be TRUE): ', identical(dfrfunc_1[["residuals"]][["sphered"]], dfrfunc_8[["residuals"]][["sphered"]]))
+identical(dfrfunc_1[["residuals"]][["sphered"]], dfrfunc_8[["residuals"]][["sphered"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["residuals"]][["transformed"]], dfrfunc_8[["residuals"]][["transformed"]]) (should be TRUE): ', identical(dfrfunc_1[["residuals"]][["transformed"]], dfrfunc_8[["residuals"]][["transformed"]]))
+identical(dfrfunc_1[["residuals"]][["transformed"]], dfrfunc_8[["residuals"]][["transformed"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["epsp"]], dfrfunc_8[["epsp"]]) (should be TRUE): ', identical(dfrfunc_1[["epsp"]], dfrfunc_8[["epsp"]]))
+identical(dfrfunc_1[["epsp"]], dfrfunc_8[["epsp"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["observed_stats"]], dfrfunc_8[["observed_stats"]]) (should be TRUE): ', identical(dfrfunc_1[["observed_stats"]], dfrfunc_8[["observed_stats"]]))
+identical(dfrfunc_1[["observed_stats"]], dfrfunc_8[["observed_stats"]]) (should be TRUE): TRUE
+> message('identical(dfrfunc_1[["mcsim_stats"]], dfrfunc_8[["mcsim_stats"]]) (should be FALSE): ', identical(dfrfunc_1[["mcsim_stats"]], dfrfunc_8[["mcsim_stats"]]))
+identical(dfrfunc_1[["mcsim_stats"]], dfrfunc_8[["mcsim_stats"]]) (should be FALSE): FALSE
+> message('identical(dfrfunc_1[["p"]], dfrfunc_8[["p"]]) (should be FALSE): ', identical(dfrfunc_1[["p"]], dfrfunc_8[["p"]]))
+identical(dfrfunc_1[["p"]], dfrfunc_8[["p"]]) (should be FALSE): FALSE
 > 
 > proc.time()
    user  system elapsed 
-   3.85    0.20    4.06 
+   2.93    0.14    3.06 

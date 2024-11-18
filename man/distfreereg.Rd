@@ -89,6 +89,7 @@
   Optional named list of elements that control the details of the algorithm's computations. The following elements are accepted for all methods:
   \itemize{
     \item \code{symmetric}:	Optional named list or \code{FALSE}; if a named list, its elements are passed as arguments to \code{\link{isSymmetric}} when testing elements of \code{covariance} for symmetry. If \code{FALSE}, then this test is skipped.
+	\item \code{matsqrt_tol}: Numeric; specifies the threshold for considering an eigenvalue "too negative" when calculating the square root of a matrix. Must be non-positive. The default value is \code{-.Machine$double.eps^0.25}.
 	\item \code{solve_tol}: Numeric; passed as \code{tol} argument to \code{\link{solve}}, used in particular to invert \code{Sigma}. The default value is \code{.Machine$double.eps}.
 	\item \code{qr_tol}: Numeric; passed as \code{tol} argument to \code{\link{qr}}. The default value is \code{sqrt(.Machine$double.eps)}. This value might need to be decreased when the dimensions of the Jacobian are sufficiently large.
 	\item \code{orth_tol}: Numeric; passed as \code{tolerance} argument to \code{\link{all.equal}} when testing whether or not \eqn{r^Tr} is the identity matrix. The default value is \code{sqrt(.Machine$double.eps)}.

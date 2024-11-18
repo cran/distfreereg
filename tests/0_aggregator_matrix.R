@@ -17,4 +17,4 @@ am_ref <- cbind(
   c(rep(0,19), rep(1/sqrt(1), 1))
 )
 
-identical(am, am_ref)# TRUE
+message('identical(am, am_ref) (should be TRUE): ', identical(am, am_ref))

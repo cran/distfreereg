@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -233,34 +233,34 @@ Calculating required true covariance specification matrices...
 Generating errors...
 Running simulation...
 > 
-> all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_2[["observed_stats"]])# TRUE
-[1] TRUE
-> all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_3[["observed_stats"]])# TRUE
-[1] TRUE
-> all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_4[["observed_stats"]])# TRUE
-[1] TRUE
-> all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_5[["observed_stats"]])# TRUE
-[1] TRUE
-> all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_6[["observed_stats"]])# TRUE
-[1] TRUE
-> all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_7[["observed_stats"]])# TRUE
-[1] TRUE
-> all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_8[["observed_stats"]])# TRUE
-[1] TRUE
-> all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_9[["observed_stats"]])# TRUE
-[1] TRUE
-> all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_10[["observed_stats"]])# TRUE
-[1] TRUE
-> all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_11[["observed_stats"]])# TRUE
-[1] TRUE
-> all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_12[["observed_stats"]])# TRUE
-[1] TRUE
-> all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_13[["observed_stats"]])# TRUE
-[1] TRUE
-> all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_14[["observed_stats"]])# TRUE
-[1] TRUE
-> all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_15[["observed_stats"]])# TRUE
-[1] TRUE
+> message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_2[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_2[["observed_stats"]]))
+all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_2[["observed_stats"]]) (should be TRUE): TRUE
+> message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_3[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_3[["observed_stats"]]))
+all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_3[["observed_stats"]]) (should be TRUE): TRUE
+> message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_4[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_4[["observed_stats"]]))
+all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_4[["observed_stats"]]) (should be TRUE): TRUE
+> message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_5[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_5[["observed_stats"]]))
+all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_5[["observed_stats"]]) (should be TRUE): TRUE
+> message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_6[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_6[["observed_stats"]]))
+all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_6[["observed_stats"]]) (should be TRUE): TRUE
+> message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_7[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_7[["observed_stats"]]))
+all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_7[["observed_stats"]]) (should be TRUE): TRUE
+> message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_8[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_8[["observed_stats"]]))
+all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_8[["observed_stats"]]) (should be TRUE): TRUE
+> message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_9[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_9[["observed_stats"]]))
+all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_9[["observed_stats"]]) (should be TRUE): TRUE
+> message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_10[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_10[["observed_stats"]]))
+all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_10[["observed_stats"]]) (should be TRUE): TRUE
+> message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_11[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_11[["observed_stats"]]))
+all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_11[["observed_stats"]]) (should be TRUE): TRUE
+> message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_12[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_12[["observed_stats"]]))
+all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_12[["observed_stats"]]) (should be TRUE): TRUE
+> message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_13[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_13[["observed_stats"]]))
+all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_13[["observed_stats"]]) (should be TRUE): TRUE
+> message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_14[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_14[["observed_stats"]]))
+all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_14[["observed_stats"]]) (should be TRUE): TRUE
+> message('all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_15[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_15[["observed_stats"]]))
+all.equal(comp_dfr_1[["observed_stats"]], comp_dfr_15[["observed_stats"]]) (should be TRUE): TRUE
 > 
 > 
 > 
@@ -309,10 +309,10 @@ Running simulation...
 > #                        covariance = list(Q = Q_func),
 > #                        theta_init = rep(1, length(theta)))
 > # 
-> # all.equal(comp_dfr_16[["observed_stats"]], comp_dfr_17[["observed_stats"]])# TRUE
-> # all.equal(comp_dfr_16[["observed_stats"]], comp_dfr_18[["observed_stats"]])# TRUE
-> # all.equal(comp_dfr_16[["observed_stats"]], comp_dfr_19[["observed_stats"]])# TRUE
+> # message('all.equal(comp_dfr_16[["observed_stats"]], comp_dfr_17[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_16[["observed_stats"]], comp_dfr_17[["observed_stats"]]))
+> # message('all.equal(comp_dfr_16[["observed_stats"]], comp_dfr_18[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_16[["observed_stats"]], comp_dfr_18[["observed_stats"]]))
+> # message('all.equal(comp_dfr_16[["observed_stats"]], comp_dfr_19[["observed_stats"]]) (should be TRUE): ', all.equal(comp_dfr_16[["observed_stats"]], comp_dfr_19[["observed_stats"]]))
 > 
 > proc.time()
    user  system elapsed 
-   9.18    0.21    9.43 
+   6.18    0.20    6.42 

@@ -5,8 +5,8 @@ validate_args_distfreereg_function <-
     validate_extra_arg_list(extra_arg_list, "distfreereg.function()")
     
     if(!is.null(control))
-      validate_named_list(control, valid_names = c("solve_tol", "qr_tol",
-                                                   "orth_tol", "trans_tol",
+      validate_named_list(control, valid_names = c("matsqrt_tol", "solve_tol",
+                                                   "qr_tol", "orth_tol", "trans_tol",
                                                    "symmetric", "jacobian_args",
                                                    "optimization_fun",
                                                    "fun_to_optimize_arg",
@@ -201,8 +201,9 @@ validate_args_distfreereg_function <-
     #        "output is not a single number.")
     # }
     return(list(Y = Y, X = X, n = n, covariance = covariance,
-                solve_tol = control[["solve_tol"]], qr_tol = control[["qr_tol"]],
-                orth_tol = control[["orth_tol"]], trans_tol = control[["trans_tol"]],
+                matsqrt_tol = control[["matsqrt_tol"]], solve_tol = control[["solve_tol"]],
+                qr_tol = control[["qr_tol"]], orth_tol = control[["orth_tol"]],
+                trans_tol = control[["trans_tol"]],
                 optimization_fun = optimization_fun, optimization_args = optimization_args,
                 theta_hat_name = theta_hat_name, fun_to_optimize_arg = fun_to_optimize_arg,
                 jacobian_args = jacobian_args, B = B))

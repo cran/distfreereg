@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -56,141 +56,17 @@ Consider specifying 'start' or using a selfStart model
 > 
 > # 0000
 > set.seed(20240308)
-> compare(true_mean = true_m,
-+         test_mean = test_m,
-+         # true_data = true_data,
-+         # data = data,
-+         # true_X = true_X,
-+         # X = X,
-+         true_covariance = list(Sigma = Sig),
-+         reps = 10, B = 10, prog = Inf, theta = theta)
+> cdfr <- compare(true_mean = true_m,
++                 test_mean = test_m,
++                 # true_data = true_data,
++                 # data = data,
++                 # true_X = true_X,
++                 # X = X,
++                 true_covariance = list(Sigma = Sig),
++                 reps = 10, B = 10, prog = Inf, theta = theta)
 Calculating required true covariance specification matrices...
 Generating errors...
 Running simulation...
-$call
-compare(true_mean = true_m, true_covariance = list(Sigma = Sig), 
-    theta = theta, reps = 10, prog = Inf, test_mean = test_m, 
-    B = 10)
-
-$Y_mean
-[1]  2.8541223 -4.9408780  2.2206047  0.4625378  4.2549822
-
-$errors
-            [,1]        [,2]       [,3]        [,4]       [,5]         [,6]
-[1,] -1.24255131  0.95961843 -0.1768879  2.24019647 -1.5986673  0.624380014
-[2,]  0.08211882  0.60845910  0.2007393 -0.09953149 -0.7995531 -0.006416308
-[3,] -0.02106319  0.07283014  0.1739816  0.02478956  0.1643450 -0.073718445
-[4,]  0.75422766 -0.49333377 -0.4797648  0.39830473 -0.3655695 -0.781565671
-[5,] -0.09657357 -0.01204965 -0.9947559  1.12564962  0.3297202  0.429430516
-            [,7]        [,8]       [,9]      [,10]
-[1,] -0.47295169  1.66665166  0.1902328  0.7212261
-[2,]  0.77409857 -0.35816757 -0.5561163 -0.4176708
-[3,]  0.02310508  0.01643184 -0.2712258 -0.2906095
-[4,]  0.32946376  0.46219422  0.1170619  0.6950060
-[5,] -1.04100415  0.92449513  2.1373433 -1.5912040
-
-$theta
-j k 
-2 5 
-
-$true_mean
-Nonlinear regression model
-  model: c ~ j * a + k * b
-   data: true_data
-    j     k 
-2.786 5.206 
- residual sum-of-squares: 6.838
-
-Number of iterations to convergence: 1 
-Achieved convergence tolerance: 1.57e-08
-
-$true_covariance
-$true_covariance$Sigma
-         [,1]      [,2]       [,3]      [,4]     [,5]
-[1,] 1.808104 0.0000000 0.00000000 0.0000000 0.000000
-[2,] 0.000000 0.6205029 0.00000000 0.0000000 0.000000
-[3,] 0.000000 0.0000000 0.08302804 0.0000000 0.000000
-[4,] 0.000000 0.0000000 0.00000000 0.1695778 0.000000
-[5,] 0.000000 0.0000000 0.00000000 0.0000000 1.307579
-
-$true_covariance$SqrtSigma
-         [,1]    [,2]      [,3]      [,4]     [,5]
-[1,] 1.344657 0.00000 0.0000000 0.0000000 0.000000
-[2,] 0.000000 0.78772 0.0000000 0.0000000 0.000000
-[3,] 0.000000 0.00000 0.2881459 0.0000000 0.000000
-[4,] 0.000000 0.00000 0.0000000 0.4117982 0.000000
-[5,] 0.000000 0.00000 0.0000000 0.0000000 1.143494
-
-
-$true_X
-NULL
-
-$true_data
-NULL
-
-$test_mean
-Nonlinear regression model
-  model: c ~ j * a + k * b^2
-   data: data
-     j      k 
- 4.907 -4.028 
- residual sum-of-squares: 2.271
-
-Number of iterations to convergence: 1 
-Achieved convergence tolerance: 9.018e-08
-
-$covariance
-$covariance$SqrtSigma
-[1] 3.393409
-
-$covariance$Q
-[1] 0.2946889
-
-
-$X
-NULL
-
-$data
-NULL
-
-$observed_stats
-          KS        CvM
-1  0.5858801 0.07356457
-2  0.4695652 0.06459084
-3  0.5007212 0.06126551
-4  0.4984613 0.07130253
-5  0.5275031 0.06189049
-6  0.4741683 0.06190163
-7  0.5543959 0.06876431
-8  0.5202475 0.07062297
-9  0.5400001 0.06705437
-10 0.5526128 0.07269922
-
-$mcsim_stats
-$mcsim_stats$KS
- [1] 0.5324074 0.9456040 0.6496223 0.9017966 0.3768204 0.5736862 0.5041341
- [8] 0.2178798 0.7054823 1.3070893
-
-$mcsim_stats$CvM
- [1] 0.09555906 0.29490307 0.22142658 0.28293499 0.04394204 0.08858156
- [7] 0.10649117 0.02641345 0.22303510 0.73925043
-
-
-$p
-    KS CvM
-1  0.5 0.8
-2  0.8 0.8
-3  0.8 0.8
-4  0.8 0.8
-5  0.7 0.8
-6  0.8 0.8
-7  0.6 0.8
-8  0.7 0.8
-9  0.6 0.8
-10 0.6 0.8
-
-attr(,"class")
-[1] "compare"
 Warning messages:
 1: In nls(formula = test_form, data = new_data, algorithm = "default",  :
   No starting values specified for some parameters.
@@ -232,6 +108,17 @@ Consider specifying 'start' or using a selfStart model
   No starting values specified for some parameters.
 Initializing 'j', 'k' to '1.'.
 Consider specifying 'start' or using a selfStart model
+> 
+> signif(cdfr[["observed_stats"]][["KS"]], digits = 4)
+ [1] 0.5859 0.4696 0.5007 0.4985 0.5275 0.4742 0.5544 0.5202 0.5400 0.5526
+> signif(cdfr[["observed_stats"]][["CvM"]], digits = 4)
+ [1] 0.07356 0.06459 0.06127 0.07130 0.06189 0.06190 0.06876 0.07062 0.06705
+[10] 0.07270
+> signif(cdfr[["mcsim_stats"]][["KS"]], digits = 4)
+ [1] 0.5324 0.9456 0.6496 0.9018 0.3768 0.5737 0.5041 0.2179 0.7055 1.3070
+> signif(cdfr[["mcsim_stats"]][["CvM"]], digits = 4)
+ [1] 0.09556 0.29490 0.22140 0.28290 0.04394 0.08858 0.10650 0.02641 0.22300
+[10] 0.73930
 > 
 > # 1000
 > set.seed(20240308)
@@ -459,4 +346,4 @@ In validate_args_compare(true_mean = true_mean, true_method = true_method,  :
 > 
 > proc.time()
    user  system elapsed 
-   0.32    0.12    0.42 
+   0.23    0.03    0.28 

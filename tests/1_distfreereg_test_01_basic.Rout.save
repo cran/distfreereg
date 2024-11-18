@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -60,70 +60,63 @@ Stat      Value  Pr(>Value)       MCSE
 `MCSE' is the Monte Carlo standard error of the estimated p-value.
 
 > 
-> all.equal(dfr_1[["epsp"]], dfr_2[["epsp"]])# TRUE
-[1] TRUE
+> message('all.equal(dfr_1[["epsp"]], dfr_2[["epsp"]], tolerance = 1e-5) (should be TRUE): ', all.equal(dfr_1[["epsp"]], dfr_2[["epsp"]], tolerance = 1e-5))
+all.equal(dfr_1[["epsp"]], dfr_2[["epsp"]], tolerance = 1e-5) (should be TRUE): TRUE
 > 
 > # Verify that r and mu are orthogonal.
-> all.equal(crossprod(dfr_1[["r"]]), diag(length(dfr_1[["theta_hat"]])))# TRUE
-[1] TRUE
-> all.equal(crossprod(dfr_1[["mu"]]), diag(length(dfr_1[["theta_hat"]])))# TRUE
-[1] TRUE
+> message('all.equal(crossprod(dfr_1[["r"]]), diag(length(dfr_1[["theta_hat"]])), tolerance = 1e-5) (should be TRUE): ', all.equal(crossprod(dfr_1[["r"]]), diag(length(dfr_1[["theta_hat"]])), tolerance = 1e-5))
+all.equal(crossprod(dfr_1[["r"]]), diag(length(dfr_1[["theta_hat"]])), tolerance = 1e-5) (should be TRUE): TRUE
+> message('all.equal(crossprod(dfr_1[["mu"]]), diag(length(dfr_1[["theta_hat"]])), tolerance = 1e-5) (should be TRUE): ', all.equal(crossprod(dfr_1[["mu"]]), diag(length(dfr_1[["theta_hat"]])), tolerance = 1e-5))
+all.equal(crossprod(dfr_1[["mu"]]), diag(length(dfr_1[["theta_hat"]])), tolerance = 1e-5) (should be TRUE): TRUE
 > 
-> fitted(dfr_1)
-  [1]  2.940006 10.236812  2.204325  2.765329  2.505584 15.196913  4.487024
-  [8]  3.561264  6.852116  4.089087  5.400730  3.159663  5.969952  8.182207
- [15]  7.302457 12.534146  4.356026  3.787727 16.657133  4.745480  8.316484
- [22]  2.779830  5.696786 13.718424 13.801356  4.548006  2.568642  3.974844
- [29]  8.627423  4.251438  2.884096  4.776208 29.202819  4.565855  4.228554
- [36]  4.890854 17.896558  4.154637  6.548527 14.473032  2.150998  2.605117
- [43]  7.273213  7.985918  4.316926 14.154161  3.702234 10.497208 15.807420
- [50] 15.830086  6.327776  3.442466  4.427729  7.081405  8.383537  4.793056
- [57]  2.602467  6.120089  3.691786  4.395029  2.876768  3.732549  5.191191
- [64] 13.326315  3.209301  6.132695  3.782748  2.267743  5.123849 18.431919
- [71]  9.668511  3.651374  7.058939  2.748601 12.997931  2.941580  2.715612
- [78]  4.454521 21.304403  5.258018  3.041901 14.379766 11.637051  6.933545
- [85]  5.698326 10.753236  3.014304  2.918842  3.237880  2.685804  2.227882
- [92]  2.107651  2.877334  2.900850 10.619322  6.095744  9.452130  6.346520
- [99]  7.386018  4.943909
+> signif(fitted(dfr_1), digits = 5)
+  [1]  2.9400 10.2370  2.2043  2.7653  2.5056 15.1970  4.4870  3.5613  6.8521
+ [10]  4.0891  5.4007  3.1597  5.9700  8.1822  7.3025 12.5340  4.3560  3.7877
+ [19] 16.6570  4.7455  8.3165  2.7798  5.6968 13.7180 13.8010  4.5480  2.5686
+ [28]  3.9748  8.6274  4.2514  2.8841  4.7762 29.2030  4.5659  4.2286  4.8909
+ [37] 17.8970  4.1546  6.5485 14.4730  2.1510  2.6051  7.2732  7.9859  4.3169
+ [46] 14.1540  3.7022 10.4970 15.8070 15.8300  6.3278  3.4425  4.4277  7.0814
+ [55]  8.3835  4.7931  2.6025  6.1201  3.6918  4.3950  2.8768  3.7325  5.1912
+ [64] 13.3260  3.2093  6.1327  3.7827  2.2677  5.1238 18.4320  9.6685  3.6514
+ [73]  7.0589  2.7486 12.9980  2.9416  2.7156  4.4545 21.3040  5.2580  3.0419
+ [82] 14.3800 11.6370  6.9335  5.6983 10.7530  3.0143  2.9188  3.2379  2.6858
+ [91]  2.2279  2.1077  2.8773  2.9009 10.6190  6.0957  9.4521  6.3465  7.3860
+[100]  4.9439
 > 
-> all.equal(residuals(dfr_1), residuals(dfr_1, type = "raw"))# TRUE
-[1] TRUE
-> residuals(dfr_1, type = "sphered")
-  [1] -0.41724602  1.08131187 -0.38516181 -0.97216261  1.79159522 -0.54546138
-  [7]  1.42100779  1.43578226 -0.84354682 -0.09609521  1.19407354 -1.12348296
- [13] -0.05935579 -0.55274096 -0.45988398  0.61596684 -0.30508816 -0.91490867
- [19] -0.24498890 -1.82603624 -1.35397233 -0.23170381  0.42370955 -0.49441089
- [25] -1.15537017  0.65262571 -0.14654511  0.06872363 -0.47179368  0.97127468
- [31]  0.41056744  0.88370328  0.37249275  0.70344775  0.36111492  1.50518252
- [37]  0.64758869  0.27692522  0.60954365 -1.42656534 -0.89424869 -0.94484465
- [43] -0.63089661  0.10551542  0.14834477  0.12559297  0.87490980  0.07856170
- [49]  0.42835548  0.78991363 -1.55604067  1.26006240  0.46119921  0.13778042
- [55]  1.57446122 -0.14406199 -1.53820330  0.44506818 -1.98708197  0.70431611
- [61] -0.52430527 -0.22461788 -0.13875223 -0.93412566  0.32681649  1.00097610
- [67] -0.16832886  1.21694296 -0.40747118  2.37205996 -0.26480995  0.05044538
- [73]  0.16128627 -1.45607388 -1.19163921  0.97814834  0.33505565 -0.06752832
- [79]  0.27912688  0.84982904 -0.19388010  0.92902858 -0.18432671 -0.34386330
- [85] -0.59475110 -0.59677321 -0.84064562  0.12995398  1.29414746 -1.15086859
- [91]  2.00384125 -0.26468759 -0.45241119 -0.26850024  0.83751572 -0.79514851
- [97]  0.64491499  0.04377437 -0.14078002  0.46026569
-> residuals(dfr_1, type = "transformed")
-  [1] -0.65137058  1.10343377 -0.26532309 -1.20387360  1.57084076 -0.22699471
-  [7]  1.42731418  1.32242757 -0.85230184 -0.36194676  1.00393468 -1.27486306
- [13]  0.08429774 -0.46076713 -0.54139409  0.47534464 -0.30251518 -1.15870218
- [19] -0.15848348 -1.68709528 -1.45982257 -0.49915204  0.23404427 -0.25889442
- [25] -1.10330234  0.39789941 -0.31271583  0.18366025 -0.58261281  0.87993865
- [31]  0.36078756  0.73341604  1.25935589  0.76358939  0.39422732  1.60359697
- [37]  0.77959674  0.26602901  0.64781551 -1.33671536 -0.84022503 -1.08110379
- [43] -0.68095348 -0.03671701  0.26405380  0.26956709  0.86825050  0.22985062
- [49]  0.71523590  0.78670714 -1.55048325  1.00355496  0.31101073  0.04714155
- [55]  1.43618249 -0.03962495 -1.57310745  0.24901988 -1.97331186  0.42674929
- [61] -0.65808112 -0.37346579 -0.21800658 -1.09021104  0.30819202  1.10953578
- [67] -0.47423390  1.04147923 -0.51774560  2.42409127 -0.13005078 -0.23183140
- [73]  0.14740656 -1.38469881 -1.02813250  0.83155433  0.27094575 -0.36618516
- [79]  0.44475866  0.98829045 -0.32831347  0.76241835 -0.34558856 -0.52129356
- [85] -0.50628087 -0.65673033 -0.98419620  0.14004323  1.29408468 -1.21600936
- [91]  1.76212789 -0.30352910 -0.35387842 -0.33937859  0.83715287 -0.71712964
- [97]  0.67588660 -0.09067322 -0.29566701  0.46884323
+> message('all.equal(residuals(dfr_1), residuals(dfr_1, type = "raw"), tolerance = 1e-5) (should be TRUE): ', all.equal(residuals(dfr_1), residuals(dfr_1, type = "raw"), tolerance = 1e-5))
+all.equal(residuals(dfr_1), residuals(dfr_1, type = "raw"), tolerance = 1e-5) (should be TRUE): TRUE
+> signif(residuals(dfr_1, type = "sphered"), digits = 5)
+  [1] -0.417250  1.081300 -0.385160 -0.972160  1.791600 -0.545460  1.421000
+  [8]  1.435800 -0.843550 -0.096095  1.194100 -1.123500 -0.059356 -0.552740
+ [15] -0.459880  0.615970 -0.305090 -0.914910 -0.244990 -1.826000 -1.354000
+ [22] -0.231700  0.423710 -0.494410 -1.155400  0.652630 -0.146550  0.068724
+ [29] -0.471790  0.971270  0.410570  0.883700  0.372490  0.703450  0.361110
+ [36]  1.505200  0.647590  0.276930  0.609540 -1.426600 -0.894250 -0.944840
+ [43] -0.630900  0.105520  0.148340  0.125590  0.874910  0.078562  0.428360
+ [50]  0.789910 -1.556000  1.260100  0.461200  0.137780  1.574500 -0.144060
+ [57] -1.538200  0.445070 -1.987100  0.704320 -0.524310 -0.224620 -0.138750
+ [64] -0.934130  0.326820  1.001000 -0.168330  1.216900 -0.407470  2.372100
+ [71] -0.264810  0.050445  0.161290 -1.456100 -1.191600  0.978150  0.335060
+ [78] -0.067528  0.279130  0.849830 -0.193880  0.929030 -0.184330 -0.343860
+ [85] -0.594750 -0.596770 -0.840650  0.129950  1.294100 -1.150900  2.003800
+ [92] -0.264690 -0.452410 -0.268500  0.837520 -0.795150  0.644910  0.043774
+ [99] -0.140780  0.460270
+> signif(residuals(dfr_1, type = "transformed"), digits = 5)
+  [1] -0.651370  1.103400 -0.265320 -1.203900  1.570800 -0.226990  1.427300
+  [8]  1.322400 -0.852300 -0.361950  1.003900 -1.274900  0.084298 -0.460770
+ [15] -0.541390  0.475340 -0.302520 -1.158700 -0.158480 -1.687100 -1.459800
+ [22] -0.499150  0.234040 -0.258890 -1.103300  0.397900 -0.312720  0.183660
+ [29] -0.582610  0.879940  0.360790  0.733420  1.259400  0.763590  0.394230
+ [36]  1.603600  0.779600  0.266030  0.647820 -1.336700 -0.840230 -1.081100
+ [43] -0.680950 -0.036717  0.264050  0.269570  0.868250  0.229850  0.715240
+ [50]  0.786710 -1.550500  1.003600  0.311010  0.047142  1.436200 -0.039625
+ [57] -1.573100  0.249020 -1.973300  0.426750 -0.658080 -0.373470 -0.218010
+ [64] -1.090200  0.308190  1.109500 -0.474230  1.041500 -0.517750  2.424100
+ [71] -0.130050 -0.231830  0.147410 -1.384700 -1.028100  0.831550  0.270950
+ [78] -0.366190  0.444760  0.988290 -0.328310  0.762420 -0.345590 -0.521290
+ [85] -0.506280 -0.656730 -0.984200  0.140040  1.294100 -1.216000  1.762100
+ [92] -0.303530 -0.353880 -0.339380  0.837150 -0.717130  0.675890 -0.090673
+ [99] -0.295670  0.468840
 > 
 > 
 > 
@@ -158,43 +151,42 @@ In (function (formula, data = parent.frame(), start, control = nls.control(),  :
 Initializing 'd', 'e' to '1.'.
 Consider specifying 'start' or using a selfStart model
 > 
-> identical(dfr_1[["epsp"]], dfr_3[["epsp"]])# TRUE
+> message('identical(dfr_1[["epsp"]], dfr_3[["epsp"]]) (should be TRUE): ', identical(dfr_1[["epsp"]], dfr_3[["epsp"]]))
+identical(dfr_1[["epsp"]], dfr_3[["epsp"]]) (should be TRUE): TRUE
+> message('all.equal(dfr_1[["theta_hat"]], dfr_4[["theta_hat"]], check.attributes = FALSE, tolerance = 1e-5) (should be TRUE): ', all.equal(dfr_1[["theta_hat"]], dfr_4[["theta_hat"]], check.attributes = FALSE, tolerance = 1e-5))
+all.equal(dfr_1[["theta_hat"]], dfr_4[["theta_hat"]], check.attributes = FALSE, tolerance = 1e-5) (should be TRUE): TRUE
+> message('all.equal(dfr_1[["epsp"]], dfr_4[["epsp"]], check.attributes = FALSE, tolerance = 1e-5) (should be TRUE): ', all.equal(dfr_1[["epsp"]], dfr_4[["epsp"]], check.attributes = FALSE, tolerance = 1e-5))
+all.equal(dfr_1[["epsp"]], dfr_4[["epsp"]], check.attributes = FALSE, tolerance = 1e-5) (should be TRUE): TRUE
+> message('all.equal(dfr_1[["epsp"]], dfr_5[["epsp"]], check.attributes = FALSE, tolerance = 1e-5) (should be TRUE): ', all.equal(dfr_1[["epsp"]], dfr_5[["epsp"]], check.attributes = FALSE, tolerance = 1e-5))
+all.equal(dfr_1[["epsp"]], dfr_5[["epsp"]], check.attributes = FALSE, tolerance = 1e-5) (should be TRUE): TRUE
+> message('all.equal(dfr_1[["epsp"]], dfr_6[["epsp"]], tolerance = 1e-5) (should be TRUE): ', all.equal(dfr_1[["epsp"]], dfr_6[["epsp"]], tolerance = 1e-5))
+all.equal(dfr_1[["epsp"]], dfr_6[["epsp"]], tolerance = 1e-5) (should be TRUE): TRUE
+> message('identical(dfr_1[["observed_stats"]], dfr_3[["observed_stats"]]) (should be TRUE): ', identical(dfr_1[["observed_stats"]], dfr_3[["observed_stats"]]))
+identical(dfr_1[["observed_stats"]], dfr_3[["observed_stats"]]) (should be TRUE): TRUE
+> all.equal(dfr_1[["observed_stats"]], dfr_4[["observed_stats"]],
++           check.attributes = FALSE, tolerance = 1e-5)# TRUE, or small relative difference
 [1] TRUE
-> all.equal(dfr_1[["theta_hat"]], dfr_4[["theta_hat"]], check.attributes = FALSE)# TRUE, or small relative difference
+> all.equal(dfr_1[["observed_stats"]], dfr_5[["observed_stats"]],
++           check.attributes = FALSE, tolerance = 1e-5)# TRUE, or small relative difference
 [1] TRUE
-> all.equal(dfr_1[["epsp"]], dfr_4[["epsp"]], check.attributes = FALSE)# TRUE, or small relative difference
-[1] "Mean relative difference: 1.447316e-07"
-> all.equal(dfr_1[["epsp"]], dfr_5[["epsp"]], check.attributes = FALSE)# TRUE, or small relative difference
-[1] "Mean relative difference: 1.447316e-07"
-> all.equal(dfr_1[["epsp"]], dfr_6[["epsp"]])# TRUE, or small relative difference
-[1] "Mean relative difference: 9.247401e-08"
-> identical(dfr_1[["observed_stats"]], dfr_3[["observed_stats"]])# TRUE
-[1] TRUE
-> all.equal(dfr_1[["observed_stats"]], dfr_4[["observed_stats"]], check.attributes = FALSE)# TRUE, or small relative difference
-[1] "Component \"KS\": Mean relative difference: 3.223872e-08" 
-[2] "Component \"CvM\": Mean relative difference: 2.129122e-07"
-> all.equal(dfr_1[["observed_stats"]], dfr_5[["observed_stats"]], check.attributes = FALSE)# TRUE, or small relative difference
-[1] "Component \"KS\": Mean relative difference: 3.223872e-08" 
-[2] "Component \"CvM\": Mean relative difference: 2.129122e-07"
-> all.equal(dfr_1[["observed_stats"]], dfr_6[["observed_stats"]])# TRUE, or small relative difference
-[1] "Component \"KS\": Mean relative difference: 2.000477e-08" 
-[2] "Component \"CvM\": Mean relative difference: 1.313275e-07"
-> identical(dfr_1[["mcsim_stats"]], dfr_3[["mcsim_stats"]])# TRUE
-[1] TRUE
-> identical(dfr_1[["mcsim_stats"]], dfr_4[["mcsim_stats"]])# TRUE
-[1] TRUE
-> identical(dfr_1[["mcsim_stats"]], dfr_5[["mcsim_stats"]])# TRUE
-[1] TRUE
-> identical(dfr_1[["mcsim_stats"]], dfr_6[["mcsim_stats"]])# TRUE
-[1] TRUE
-> identical(dfr_1[["p"]], dfr_3[["p"]])# TRUE
-[1] TRUE
-> identical(dfr_1[["p"]], dfr_4[["p"]])# TRUE
-[1] TRUE
-> identical(dfr_1[["p"]], dfr_5[["p"]])# TRUE
-[1] TRUE
-> identical(dfr_1[["p"]], dfr_6[["p"]])# TRUE
-[1] TRUE
+> message('all.equal(dfr_1[["observed_stats"]], dfr_6[["observed_stats"]], tolerance = 1e-5) (should be TRUE): ', all.equal(dfr_1[["observed_stats"]], dfr_6[["observed_stats"]], tolerance = 1e-5))
+all.equal(dfr_1[["observed_stats"]], dfr_6[["observed_stats"]], tolerance = 1e-5) (should be TRUE): TRUE
+> message('identical(dfr_1[["mcsim_stats"]], dfr_3[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1[["mcsim_stats"]], dfr_3[["mcsim_stats"]]))
+identical(dfr_1[["mcsim_stats"]], dfr_3[["mcsim_stats"]]) (should be TRUE): TRUE
+> message('identical(dfr_1[["mcsim_stats"]], dfr_4[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1[["mcsim_stats"]], dfr_4[["mcsim_stats"]]))
+identical(dfr_1[["mcsim_stats"]], dfr_4[["mcsim_stats"]]) (should be TRUE): TRUE
+> message('identical(dfr_1[["mcsim_stats"]], dfr_5[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1[["mcsim_stats"]], dfr_5[["mcsim_stats"]]))
+identical(dfr_1[["mcsim_stats"]], dfr_5[["mcsim_stats"]]) (should be TRUE): TRUE
+> message('identical(dfr_1[["mcsim_stats"]], dfr_6[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1[["mcsim_stats"]], dfr_6[["mcsim_stats"]]))
+identical(dfr_1[["mcsim_stats"]], dfr_6[["mcsim_stats"]]) (should be TRUE): TRUE
+> message('identical(dfr_1[["p"]], dfr_3[["p"]]) (should be TRUE): ', identical(dfr_1[["p"]], dfr_3[["p"]]))
+identical(dfr_1[["p"]], dfr_3[["p"]]) (should be TRUE): TRUE
+> message('identical(dfr_1[["p"]], dfr_4[["p"]]) (should be TRUE): ', identical(dfr_1[["p"]], dfr_4[["p"]]))
+identical(dfr_1[["p"]], dfr_4[["p"]]) (should be TRUE): TRUE
+> message('identical(dfr_1[["p"]], dfr_5[["p"]]) (should be TRUE): ', identical(dfr_1[["p"]], dfr_5[["p"]]))
+identical(dfr_1[["p"]], dfr_5[["p"]]) (should be TRUE): TRUE
+> message('identical(dfr_1[["p"]], dfr_6[["p"]]) (should be TRUE): ', identical(dfr_1[["p"]], dfr_6[["p"]]))
+identical(dfr_1[["p"]], dfr_6[["p"]]) (should be TRUE): TRUE
 > 
 > 
 > m_nls <- nls(form, data = data, weights = 1/diag(Sig))
@@ -226,15 +218,15 @@ Running Monte Carlo simulation...
 ...8000 of 10000
 ...9000 of 10000
 ...10000 of 10000
-> identical(dfr_6[["epsp"]], dfr_7[["epsp"]])# TRUE
-[1] TRUE
-> identical(dfr_6[["observed_stats"]], dfr_7[["observed_stats"]])# TRUE
-[1] TRUE
-> identical(dfr_6[["mcsim_stats"]], dfr_7[["mcsim_stats"]])# TRUE
-[1] TRUE
-> identical(dfr_6[["p"]], dfr_7[["p"]])# TRUE
-[1] TRUE
+> message('identical(dfr_6[["epsp"]], dfr_7[["epsp"]]) (should be TRUE): ', identical(dfr_6[["epsp"]], dfr_7[["epsp"]]))
+identical(dfr_6[["epsp"]], dfr_7[["epsp"]]) (should be TRUE): TRUE
+> message('identical(dfr_6[["observed_stats"]], dfr_7[["observed_stats"]]) (should be TRUE): ', identical(dfr_6[["observed_stats"]], dfr_7[["observed_stats"]]))
+identical(dfr_6[["observed_stats"]], dfr_7[["observed_stats"]]) (should be TRUE): TRUE
+> message('identical(dfr_6[["mcsim_stats"]], dfr_7[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_6[["mcsim_stats"]], dfr_7[["mcsim_stats"]]))
+identical(dfr_6[["mcsim_stats"]], dfr_7[["mcsim_stats"]]) (should be TRUE): TRUE
+> message('identical(dfr_6[["p"]], dfr_7[["p"]]) (should be TRUE): ', identical(dfr_6[["p"]], dfr_7[["p"]]))
+identical(dfr_6[["p"]], dfr_7[["p"]]) (should be TRUE): TRUE
 > 
 > proc.time()
    user  system elapsed 
-   3.84    0.12    3.93 
+   2.87    0.09    2.95 

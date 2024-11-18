@@ -1,5 +1,5 @@
 
-R Under development (unstable) (2024-11-03 r87286 ucrt) -- "Unsuffered Consequences"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -80,10 +80,10 @@ In (function (formula, data = parent.frame(), start, control = nls.control(),  :
 Initializing 'f', 'g' to '1.'.
 Consider specifying 'start' or using a selfStart model
 > 
-> identical(dfr_0[["data"]][["Y"]], dfr_1[["data"]][["Y"]])# TRUE
-[1] TRUE
-> identical(dfr_0[["data"]][["X"]], dfr_1[["data"]][["X"]])# TRUE
-[1] TRUE
+> message('identical(dfr_0[["data"]][["Y"]], dfr_1[["data"]][["Y"]]) (should be TRUE): ', identical(dfr_0[["data"]][["Y"]], dfr_1[["data"]][["Y"]]))
+identical(dfr_0[["data"]][["Y"]], dfr_1[["data"]][["Y"]]) (should be TRUE): TRUE
+> message('identical(dfr_0[["data"]][["X"]], dfr_1[["data"]][["X"]]) (should be TRUE): ', identical(dfr_0[["data"]][["X"]], dfr_1[["data"]][["X"]]))
+identical(dfr_0[["data"]][["X"]], dfr_1[["data"]][["X"]]) (should be TRUE): TRUE
 > 
 > all.equal(dfr_0[["J"]], dfr_1[["J"]], check.attributes = FALSE, tolerance = 1e-5)
 [1] TRUE
@@ -96,4 +96,4 @@ Consider specifying 'start' or using a selfStart model
 > 
 > proc.time()
    user  system elapsed 
-   1.37    0.17    1.48 
+   1.07    0.06    1.12 

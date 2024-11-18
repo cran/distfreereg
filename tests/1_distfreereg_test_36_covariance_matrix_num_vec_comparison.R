@@ -22,18 +22,18 @@ set.seed(20240715)
 dfr_mat <- distfreereg(test_mean = func, Y = Y, X = X, theta_init = c(1,1,1,1,1),
                        covariance = list(Sigma = Sig_matrix), verbose = FALSE)
 
-identical(dfr_num$covariance, dfr_vec$covariance)# FALSE
-identical(dfr_num$covariance, dfr_mat$covariance)# FALSE
-identical(dfr_vec$covariance, dfr_mat$covariance)# FALSE
+message('identical(dfr_num$covariance, dfr_vec$covariance) (should be FALSE): ', identical(dfr_num$covariance, dfr_vec$covariance))
+message('identical(dfr_num$covariance, dfr_mat$covariance) (should be FALSE): ', identical(dfr_num$covariance, dfr_mat$covariance))
+message('identical(dfr_vec$covariance, dfr_mat$covariance) (should be FALSE): ', identical(dfr_vec$covariance, dfr_mat$covariance))
 
-identical(dfr_num$theta_hat, dfr_vec$theta_hat)# TRUE
-identical(dfr_num$theta_hat, dfr_mat$theta_hat)# TRUE
+message('identical(dfr_num$theta_hat, dfr_vec$theta_hat) (should be TRUE): ', identical(dfr_num$theta_hat, dfr_vec$theta_hat))
+message('identical(dfr_num$theta_hat, dfr_mat$theta_hat) (should be TRUE): ', identical(dfr_num$theta_hat, dfr_mat$theta_hat))
 
-identical(dfr_num$observed_stats, dfr_vec$observed_stats)# TRUE
-identical(dfr_num$observed_stats, dfr_mat$observed_stats)# TRUE
+message('identical(dfr_num$observed_stats, dfr_vec$observed_stats) (should be TRUE): ', identical(dfr_num$observed_stats, dfr_vec$observed_stats))
+message('identical(dfr_num$observed_stats, dfr_mat$observed_stats) (should be TRUE): ', identical(dfr_num$observed_stats, dfr_mat$observed_stats))
 
-identical(dfr_num$p, dfr_vec$p)# TRUE
-identical(dfr_num$p, dfr_mat$p)# TRUE
+message('identical(dfr_num$p, dfr_vec$p) (should be TRUE): ', identical(dfr_num$p, dfr_vec$p))
+message('identical(dfr_num$p, dfr_mat$p) (should be TRUE): ', identical(dfr_num$p, dfr_mat$p))
 
 
 
@@ -50,7 +50,7 @@ set.seed(20240715)
 dfr_mat <- distfreereg(test_mean = func, Y = Y, X = X, theta_init = c(1,1,1,1,1),
                        covariance = list(Sigma = Sig_matrix), verbose = FALSE)
 
-identical(dfr_vec$covariance, dfr_mat$covariance)# FALSE
-identical(dfr_vec$theta_hat, dfr_mat$theta_hat)# TRUE
-identical(dfr_vec$observed_stats, dfr_mat$observed_stats)# TRUE
-identical(dfr_vec$p, dfr_mat$p)# TRUE
+message('identical(dfr_vec$covariance, dfr_mat$covariance) (should be FALSE): ', identical(dfr_vec$covariance, dfr_mat$covariance))
+message('identical(dfr_vec$theta_hat, dfr_mat$theta_hat) (should be TRUE): ', identical(dfr_vec$theta_hat, dfr_mat$theta_hat))
+message('identical(dfr_vec$observed_stats, dfr_mat$observed_stats) (should be TRUE): ', identical(dfr_vec$observed_stats, dfr_mat$observed_stats))
+message('identical(dfr_vec$p, dfr_mat$p) (should be TRUE): ', identical(dfr_vec$p, dfr_mat$p))

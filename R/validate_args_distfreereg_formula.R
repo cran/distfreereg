@@ -34,6 +34,7 @@ validate_args_distfreereg_formula <-
       validate_covariance_list(covariance, n = n, allow_function = FALSE,
                                require_diagonal = TRUE, symmetric = FALSE)
       covariance <- fill_covariance_list(need = "P", covariance,
+                                         matsqrt_tol = control[["matsqrt_tol"]],
                                          solve_tol = control[["solve_tol"]])
       w <- covariance2weights(covariance[["P"]], n = n)
       control[["method_args"]][["weights"]] <- w

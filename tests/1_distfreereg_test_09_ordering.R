@@ -28,8 +28,8 @@ dfr_3[["res_order"]]
 dfr_4[["res_order"]]
 dfr_5[["res_order"]]
 dfr_6[["res_order"]]
-identical(dfr_4[["res_order"]], dfr_5[["res_order"]])# TRUE
-identical(dfr_4[["res_order"]], dfr_6[["res_order"]])# TRUE
+message('identical(dfr_4[["res_order"]], dfr_5[["res_order"]]) (should be TRUE): ', identical(dfr_4[["res_order"]], dfr_5[["res_order"]]))
+message('identical(dfr_4[["res_order"]], dfr_6[["res_order"]]) (should be TRUE): ', identical(dfr_4[["res_order"]], dfr_6[["res_order"]]))
 
 
 # Compare the results above with what should be the identical results with the
@@ -59,12 +59,12 @@ dfr_form_lm_6 <- distfreereg(test_mean = test_form_lm, data = df,
                              covariance = list(Sigma = Sig),
                              verbose = TRUE, ordering = list("b", "c"))
 
-identical(dfr_1[["res_order"]], dfr_form_lm_1[["res_order"]])# TRUE
-identical(dfr_2[["res_order"]], dfr_form_lm_2[["res_order"]])# TRUE
-identical(dfr_3[["res_order"]], dfr_form_lm_3[["res_order"]])# TRUE
-identical(dfr_4[["res_order"]], dfr_form_lm_4[["res_order"]])# TRUE
-identical(dfr_5[["res_order"]], dfr_form_lm_5[["res_order"]])# TRUE
-identical(dfr_6[["res_order"]], dfr_form_lm_6[["res_order"]])# TRUE
+message('identical(dfr_1[["res_order"]], dfr_form_lm_1[["res_order"]]) (should be TRUE): ', identical(dfr_1[["res_order"]], dfr_form_lm_1[["res_order"]]))
+message('identical(dfr_2[["res_order"]], dfr_form_lm_2[["res_order"]]) (should be TRUE): ', identical(dfr_2[["res_order"]], dfr_form_lm_2[["res_order"]]))
+message('identical(dfr_3[["res_order"]], dfr_form_lm_3[["res_order"]]) (should be TRUE): ', identical(dfr_3[["res_order"]], dfr_form_lm_3[["res_order"]]))
+message('identical(dfr_4[["res_order"]], dfr_form_lm_4[["res_order"]]) (should be TRUE): ', identical(dfr_4[["res_order"]], dfr_form_lm_4[["res_order"]]))
+message('identical(dfr_5[["res_order"]], dfr_form_lm_5[["res_order"]]) (should be TRUE): ', identical(dfr_5[["res_order"]], dfr_form_lm_5[["res_order"]]))
+message('identical(dfr_6[["res_order"]], dfr_form_lm_6[["res_order"]]) (should be TRUE): ', identical(dfr_6[["res_order"]], dfr_form_lm_6[["res_order"]]))
 
 
 
@@ -94,12 +94,12 @@ dfr_form_nls_6 <- distfreereg(test_mean = test_form_nls, data = df,
                              covariance = list(Sigma = Sig), method = "nls",
                              verbose = TRUE, ordering = list("b", "c"))
 
-identical(dfr_1[["res_order"]], dfr_form_nls_1[["res_order"]])# TRUE
-identical(dfr_2[["res_order"]], dfr_form_nls_2[["res_order"]])# FALSE; dfr_2 includes an intercept column
-identical(dfr_3[["res_order"]], dfr_form_nls_3[["res_order"]])# TRUE
-identical(dfr_4[["res_order"]], dfr_form_nls_4[["res_order"]])# TRUE
-identical(dfr_5[["res_order"]], dfr_form_nls_5[["res_order"]])# TRUE
-identical(dfr_6[["res_order"]], dfr_form_nls_6[["res_order"]])# TRUE
+message('identical(dfr_1[["res_order"]], dfr_form_nls_1[["res_order"]]) (should be TRUE): ', identical(dfr_1[["res_order"]], dfr_form_nls_1[["res_order"]]))
+message('identical(dfr_2[["res_order"]], dfr_form_nls_2[["res_order"]]) (should be FALSE): ', identical(dfr_2[["res_order"]], dfr_form_nls_2[["res_order"]]))
+message('identical(dfr_3[["res_order"]], dfr_form_nls_3[["res_order"]]) (should be TRUE): ', identical(dfr_3[["res_order"]], dfr_form_nls_3[["res_order"]]))
+message('identical(dfr_4[["res_order"]], dfr_form_nls_4[["res_order"]]) (should be TRUE): ', identical(dfr_4[["res_order"]], dfr_form_nls_4[["res_order"]]))
+message('identical(dfr_5[["res_order"]], dfr_form_nls_5[["res_order"]]) (should be TRUE): ', identical(dfr_5[["res_order"]], dfr_form_nls_5[["res_order"]]))
+message('identical(dfr_6[["res_order"]], dfr_form_nls_6[["res_order"]]) (should be TRUE): ', identical(dfr_6[["res_order"]], dfr_form_nls_6[["res_order"]]))
 
 
 
@@ -123,12 +123,12 @@ dfr_lm_5 <- distfreereg(test_mean = test_lm,
 dfr_lm_6 <- distfreereg(test_mean = test_lm,
                         verbose = TRUE, ordering = list("b", "c"))
 
-identical(dfr_1[["res_order"]], dfr_lm_1[["res_order"]])# TRUE
-identical(dfr_2[["res_order"]], dfr_lm_2[["res_order"]])# TRUE
-identical(dfr_3[["res_order"]], dfr_lm_3[["res_order"]])# TRUE
-identical(dfr_4[["res_order"]], dfr_lm_4[["res_order"]])# TRUE
-identical(dfr_5[["res_order"]], dfr_lm_5[["res_order"]])# TRUE
-identical(dfr_6[["res_order"]], dfr_lm_6[["res_order"]])# TRUE
+message('identical(dfr_1[["res_order"]], dfr_lm_1[["res_order"]]) (should be TRUE): ', identical(dfr_1[["res_order"]], dfr_lm_1[["res_order"]]))
+message('identical(dfr_2[["res_order"]], dfr_lm_2[["res_order"]]) (should be TRUE): ', identical(dfr_2[["res_order"]], dfr_lm_2[["res_order"]]))
+message('identical(dfr_3[["res_order"]], dfr_lm_3[["res_order"]]) (should be TRUE): ', identical(dfr_3[["res_order"]], dfr_lm_3[["res_order"]]))
+message('identical(dfr_4[["res_order"]], dfr_lm_4[["res_order"]]) (should be TRUE): ', identical(dfr_4[["res_order"]], dfr_lm_4[["res_order"]]))
+message('identical(dfr_5[["res_order"]], dfr_lm_5[["res_order"]]) (should be TRUE): ', identical(dfr_5[["res_order"]], dfr_lm_5[["res_order"]]))
+message('identical(dfr_6[["res_order"]], dfr_lm_6[["res_order"]]) (should be TRUE): ', identical(dfr_6[["res_order"]], dfr_lm_6[["res_order"]]))
 
 
 
@@ -153,9 +153,9 @@ dfr_nls_5 <- distfreereg(test_mean = test_nls,
 dfr_nls_6 <- distfreereg(test_mean = test_nls,
                         verbose = TRUE, ordering = list("b", "c"))
 
-identical(dfr_1[["res_order"]], dfr_nls_1[["res_order"]])# TRUE
-identical(dfr_2[["res_order"]], dfr_nls_2[["res_order"]])# FALSE; dfr_2 contains an intercept column
-identical(dfr_3[["res_order"]], dfr_nls_3[["res_order"]])# TRUE
-identical(dfr_4[["res_order"]], dfr_nls_4[["res_order"]])# TRUE
-identical(dfr_5[["res_order"]], dfr_nls_5[["res_order"]])# TRUE
-identical(dfr_6[["res_order"]], dfr_nls_6[["res_order"]])# TRUE
+message('identical(dfr_1[["res_order"]], dfr_nls_1[["res_order"]]) (should be TRUE): ', identical(dfr_1[["res_order"]], dfr_nls_1[["res_order"]]))
+message('identical(dfr_2[["res_order"]], dfr_nls_2[["res_order"]]) (should be FALSE): ', identical(dfr_2[["res_order"]], dfr_nls_2[["res_order"]]))
+message('identical(dfr_3[["res_order"]], dfr_nls_3[["res_order"]]) (should be TRUE): ', identical(dfr_3[["res_order"]], dfr_nls_3[["res_order"]]))
+message('identical(dfr_4[["res_order"]], dfr_nls_4[["res_order"]]) (should be TRUE): ', identical(dfr_4[["res_order"]], dfr_nls_4[["res_order"]]))
+message('identical(dfr_5[["res_order"]], dfr_nls_5[["res_order"]]) (should be TRUE): ', identical(dfr_5[["res_order"]], dfr_nls_5[["res_order"]]))
+message('identical(dfr_6[["res_order"]], dfr_nls_6[["res_order"]]) (should be TRUE): ', identical(dfr_6[["res_order"]], dfr_nls_6[["res_order"]]))

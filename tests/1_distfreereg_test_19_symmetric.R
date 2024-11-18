@@ -14,7 +14,7 @@ set.seed(20240227)
 dfr_2 <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = Sig), theta_init = c(1,1,1), verbose = FALSE,
                      control = list(symmetric = FALSE))
 
-identical(dfr_1[["epsp"]], dfr_2[["epsp"]])# TRUE
+message('identical(dfr_1[["epsp"]], dfr_2[["epsp"]]) (should be TRUE): ', identical(dfr_1[["epsp"]], dfr_2[["epsp"]]))
 
 tryCatch(distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = Sig), theta_init = c(1,1,1), verbose = FALSE,
                      control = list(symmetric = TRUE)),

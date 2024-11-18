@@ -1,5 +1,5 @@
 
-R Under development (unstable) (2024-11-03 r87286 ucrt) -- "Unsuffered Consequences"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -62,35 +62,6 @@ Stat      Value  Pr(>Value)       MCSE
  CvM  1.350e-01   4.242e-01  4.942e-03 
 ---
 `MCSE' is the Monte Carlo standard error of the estimated p-value.
-
-> 
-> lapply(dfr_1$optimization_output[-5], round, digits = 4)
-$par
-theta1 theta2 theta3 
-2.0062 4.8048 1.0169 
-
-$value
-[1] 79.9318
-
-$counts
-function gradient 
-      23        7 
-
-$convergence
-[1] 0
-
-> lapply(dfr_2$optimization_output[-5], round, digits = 4)
-$minimum
-[1] 79.9318
-
-$estimate
-[1] 2.0062 4.8048 1.0169
-
-$gradient
-[1] 0 0 0
-
-$code
-[1] 1
 
 > 
 > 
@@ -227,4 +198,4 @@ In validate_args_distfreereg_function(Y = Y, X = X, test_mean = test_mean,  :
 > 
 > proc.time()
    user  system elapsed 
-   1.29    0.15    1.43 
+   1.39    0.14    1.51 

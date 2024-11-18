@@ -169,6 +169,14 @@ validate_args_compare <-
     if(!is.null(manual) && !is.function(manual))
       stop("\"manual\" must be NULL or a function")
     
+    # Define default matsqrt_tol value if NULL.
+    if(is.null(arg_list[["control"]][["matsqrt_tol"]])){
+      matsqrt_tol <- default_distfreereg_tol()[["matsqrt_tol"]]
+    } else {
+      matsqrt_tol <- arg_list[["control"]][["matsqrt_tol"]]
+    }
+    validate_numeric(matsqrt_tol, max_val = 0, len = 1)
+
     # Define default solve_tol value if NULL.
     if(is.null(arg_list[["control"]][["solve_tol"]])){
       solve_tol <- default_distfreereg_tol()[["solve_tol"]]
@@ -179,5 +187,6 @@ validate_args_compare <-
     
     return(list(reps = reps, prog = prog, true_X = true_X, test_mean = test_mean,
                 X = X, test_Y = test_Y, data = data, n = n,
-                keep = keep, arg_list = arg_list, solve_tol = solve_tol))
+                keep = keep, arg_list = arg_list, solve_tol = solve_tol,
+                matsqrt_tol = matsqrt_tol))
   }

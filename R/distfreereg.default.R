@@ -24,16 +24,17 @@ distfreereg.default <-
                                         override = override, verbose = verbose,
                                         extra_arg_list = extra_arg_list)
     Y <- vargs[["Y"]]; X <- vargs[["X"]]; n <- vargs[["n"]]; J <- vargs[["J"]]
-    covariance = vargs[["covariance"]]; solve_tol = vargs[["solve_tol"]]
-    qr_tol <- vargs[["qr_tol"]]; orth_tol <- vargs[["orth_tol"]]
-    trans_tol <- vargs[["trans_tol"]]; B <- vargs[["B"]]
+    covariance = vargs[["covariance"]]; matsqrt_tol = vargs[["matsqrt_tol"]]
+    solve_tol = vargs[["solve_tol"]]; qr_tol <- vargs[["qr_tol"]]
+    orth_tol <- vargs[["orth_tol"]]; trans_tol <- vargs[["trans_tol"]]
+    B <- vargs[["B"]]
     
     p <- ncol(J)
     
     if(is.null(covariance[["Q"]])){
       if(isTRUE(verbose)) message("Calculating the inverse square root of the covariance matrix...")
       covariance <- fill_covariance_list(need = "Q", covariance_list = covariance,
-                                         solve_tol = solve_tol)
+                                         matsqrt_tol = matsqrt_tol, solve_tol = solve_tol)
     } else{
       if(isTRUE(verbose)) message("Using supplied inverse square root of the covariance matrix...")
     }
@@ -47,7 +48,7 @@ distfreereg.default <-
     }
     
     if(isTRUE(verbose)) message("Calculating mu...")
-    mu <- calc_mu(J = J_for_mu, tol = solve_tol)
+    mu <- calc_mu(J = J_for_mu, matsqrt_tol = matsqrt_tol, solve_tol = solve_tol)
     
     if(is.null(override[["res_order"]])){
       X_for_ordering <- if(is.null(control[["data"]])) X else control[["data"]]

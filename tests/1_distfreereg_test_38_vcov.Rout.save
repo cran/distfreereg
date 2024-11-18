@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -31,11 +31,11 @@ Type 'q()' to quit R.
 +                      theta_init = rep(1, length(theta)), verbose = FALSE)
 > 
 > vcov_1 <- vcov(dfr_1)
-> vcov_1
-            theta1       theta2       theta3
-theta1  0.07530308 -0.029060421 -0.029720753
-theta2 -0.02906042  0.024368662  0.004904737
-theta3 -0.02972075  0.004904737  0.023222539
+> signif(vcov_1, digits = 4)
+         theta1    theta2    theta3
+theta1  0.07530 -0.029060 -0.029720
+theta2 -0.02906  0.024370  0.004905
+theta3 -0.02972  0.004905  0.023220
 > 
 > # Now compare to results from lm().
 > df <- data.frame(a = X[,1], b = X[,2], c = Y)
@@ -45,13 +45,13 @@ theta3 -0.02972075  0.004904737  0.023222539
 [1] TRUE
 > 
 > vcov_2 <- vcov(dfr_2)
-> vcov_2
-            (Intercept)            a            b
-(Intercept)  0.07028895 -0.031145933 -0.028618862
-a           -0.03114593  0.033081394  0.004378108
-b           -0.02861886  0.004378108  0.027686760
+> signif(vcov_2, digits = 4)
+            (Intercept)         a         b
+(Intercept)     0.07029 -0.031150 -0.028620
+a              -0.03115  0.033080  0.004378
+b              -0.02862  0.004378  0.027690
 > 
-> all.equal(vcov_1, vcov_2, check.attributes = FALSE)
+> all.equal(vcov_1, vcov_2, check.attributes = FALSE, tolerance = 1e-4)
 [1] "Mean relative difference: 0.1023676"
 > 
 > 
@@ -60,7 +60,7 @@ b           -0.02861886  0.004378108  0.027686760
 > dfr_3 <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = diag(Sig)),
 +                      theta_init = rep(1, length(theta)), verbose = FALSE)
 > vcov_3 <- vcov(dfr_3)
-> all.equal(vcov_1, vcov_3)
+> all.equal(vcov_1, vcov_3, tolerance = 1e-4)
 [1] TRUE
 > 
 > 
@@ -79,11 +79,11 @@ b           -0.02861886  0.004378108  0.027686760
 +                      theta_init = rep(1, length(theta)), verbose = FALSE)
 > 
 > vcov_4 <- vcov(dfr_4)
-> vcov_4
-             theta1       theta2       theta3
-theta1  0.045539701 -0.007876431 -0.025524625
-theta2 -0.007876431  0.010799747  0.002960208
-theta3 -0.025524625  0.002960208  0.022780309
+> signif(vcov_4, digits = 4)
+          theta1    theta2   theta3
+theta1  0.045540 -0.007876 -0.02552
+theta2 -0.007876  0.010800  0.00296
+theta3 -0.025520  0.002960  0.02278
 > 
 > # Next, compare to results from nls().
 > df <- data.frame(x1 = X[,1], x2 = X[,2], y = Y)
@@ -95,17 +95,18 @@ Initializing 'k', 'a', 'b' to '1.'.
 Consider specifying 'start' or using a selfStart model
 > 
 > dfr_5 <- distfreereg(test_mean = m, verbose = FALSE)
-> all.equal(dfr_4[["theta_hat"]], dfr_5[["theta_hat"]], check.attributes = FALSE)
-[1] "Mean relative difference: 3.128416e-05"
+> all.equal(dfr_4[["theta_hat"]], dfr_5[["theta_hat"]], check.attributes = FALSE,
++           tolerance = 1e-4)
+[1] TRUE
 > 
 > vcov_5 <- vcov(dfr_5)
-> vcov_5
-             k            a            b
-k  0.042391193 -0.005499987 -0.025004406
-a -0.005499987  0.020161653  0.002023511
-b -0.025004406  0.002023511  0.027261196
+> signif(vcov_5, digits = 4)
+         k         a         b
+k  0.04239 -0.005500 -0.025000
+a -0.00550  0.020160  0.002024
+b -0.02500  0.002024  0.027260
 > 
-> all.equal(vcov_4, vcov_5, check.attributes = FALSE)
+> all.equal(vcov_4, vcov_5, check.attributes = FALSE, tolerance = 1e-4)
 [1] "Mean relative difference: 0.1623923"
 > 
 > # Compare to results from using a matrix form for Sigma
@@ -113,9 +114,9 @@ b -0.025004406  0.002023511  0.027261196
 > dfr_6 <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = diag(Sig)),
 +                      theta_init = rep(1, length(theta)), verbose = FALSE)
 > vcov_6 <- vcov(dfr_6)
-> all.equal(vcov_4, vcov_6)
+> all.equal(vcov_4, vcov_6, tolerance = 1e-4)
 [1] TRUE
 > 
 > proc.time()
    user  system elapsed 
-  20.68    0.26   23.26 
+  12.75    0.20   12.96 

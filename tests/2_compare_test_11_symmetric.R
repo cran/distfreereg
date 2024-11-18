@@ -21,7 +21,7 @@ cdfr_2 <- compare(reps = 10, prog = Inf, theta = theta, true_mean = func, true_X
                   covariance = list(Sigma = Sig),
                   theta_init = rep(1, length(theta)), control = list(symmetric = FALSE))
 
-identical(cdfr_1$observed_stats, cdfr_2$observed_stats)# TRUE
+message('identical(cdfr_1$observed_stats, cdfr_2$observed_stats) (should be TRUE): ', identical(cdfr_1$observed_stats, cdfr_2$observed_stats))
 
 tryCatch(compare(reps = 10, prog = Inf, theta = theta, true_mean = func, true_X = X,
                  X = X, test_mean = func,

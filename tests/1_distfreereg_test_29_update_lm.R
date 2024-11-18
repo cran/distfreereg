@@ -36,13 +36,13 @@ dfr_0 <- distfreereg(test_mean = m, verbose = FALSE)
 # dfr_4a <- distfreereg(test_mean = m, verbose = FALSE,
 #                       J = dfr_0[["J"]]^2)
 # dfr_4b <- update(dfr_0, J = dfr_0[["J"]]^2)
-# identical(dfr_4a[-c(1,7)], dfr_4b[-c(1,7)], ignore.environment = TRUE)# TRUE; ignore optimization output
+# message('identical(dfr_4a[-c(1,7)], dfr_4b[-c(1,7)], ignore.environment = TRUE) (should be TRUE): ', identical(dfr_4a[-c(1,7)], dfr_4b[-c(1,7)], ignore.environment = TRUE))
 # 
 # set.seed(20240320)
 # dfr_5a <- distfreereg(test_mean = m, verbose = FALSE,
 #                       fitted_values = dfr_0[["fitted_values"]]^2)
 # dfr_5b <- update(dfr_0, fitted_values = dfr_0[["fitted_values"]]^2)
-# identical(dfr_5a[-c(1,7)], dfr_5b[-c(1,7)], ignore.environment = TRUE)# TRUE
+# message('identical(dfr_5a[-c(1,7)], dfr_5b[-c(1,7)], ignore.environment = TRUE) (should be TRUE): ', identical(dfr_5a[-c(1,7)], dfr_5b[-c(1,7)], ignore.environment = TRUE))
 
 
 set.seed(20240320)
@@ -51,7 +51,7 @@ dfr_6a <- distfreereg(test_mean = m, verbose = FALSE,
 dfr_6b <- update(dfr_0, ordering = "natural")
 set.seed(20240320)
 dfr_6c <- update(dfr_0, ordering = "natural")
-identical(dfr_6a[-c(1,7)], dfr_6b[-c(1,7)], ignore.environment = TRUE)# FALSE
+message('identical(dfr_6a[-c(1,7)], dfr_6b[-c(1,7)], ignore.environment = TRUE) (should be FALSE): ', identical(dfr_6a[-c(1,7)], dfr_6b[-c(1,7)], ignore.environment = TRUE))
 setequal(ident_list(dfr_6a, dfr_6c), c())# TRUE
 
 
@@ -60,7 +60,7 @@ dfr_7a <- distfreereg(test_mean = m, verbose = FALSE, B = 1e2)
 dfr_7b <- update(dfr_0, B = 1e2)
 set.seed(20240320)
 dfr_7c <- update(dfr_0, B = 1e2)
-identical(dfr_7a[-c(1,7)], dfr_7b[-c(1,7)], ignore.environment = TRUE)# FALSE
+message('identical(dfr_7a[-c(1,7)], dfr_7b[-c(1,7)], ignore.environment = TRUE) (should be FALSE): ', identical(dfr_7a[-c(1,7)], dfr_7b[-c(1,7)], ignore.environment = TRUE))
 setequal(ident_list(dfr_7a, dfr_7c), c("call"))# TRUE
 
 
@@ -72,7 +72,7 @@ dfr_8a <- distfreereg(test_mean = m, verbose = FALSE,
 dfr_8b <- update(dfr_0, override = list(res_order = new_ordering))
 set.seed(20240320)
 dfr_8c <- update(dfr_0, override = list(res_order = new_ordering))
-identical(dfr_8a[-c(1,7)], dfr_8b[-c(1,7)], ignore.environment = TRUE)# FALSE
+message('identical(dfr_8a[-c(1,7)], dfr_8b[-c(1,7)], ignore.environment = TRUE) (should be FALSE): ', identical(dfr_8a[-c(1,7)], dfr_8b[-c(1,7)], ignore.environment = TRUE))
 setequal(ident_list(dfr_8a, dfr_8c), c("call"))# TRUE
 
 
@@ -84,7 +84,7 @@ dfr_9a <- distfreereg(test_mean = m, verbose = FALSE,
 dfr_9b <- update(dfr_0, override = list(r = new_r))
 set.seed(20240320)
 dfr_9c <- update(dfr_0, override = list(r = new_r))
-identical(dfr_9a[-c(1,7)], dfr_9b[-c(1,7)], ignore.environment = TRUE)# FALSE
+message('identical(dfr_9a[-c(1,7)], dfr_9b[-c(1,7)], ignore.environment = TRUE) (should be FALSE): ', identical(dfr_9a[-c(1,7)], dfr_9b[-c(1,7)], ignore.environment = TRUE))
 setequal(ident_list(dfr_9a, dfr_9c), c("call"))# TRUE
 
 
@@ -111,5 +111,5 @@ dfr_12a <- distfreereg(test_mean = m, verbose = FALSE,
 dfr_12b <- update(dfr_0, stat = "KSmin")
 set.seed(20240320)
 dfr_12c <- update(dfr_0, stat = "KSmin")
-identical(dfr_12a[-c(1,7,17,18)], dfr_12b[-c(1,7,17,18)], ignore.environment = TRUE)# FALSE
+message('identical(dfr_12a[-c(1,7,17,18)], dfr_12b[-c(1,7,17,18)], ignore.environment = TRUE) (should be FALSE): ', identical(dfr_12a[-c(1,7,17,18)], dfr_12b[-c(1,7,17,18)], ignore.environment = TRUE))
 setequal(ident_list(dfr_12a, dfr_12c), c("call"))# TRUE

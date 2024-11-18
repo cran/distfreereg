@@ -25,9 +25,9 @@ dfr_5 <- distfreereg(test_mean = nls_form, data = data, covariance = list(Sigma 
                      method = "nls", verbose = FALSE)
 dfr_6 <- distfreereg(test_mean = m_nls, verbose = FALSE)
 
-identical(coef(dfr_1), dfr_1[["theta_hat"]])# TRUE
-identical(coef(dfr_2), dfr_2[["theta_hat"]])# TRUE
-identical(coef(dfr_3), dfr_3[["theta_hat"]])# TRUE
-identical(coef(dfr_4), dfr_4[["theta_hat"]])# TRUE
-identical(coef(dfr_5), dfr_5[["theta_hat"]])# TRUE
-identical(coef(dfr_6), dfr_6[["theta_hat"]])# TRUE
+message('identical(coef(dfr_1), dfr_1[["theta_hat"]]) (should be TRUE): ', identical(coef(dfr_1), dfr_1[["theta_hat"]]))
+message('identical(coef(dfr_2), dfr_2[["theta_hat"]]) (should be TRUE): ', identical(coef(dfr_2), dfr_2[["theta_hat"]]))
+message('identical(coef(dfr_3), dfr_3[["theta_hat"]]) (should be TRUE): ', identical(coef(dfr_3), dfr_3[["theta_hat"]]))
+message('identical(coef(dfr_4), dfr_4[["theta_hat"]]) (should be TRUE): ', identical(coef(dfr_4), dfr_4[["theta_hat"]]))
+message('identical(coef(dfr_5), dfr_5[["theta_hat"]]) (should be TRUE): ', identical(coef(dfr_5), dfr_5[["theta_hat"]]))
+message('identical(coef(dfr_6), dfr_6[["theta_hat"]]) (should be TRUE): ', identical(coef(dfr_6), dfr_6[["theta_hat"]]))

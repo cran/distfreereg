@@ -27,7 +27,7 @@ dfr_6 <- distfreereg(test_mean = m_nls, verbose = FALSE)
 
 is.null(formula(dfr_1))# TRUE
 is.null(formula(dfr_2))# TRUE
-identical(formula(dfr_3), dfr_3[["test_mean"]])# TRUE
-identical(formula(dfr_4), formula(dfr_4[["test_mean"]]))# TRUE
-identical(formula(dfr_5), dfr_5[["test_mean"]])# TRUE
-identical(formula(dfr_6), formula(dfr_6[["test_mean"]]))# TRUE
+message('identical(formula(dfr_3), dfr_3[["test_mean"]]) (should be TRUE): ', identical(formula(dfr_3), dfr_3[["test_mean"]]))
+message('identical(formula(dfr_4), formula(dfr_4[["test_mean"]])) (should be TRUE): ', identical(formula(dfr_4), formula(dfr_4[["test_mean"]])))
+message('identical(formula(dfr_5), dfr_5[["test_mean"]]) (should be TRUE): ', identical(formula(dfr_5), dfr_5[["test_mean"]]))
+message('identical(formula(dfr_6), formula(dfr_6[["test_mean"]])) (should be TRUE): ', identical(formula(dfr_6), formula(dfr_6[["test_mean"]])))

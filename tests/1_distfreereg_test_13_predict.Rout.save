@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -83,8 +83,8 @@ In predict.distfreereg(dfr_2, newdata = c(4, 5)) :
 > dfr_3 <- distfreereg(test_mean = test_form, data = df,
 +                      covariance = list(Sigma = Sig),
 +                      verbose = FALSE)
-> all.equal(dfr_1$theta_hat, dfr_3$theta_hat, check.attributes = FALSE)# TRUE
-[1] TRUE
+> message('all.equal(dfr_1$theta_hat, dfr_3$theta_hat, check.attributes = FALSE) (should be TRUE): ', all.equal(dfr_1$theta_hat, dfr_3$theta_hat, check.attributes = FALSE))
+all.equal(dfr_1$theta_hat, dfr_3$theta_hat, check.attributes = FALSE) (should be TRUE): TRUE
 > 
 > n_new <- 10
 > X_new <- matrix(rnorm(2*n_new), ncol = 2)
@@ -188,8 +188,8 @@ In (function (formula, data = parent.frame(), start, control = nls.control(),  :
 Initializing 'f', 'g', 'h' to '1.'.
 Consider specifying 'start' or using a selfStart model
 > 
-> all.equal(predict(dfr_5), predict(dfr_6), check.attributes = FALSE)# TRUE
-[1] TRUE
+> message('all.equal(predict(dfr_5), predict(dfr_6), check.attributes = FALSE) (should be TRUE): ', all.equal(predict(dfr_5), predict(dfr_6), check.attributes = FALSE))
+all.equal(predict(dfr_5), predict(dfr_6), check.attributes = FALSE) (should be TRUE): TRUE
 > 
 > m_nls <- nls(form, data = df, weights = w)
 Warning message:
@@ -219,12 +219,12 @@ Running Monte Carlo simulation...
 ...9000 of 10000
 ...10000 of 10000
 > 
-> all.equal(predict(dfr_6), predict(dfr_7), check.attributes = FALSE)# TRUE
-[1] TRUE
+> message('all.equal(predict(dfr_6), predict(dfr_7), check.attributes = FALSE) (should be TRUE): ', all.equal(predict(dfr_6), predict(dfr_7), check.attributes = FALSE))
+all.equal(predict(dfr_6), predict(dfr_7), check.attributes = FALSE) (should be TRUE): TRUE
 > new_data <- data.frame(a = 1:2, b = 4:5)
-> identical(predict(dfr_6, newdata = new_data), predict(dfr_7, newdata = new_data))# TRUE
-[1] TRUE
+> message('identical(predict(dfr_6, newdata = new_data), predict(dfr_7, newdata = new_data)) (should be TRUE): ', identical(predict(dfr_6, newdata = new_data), predict(dfr_7, newdata = new_data)))
+identical(predict(dfr_6, newdata = new_data), predict(dfr_7, newdata = new_data)) (should be TRUE): TRUE
 > 
 > proc.time()
    user  system elapsed 
-   3.92    0.20    4.17 
+   2.78    0.17    2.96 

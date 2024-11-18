@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -39,27 +39,27 @@ Type 'q()' to quit R.
 > dfr_mat <- distfreereg(test_mean = func, Y = Y, X = X, theta_init = c(1,1,1,1,1),
 +                        covariance = list(Sigma = Sig_matrix), verbose = FALSE)
 > 
-> identical(dfr_num$covariance, dfr_vec$covariance)# FALSE
-[1] FALSE
-> identical(dfr_num$covariance, dfr_mat$covariance)# FALSE
-[1] FALSE
-> identical(dfr_vec$covariance, dfr_mat$covariance)# FALSE
-[1] FALSE
+> message('identical(dfr_num$covariance, dfr_vec$covariance) (should be FALSE): ', identical(dfr_num$covariance, dfr_vec$covariance))
+identical(dfr_num$covariance, dfr_vec$covariance) (should be FALSE): FALSE
+> message('identical(dfr_num$covariance, dfr_mat$covariance) (should be FALSE): ', identical(dfr_num$covariance, dfr_mat$covariance))
+identical(dfr_num$covariance, dfr_mat$covariance) (should be FALSE): FALSE
+> message('identical(dfr_vec$covariance, dfr_mat$covariance) (should be FALSE): ', identical(dfr_vec$covariance, dfr_mat$covariance))
+identical(dfr_vec$covariance, dfr_mat$covariance) (should be FALSE): FALSE
 > 
-> identical(dfr_num$theta_hat, dfr_vec$theta_hat)# TRUE
-[1] TRUE
-> identical(dfr_num$theta_hat, dfr_mat$theta_hat)# TRUE
-[1] TRUE
+> message('identical(dfr_num$theta_hat, dfr_vec$theta_hat) (should be TRUE): ', identical(dfr_num$theta_hat, dfr_vec$theta_hat))
+identical(dfr_num$theta_hat, dfr_vec$theta_hat) (should be TRUE): TRUE
+> message('identical(dfr_num$theta_hat, dfr_mat$theta_hat) (should be TRUE): ', identical(dfr_num$theta_hat, dfr_mat$theta_hat))
+identical(dfr_num$theta_hat, dfr_mat$theta_hat) (should be TRUE): TRUE
 > 
-> identical(dfr_num$observed_stats, dfr_vec$observed_stats)# TRUE
-[1] TRUE
-> identical(dfr_num$observed_stats, dfr_mat$observed_stats)# TRUE
-[1] TRUE
+> message('identical(dfr_num$observed_stats, dfr_vec$observed_stats) (should be TRUE): ', identical(dfr_num$observed_stats, dfr_vec$observed_stats))
+identical(dfr_num$observed_stats, dfr_vec$observed_stats) (should be TRUE): TRUE
+> message('identical(dfr_num$observed_stats, dfr_mat$observed_stats) (should be TRUE): ', identical(dfr_num$observed_stats, dfr_mat$observed_stats))
+identical(dfr_num$observed_stats, dfr_mat$observed_stats) (should be TRUE): TRUE
 > 
-> identical(dfr_num$p, dfr_vec$p)# TRUE
-[1] TRUE
-> identical(dfr_num$p, dfr_mat$p)# TRUE
-[1] TRUE
+> message('identical(dfr_num$p, dfr_vec$p) (should be TRUE): ', identical(dfr_num$p, dfr_vec$p))
+identical(dfr_num$p, dfr_vec$p) (should be TRUE): TRUE
+> message('identical(dfr_num$p, dfr_mat$p) (should be TRUE): ', identical(dfr_num$p, dfr_mat$p))
+identical(dfr_num$p, dfr_mat$p) (should be TRUE): TRUE
 > 
 > 
 > 
@@ -76,15 +76,15 @@ Type 'q()' to quit R.
 > dfr_mat <- distfreereg(test_mean = func, Y = Y, X = X, theta_init = c(1,1,1,1,1),
 +                        covariance = list(Sigma = Sig_matrix), verbose = FALSE)
 > 
-> identical(dfr_vec$covariance, dfr_mat$covariance)# FALSE
-[1] FALSE
-> identical(dfr_vec$theta_hat, dfr_mat$theta_hat)# TRUE
-[1] TRUE
-> identical(dfr_vec$observed_stats, dfr_mat$observed_stats)# TRUE
-[1] TRUE
-> identical(dfr_vec$p, dfr_mat$p)# TRUE
-[1] TRUE
+> message('identical(dfr_vec$covariance, dfr_mat$covariance) (should be FALSE): ', identical(dfr_vec$covariance, dfr_mat$covariance))
+identical(dfr_vec$covariance, dfr_mat$covariance) (should be FALSE): FALSE
+> message('identical(dfr_vec$theta_hat, dfr_mat$theta_hat) (should be TRUE): ', identical(dfr_vec$theta_hat, dfr_mat$theta_hat))
+identical(dfr_vec$theta_hat, dfr_mat$theta_hat) (should be TRUE): TRUE
+> message('identical(dfr_vec$observed_stats, dfr_mat$observed_stats) (should be TRUE): ', identical(dfr_vec$observed_stats, dfr_mat$observed_stats))
+identical(dfr_vec$observed_stats, dfr_mat$observed_stats) (should be TRUE): TRUE
+> message('identical(dfr_vec$p, dfr_mat$p) (should be TRUE): ', identical(dfr_vec$p, dfr_mat$p))
+identical(dfr_vec$p, dfr_mat$p) (should be TRUE): TRUE
 > 
 > proc.time()
    user  system elapsed 
-   4.64    0.23    6.09 
+   2.67    0.06    2.71 

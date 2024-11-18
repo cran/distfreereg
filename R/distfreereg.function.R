@@ -23,17 +23,19 @@ distfreereg.function <-
                                          control = control, override = override, verbose = verbose,
                                          extra_arg_list = extra_arg_list)
     Y <- vargs[["Y"]]; X <- vargs[["X"]]; n <- vargs[["n"]]; J <- vargs[["J"]]
-    covariance = vargs[["covariance"]]; solve_tol = vargs[["solve_tol"]]
-    qr_tol <- vargs[["qr_tol"]]; orth_tol <- vargs[["orth_tol"]]
-    trans_tol <- vargs[["trans_tol"]]; optimization_fun <- vargs[["optimization_fun"]]
-    optimization_args <- vargs[["optimization_args"]]; theta_hat_name <- vargs[["theta_hat_name"]]
+    covariance = vargs[["covariance"]]; matsqrt_tol = vargs[["matsqrt_tol"]]
+    solve_tol = vargs[["solve_tol"]]; qr_tol <- vargs[["qr_tol"]]
+    orth_tol <- vargs[["orth_tol"]]; trans_tol <- vargs[["trans_tol"]]
+    optimization_fun <- vargs[["optimization_fun"]]
+    optimization_args <- vargs[["optimization_args"]]
+    theta_hat_name <- vargs[["theta_hat_name"]]
     fun_to_optimize_arg <- vargs[["fun_to_optimize_arg"]]
     jacobian_args = vargs[["jacobian_args"]]; B <- vargs[["B"]]
     
     if(is.null(covariance[["Q"]])){
       if(isTRUE(verbose)) message("Calculating the inverse square root of the covariance matrix...")
       covariance <- fill_covariance_list(need = "Q", covariance_list = covariance,
-                                         solve_tol = solve_tol)
+                                         matsqrt_tol = matsqrt_tol, solve_tol = solve_tol)
     } else{
       if(isTRUE(verbose)) message("Using supplied inverse square root of the covariance matrix...")
     }

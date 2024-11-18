@@ -30,7 +30,7 @@ test_form <- c ~ a + b
 dfr_3 <- distfreereg(test_mean = test_form, data = df,
                      covariance = list(Sigma = Sig),
                      verbose = FALSE)
-all.equal(dfr_1$theta_hat, dfr_3$theta_hat, check.attributes = FALSE)# TRUE
+message('all.equal(dfr_1$theta_hat, dfr_3$theta_hat, check.attributes = FALSE) (should be TRUE): ', all.equal(dfr_1$theta_hat, dfr_3$theta_hat, check.attributes = FALSE))
 
 n_new <- 10
 X_new <- matrix(rnorm(2*n_new), ncol = 2)
@@ -67,11 +67,11 @@ form <- c ~ f + g*a + h*b
 dfr_6 <- distfreereg(test_mean = form, data = df, method = "nls",
                      covariance = list(Sigma = Sig), verbose = FALSE)
 
-all.equal(predict(dfr_5), predict(dfr_6), check.attributes = FALSE)# TRUE
+message('all.equal(predict(dfr_5), predict(dfr_6), check.attributes = FALSE) (should be TRUE): ', all.equal(predict(dfr_5), predict(dfr_6), check.attributes = FALSE))
 
 m_nls <- nls(form, data = df, weights = w)
 dfr_7 <- distfreereg(m_nls)
 
-all.equal(predict(dfr_6), predict(dfr_7), check.attributes = FALSE)# TRUE
+message('all.equal(predict(dfr_6), predict(dfr_7), check.attributes = FALSE) (should be TRUE): ', all.equal(predict(dfr_6), predict(dfr_7), check.attributes = FALSE))
 new_data <- data.frame(a = 1:2, b = 4:5)
-identical(predict(dfr_6, newdata = new_data), predict(dfr_7, newdata = new_data))# TRUE
+message('identical(predict(dfr_6, newdata = new_data), predict(dfr_7, newdata = new_data)) (should be TRUE): ', identical(predict(dfr_6, newdata = new_data), predict(dfr_7, newdata = new_data)))

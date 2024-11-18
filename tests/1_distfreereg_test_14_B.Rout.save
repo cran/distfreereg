@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -37,10 +37,10 @@ Type 'q()' to quit R.
 > dfr_3 <- distfreereg(Y = Y, X = X, test_mean = func, covariance = list(Sigma = Sig), theta_init = c(1,1,1),
 +                      verbose = FALSE, B = 10.6)
 > 
-> identical(dfr_1[["mcsim_stats"]], dfr_2[["mcsim_stats"]])# TRUE
-[1] TRUE
-> identical(dfr_1[["mcsim_stats"]], dfr_3[["mcsim_stats"]])# TRUE
-[1] TRUE
+> message('identical(dfr_1[["mcsim_stats"]], dfr_2[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1[["mcsim_stats"]], dfr_2[["mcsim_stats"]]))
+identical(dfr_1[["mcsim_stats"]], dfr_2[["mcsim_stats"]]) (should be TRUE): TRUE
+> message('identical(dfr_1[["mcsim_stats"]], dfr_3[["mcsim_stats"]]) (should be TRUE): ', identical(dfr_1[["mcsim_stats"]], dfr_3[["mcsim_stats"]]))
+identical(dfr_1[["mcsim_stats"]], dfr_3[["mcsim_stats"]]) (should be TRUE): TRUE
 > 
 > 
 > # Verify that the code works for B = 1.
@@ -101,4 +101,4 @@ In value[[3L]](cond) :
 > 
 > proc.time()
    user  system elapsed 
-   0.53    0.12    0.65 
+   0.43    0.04    0.46 

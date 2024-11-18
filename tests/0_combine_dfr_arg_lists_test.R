@@ -7,4 +7,4 @@ comb_list <- distfreereg:::combine_dfr_arg_lists(list_1, list_2, list_3, list_4)
 
 cl <- list(a = 1, b = 2:5, c = 7, d = 8, e = 9, override = list(x = 101, y = 103))
 
-identical(comb_list, cl)# TRUE
+message('identical(comb_list, cl) (should be TRUE): ', identical(comb_list, cl))

@@ -1,5 +1,5 @@
 
-R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves"
 Copyright (C) 2024 The R Foundation for Statistical Computing
 Platform: x86_64-w64-mingw32/x64
 
@@ -52,19 +52,19 @@ Initializing 'd', 'e' to '1.'.
 Consider specifying 'start' or using a selfStart model
 > dfr_6 <- distfreereg(test_mean = m_nls, verbose = FALSE)
 > 
-> identical(coef(dfr_1), dfr_1[["theta_hat"]])# TRUE
-[1] TRUE
-> identical(coef(dfr_2), dfr_2[["theta_hat"]])# TRUE
-[1] TRUE
-> identical(coef(dfr_3), dfr_3[["theta_hat"]])# TRUE
-[1] TRUE
-> identical(coef(dfr_4), dfr_4[["theta_hat"]])# TRUE
-[1] TRUE
-> identical(coef(dfr_5), dfr_5[["theta_hat"]])# TRUE
-[1] TRUE
-> identical(coef(dfr_6), dfr_6[["theta_hat"]])# TRUE
-[1] TRUE
+> message('identical(coef(dfr_1), dfr_1[["theta_hat"]]) (should be TRUE): ', identical(coef(dfr_1), dfr_1[["theta_hat"]]))
+identical(coef(dfr_1), dfr_1[["theta_hat"]]) (should be TRUE): TRUE
+> message('identical(coef(dfr_2), dfr_2[["theta_hat"]]) (should be TRUE): ', identical(coef(dfr_2), dfr_2[["theta_hat"]]))
+identical(coef(dfr_2), dfr_2[["theta_hat"]]) (should be TRUE): TRUE
+> message('identical(coef(dfr_3), dfr_3[["theta_hat"]]) (should be TRUE): ', identical(coef(dfr_3), dfr_3[["theta_hat"]]))
+identical(coef(dfr_3), dfr_3[["theta_hat"]]) (should be TRUE): TRUE
+> message('identical(coef(dfr_4), dfr_4[["theta_hat"]]) (should be TRUE): ', identical(coef(dfr_4), dfr_4[["theta_hat"]]))
+identical(coef(dfr_4), dfr_4[["theta_hat"]]) (should be TRUE): TRUE
+> message('identical(coef(dfr_5), dfr_5[["theta_hat"]]) (should be TRUE): ', identical(coef(dfr_5), dfr_5[["theta_hat"]]))
+identical(coef(dfr_5), dfr_5[["theta_hat"]]) (should be TRUE): TRUE
+> message('identical(coef(dfr_6), dfr_6[["theta_hat"]]) (should be TRUE): ', identical(coef(dfr_6), dfr_6[["theta_hat"]]))
+identical(coef(dfr_6), dfr_6[["theta_hat"]]) (should be TRUE): TRUE
 > 
 > proc.time()
    user  system elapsed 
-   3.21    0.18    3.35 
+   2.35    0.14    2.46 

@@ -14,7 +14,7 @@ create_confband <- function(x, func, confband_args){
   }
   confband_default_args <- list(x = x, w = NULL, m = 100, batch_len = 50,
                                 N = 5e4, conf.level = 0.95, buffer = 1e-4,
-                                tol = -1e-10)
+                                matsqrt_tol = default_distfreereg_tol()[["matsqrt_tol"]])
   confband_args <- combine_lists(list(func = get(func)), confband_args,
                                  confband_default_args)
   cb <- do.call(confband, args = confband_args)
